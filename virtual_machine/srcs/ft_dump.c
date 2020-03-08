@@ -1,6 +1,9 @@
 #include "../includes/op.h"
+<<<<<<< HEAD:srcs/ft_dump.c
 #include "../../lem_in/libft/includes/libft.h"
 #include "struct.h"
+=======
+>>>>>>> 0a2fe11dfe98406c6ccc47e77aa9f460b2c53b65:virtual_machine/srcs/ft_dump.c
 
 /*
 ** Dump : Fonction qui parcours la VM et Convertie/Print chaque Char en Hexa 
@@ -14,11 +17,11 @@ void	ft_dump(const unsigned char vm[MEM_SIZE])
 	while (len < MEM_SIZE)
 	{
 		if (len % 64 == 0)
-			ft_printf("0x%.4x : ", len);
+			printf("0x%.4x : ", len);
 		if ((len + 1) % 64 == 0)
-			ft_printf("%.2x\n", vm[len]);
+			printf("%.2x\n", vm[len]);
 		else
-			ft_printf("%.2x ", vm[len]);
+			printf("%.2x ", vm[len]);
 		len++;
 	}
 	return ;
