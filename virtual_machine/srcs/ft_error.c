@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction.c                                   :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 16:41:53 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/08 14:34:06 by pauljull         ###   ########.fr       */
+/*   Created: 2020/03/07 17:08:59 by pauljull          #+#    #+#             */
+/*   Updated: 2020/03/08 14:49:48 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/struct.h"
-#include "../includes/op.h"
+#include "../includes/virtual_machine.h"
 
-void	ft_add(t_process *process, t_vm *vm)
+int	ft_error(void)
 {
-	(void)process;
-	(void)vm;
-}
-
-void	ft_ld(t_process *process, t_vm *vm)
-{
-	(void)process;
-	(void)vm;
+	puts("Error.");
+	return (0);
 }

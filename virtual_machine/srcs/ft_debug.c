@@ -19,9 +19,10 @@ void	ft_debug_processus(t_process *processus)
 	printf("process->registre[%d] = %d\n",14, processus->registre[14]);
 	printf("process->registre[%d] = %d\n",15, processus->registre[15]);
 	printf("process->carry =        %hhd\n", processus->carry);
-	printf("process->ocp =          %zu\n", processus->ocp);
+	printf("process->pc  =          %zu\n", processus->pc);
 	printf("process->cycle_left =   %zu\n", processus->cycle_left);
 	printf("process->next =         %p\n", processus->next);
+	printf("process =               %p\n", processus);
 	printf("\n--------------------------------------------------------------------\n\n");
 }
 

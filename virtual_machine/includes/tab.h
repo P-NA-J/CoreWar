@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction.c                                   :+:      :+:    :+:   */
+/*   tab.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 16:41:53 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/08 14:34:06 by pauljull         ###   ########.fr       */
+/*   Created: 2020/03/08 14:17:53 by pauljull          #+#    #+#             */
+/*   Updated: 2020/03/08 14:55:52 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/struct.h"
-#include "../includes/op.h"
+#ifndef TAB_H
 
-void	ft_add(t_process *process, t_vm *vm)
-{
-	(void)process;
-	(void)vm;
-}
+# define TAB_H
 
-void	ft_ld(t_process *process, t_vm *vm)
-{
-	(void)process;
-	(void)vm;
-}
+#include "./struct.h"
+#include "./prototypes.h"
+
+extern t_instruction	tab_instruction[2];
+
+#endif

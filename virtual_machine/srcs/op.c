@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/02 17:24:21 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:09:44 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
+#include "../includes/op.h"
+#include "../includes/struct.h"
+#include "../includes/prototypes.h"
 
+t_instruction	tab_instruction[2] =
+{
+	{&ft_ld, 5, 2, 4, {0}},
+	{&ft_add, 10, 3, 0, {0}}
+};
+
+/*
 t_op    op_tab[17] =
 {
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
@@ -38,3 +47,4 @@ t_op    op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
+*/

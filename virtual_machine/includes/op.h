@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/05 16:23:22 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/08 13:45:33 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #define ERROR					-1
 #define TRUE					1
 #define LIMIT_CHAMP				4
+
+#define REG_BIT					0b01000000
+#define IND_BIT					0b11000000
+#define DIR_BIT					0b10000000
 
 #define IND_SIZE				2
 #define REG_SIZE				4
