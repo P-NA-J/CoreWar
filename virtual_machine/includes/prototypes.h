@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 17:51:07 by damboule         ###   ########.fr       */
+/*   Updated: 2020/03/10 18:06:34 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_dump(const unsigned char vm[MEM_SIZE]);
 */
 
 int		ft_insertion_vm(const t_args *filecor, unsigned char vm[MEM_SIZE]);
+int		ft_parse(int nb_args, char **args, unsigned char vm[MEM_SIZE]);
 
 /*
 ** Truc de paul : Bidon...

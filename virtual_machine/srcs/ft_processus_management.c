@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 14:49:58 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:52:51 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_process	*ft_process_move(t_process *process, t_process *tab[1024], int cycle, 
 
 	tmp = process->next;
 	process->next = tab[(cycle + cycle_to_add) % 1024];
-	tab[cycle] = tmp;
+	tab[cycle % 1024] = tmp;
 	return (process);
 }
 
