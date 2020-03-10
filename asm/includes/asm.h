@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 18:41:59 by aboitier          #+#    #+#             */
-/*   Updated: 2020/03/10 21:46:05 by aboitier         ###   ########.fr       */
+/*   Updated: 2020/03/10 23:08:29 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,15 @@ int				init(t_asm *env, char *av);
 int				check_valid_argv(t_asm *env, char *av);
 int				safe_open(char *av);
 int				scan(t_asm *env);
+
+
+/*
+** Colors
+*/ 
+
+# define _RED			"\x1b[31m"
+# define _BLUE			"\x1b[34m"	
+# define _GREEN			"\x1b[32m"
+# define _RESET			"\x1b[0m"	
 
 #endif
