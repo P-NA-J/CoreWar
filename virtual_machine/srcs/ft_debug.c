@@ -1,4 +1,41 @@
 #include "../includes/debug.h"
+#define MASK_32 0b10000000000000000000000000000000
+void	ft_print_bit_32(int i)
+{
+	int	mask;
+	int	j;
+
+	mask = MASK_32;
+	j = 0;
+	while (j < 32)
+	{
+		if (mask & i)
+		{
+			printf("1");
+			fflush(stdout);
+		}
+		else
+		{
+			printf("0");
+			fflush(stdout);
+		}
+		mask >>= 1;
+		j += 1;
+		if ((j % 8) == 0)
+		{
+			printf(" ");
+			fflush(stdout);
+		}
+	}
+	printf("\n");
+}
+
+void	ft_debug_param(int param[3][2])
+{
+	printf("[%d][%d]\n", param[0][0], param[0][1]);
+	printf("[%d][%d]\n", param[1][0], param[1][1]);
+	printf("[%d][%d]\n", param[2][0], param[2][1]);
+}
 
 void	ft_debug_processus(t_process *processus)
 {

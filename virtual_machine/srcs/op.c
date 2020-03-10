@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/09 17:09:44 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 15:29:35 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,24 @@
 #include "../includes/struct.h"
 #include "../includes/prototypes.h"
 
-t_instruction	tab_instruction[2] =
+t_instruction	tab_instruction[16] =
 {
+	{&ft_live, 10, 1, 4, {0}},
 	{&ft_ld, 5, 2, 4, {0}},
-	{&ft_add, 10, 3, 0, {0}}
+	{&ft_st, 5, 2, 0, {0}},
+	{&ft_add, 10, 3, 0, {0}},
+	{&ft_sub, 10, 3, 0, {0}},
+	{&ft_and, 6, 3, 4, {0}},
+	{&ft_or, 6, 3, 4, {0}},
+	{&ft_xor, 6, 3, 4, {0}},
+	{&ft_zjmp, 20, 1, 2, {0}},
+	{&ft_ldi, 25, 3, 2, {0}},
+	{&ft_sti, 25, 3, 2, {0}},
+	{&ft_fork, 800, 1, 2, {0}},
+	{&ft_lld, 10, 2, 4, {0}},
+	{&ft_lldi, 50, 3, 2, {0}},
+	{&ft_lfork, 1000, 1, 2, {0}},
+	{&ft_aff, 2, 1, 0, {0}}
 };
 
 /*

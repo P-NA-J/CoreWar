@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/08 18:12:21 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 08:55:07 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,19 @@ int	main()
 {
 	t_vm			vm;
 	size_t			cycles;
-	t_process		*process_list;
 	t_process		*tab[CYCLE_WAIT_MAX];
 
-	process_list = NULL;
 	ft_create_vm(&vm);
 	bzero(tab, sizeof(tab));
-	if (!ft_create_processus_list(2, &process_list))
+	if (!ft_create_processus_list(2, tab, &vm))
 		return (ft_error());
-//	ft_debug_processus_list(process_list);
 	cycles = 0;
-	while (cycles < CYCLE_MAX)
+	while (cycles < CYCLE_MAX + 1)
 	{
-		printf("NEW CYCLE BEGINNING.\n");
-		ft_exec_cycle(&vm, process_list, tab, cycles);
+		printf("cycle %zu\n", cycles);
+		ft_exec_cycle(&vm, tab, cycles);
 		cycles += 1;
+		printf("----------------------------------------\n");
 	}
 	return (0);
 }

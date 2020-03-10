@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/08 18:18:11 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 14:49:58 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "../includes/struct.h"
 #include "../includes/prototypes.h"
 #include "../includes/virtual_machine.h"
+#include "../includes/tab.h"
+#include "../includes/debug.h"
 
 t_process	*ft_process_move(t_process *process, t_process *tab[1024], int cycle, int cycle_to_add)
 {
@@ -25,7 +27,7 @@ t_process	*ft_process_move(t_process *process, t_process *tab[1024], int cycle, 
 	return (process);
 }
 
-t_process	*ft_create_processus(int nb_player, size_t pc)
+t_process	*ft_create_processus(int nb_player, size_t pc, unsigned char opcode)
 {
 	t_process *process;
 
@@ -39,42 +41,41 @@ t_process	*ft_create_processus(int nb_player, size_t pc)
 	process->pc = pc;
 	process->carry = 0;
 	process->cycle_left = 0;
+	process->opcode = opcode;
 	process->next = NULL;
 	return (process);
 }
 
-void	ft_add_process(t_process **head, t_process *process)
+void	ft_add_process(t_process *tab[1024], t_process *process)
 {
 	t_process	*h_tmp;
 	t_process	*local;
 
-	h_tmp = head[0];
-	local = head[0];
-	if (head[0] == NULL)
-		head[0] = process;
+	h_tmp = tab[0];
+	local = tab[0];
+	if (tab[0] == NULL)
+		tab[0] = process;
 	else
 	{
 		process->next = local;
-		head[0] = process;
-		ft_reset_begin_process_list(head[0]);
+		tab[0] = process;
+		ft_reset_begin_process_list(tab[0]);
 	}
 }
 
-int	ft_create_processus_list(int nb_player, t_process **process_list)
+int	ft_create_processus_list(int nb_player, t_process *tab[1024], t_vm *vm)
 {
 	int	i;
 	size_t	pc;
 	t_process *process;
 
-	if (!process_list)
-		return (ERROR);
 	i = 0;
 	while (i < nb_player)
 	{
 		pc = (MEM_SIZE / nb_player) * i;
-		if(!(process = ft_create_processus(i + 1, pc)))
+		if(!(process = ft_create_processus(i + 1, pc, vm->vm[pc])))
 			return (ERROR);
-		ft_add_process(process_list, process);
+		ft_add_process(tab + tab_instruction[process->opcode].cycle_to_exec, process);
 		i += 1;
 	}
 	return (TRUE);

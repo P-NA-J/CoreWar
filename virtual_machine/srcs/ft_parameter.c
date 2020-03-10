@@ -6,12 +6,13 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/09 17:08:25 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 14:59:01 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/op.h"
 #include "../includes/tab.h"
+#include "../includes/debug.h"
 
 /*
 **	Fonction puissance.
@@ -34,9 +35,12 @@ void ft_convert_param(t_vm *vm, int len, int *i_ptr, int j)
 	int	index;
 
 	index = *i_ptr;
-	while (len - 1 >= 0)
+	while (index < len)
 	{
-		vm->param[j][0] += vm->vm[index] * ft_pow(10, index);
+		vm->param[j][0] |= vm->vm[index];
+//		ft_print_bit_32(vm->param[j][0]);
+		if (index < len - 1)
+			vm->param[j][0] <<= 8;
 		index += 1;
 	}
 	*i_ptr = index;
@@ -77,12 +81,21 @@ int		ft_get_param_value(t_process *process, t_vm *vm)
 	j = 0;
 	while (j < nb_param)
 	{
-		if (vm->param[j][1] == REG_CODE)
+		if (vm->param[j][1] == REG_BIT)
+		{
 			vm->param[j][0] = vm->vm[i++];
-		else if (vm->param[j][1] == IND_CODE)
-			ft_convert_param(vm, 2, &i, j);
-		else if (vm->param[j][1] == DIR_CODE)
-			ft_convert_param(vm, tab_instruction[process->opcode].dir_size, &i, j);
+			printf("Le parametre %d est un REGISTRE et vaut %d.\n", j, vm->param[j][0]);
+		}
+		else if (vm->param[j][1] == IND_BIT)
+		{
+			ft_convert_param(vm, i + 2, &i, j);
+			printf("Le parametre %d est un INDIRECT et vaut %d.\n", j, vm->param[j][0]);
+		}
+		else if (vm->param[j][1] == DIR_BIT)
+		{
+			ft_convert_param(vm, i + tab_instruction[process->opcode].dir_size, &i, j);
+			printf("Le parametre %d est un DIRECT et vaut %d.\n", j, vm->param[j][0]);
+		}
 		j += 1;
 	}
 	return (ft_check_value_param(process, vm));
@@ -106,11 +119,11 @@ int		ft_get_param_type(t_process *process, t_vm *vm)
 	{
 		mask = ocp & IND_BIT;
 		if (mask == REG_BIT)
-			vm->param[i][1] = REG_CODE;
+			vm->param[i][1] = REG_BIT;
 		else if (mask == IND_BIT)
-			vm->param[i][1] = IND_CODE;
+			vm->param[i][1] = IND_BIT;
 		else if (mask == DIR_BIT)
-			vm->param[i][1] = tab_instruction[process->opcode].dir_size + 1;
+			vm->param[i][1] = DIR_BIT;
 //		else
 //			return (ft_bad_ocp_parsing(ocp, process->opcode));
 		ocp <<= 2;
