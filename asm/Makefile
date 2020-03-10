@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 18:42:15 by aboitier          #+#    #+#              #
-#    Updated: 2020/03/10 21:48:07 by aboitier         ###   ########.fr        #
+#    Updated: 2020/03/10 23:04:29 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAG 			= -Wall -Wextra -Werror -fsanitize=address,undefined
 LIB				= ../libft/libft.a
 
 SRC				= op.c  					\
+				  init.c					\
 				  scan.c					\
 				  main.c					\
 				

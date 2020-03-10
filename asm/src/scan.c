@@ -6,13 +6,13 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:01:18 by aboitier          #+#    #+#             */
-/*   Updated: 2020/03/10 21:52:26 by aboitier         ###   ########.fr       */
+/*   Updated: 2020/03/10 23:03:17 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			set_buffer(t_scan *scan)
+static int		set_buffer(t_scan *scan)
 {
 	ft_bzero(scan, sizeof(t_scan));
 	if (!(scan->buffer = (char *)ft_memalloc(sizeof(char) * BASE_MALLOC + 1)))
@@ -21,7 +21,7 @@ int			set_buffer(t_scan *scan)
 	return (TRUE);
 }
 
-int			increase_buffer(t_scan *scan)
+static int		increase_buffer(t_scan *scan)
 {
 	char	*new_buffer;
 
@@ -35,7 +35,7 @@ int			increase_buffer(t_scan *scan)
 	return (TRUE);
 }
 
-int			copy_fr_index(t_scan *scan, char *src, long index)
+static int		copy_fr_index(t_scan *scan, char *src, long index)
 {
 	int		i;
 
@@ -50,21 +50,21 @@ int			copy_fr_index(t_scan *scan, char *src, long index)
 	return (index);
 }
 
-//int			check_first_lines(t_scan scan)
-//{
-//	int i;
-//
-//	i = 0;
-//	if (scan.buffer[0] == '\0')
-//		return (FALSE);
-//	while (scan.buffer[i] && ft_isspace(scan.buffer[i]) != 0)
-//		i++;
-//	if (!scan.buffer || scan.buffer[i++] != '.')
-//		return (FALSE);	
-//	if (!scan.buffer || (scan.buffer[i] != 'n' && scan.buffer[i] != 'c'))
-//		return (FALSE);	
-//	return (TRUE);
-//}
+static int		check_first_lines(t_scan scan)
+{
+	int i;
+
+	i = 0;
+	if (scan.buffer[0] == '\0')
+		return (FALSE);
+	while (scan.buffer[i] && ft_isspace(scan.buffer[i]) != 0)
+		i++;
+	if (!scan.buffer || scan.buffer[i++] != '.')
+		return (FALSE);	
+	if (!scan.buffer || (scan.buffer[i] != 'n' && scan.buffer[i] != 'c'))
+		return (FALSE);	
+	return (TRUE);
+}
 
 int			scan(t_asm *env)
 {
@@ -82,11 +82,14 @@ int			scan(t_asm *env)
 			if (increase_buffer(&scan) == FALSE)
 				return (FALSE);
 		scan.index = copy_fr_index(&scan, buff, scan.index);
-//		if (scan.reload == 3)
-//			if (check_first_lines(scan) == FALSE)
-//				return (FALSE);
+		if (scan.reload == 10)
+			if (check_first_lines(scan) == FALSE)
+			{	
+				printf(_RED"\nSCAN PROBLEM\n\n"_RESET);
+				break ;
+			}
 	}
 	env->scan = scan;
-	printf("SCAN\t\t\tOK\n");
+	printf("SCAN\t\t\t"_GREEN"OK"_RESET"\n");
 	return (TRUE);
 }
