@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 17:34:33 by damboule         ###   ########.fr       */
+/*   Updated: 2020/03/10 18:07:23 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct			s_instruction
 	size_t				cycle_to_exec;
 	unsigned char		nb_param;
 	unsigned char		dir_size;
+	int					param_type[3];
 	char				padding[6];
 }						t_instruction;
 
