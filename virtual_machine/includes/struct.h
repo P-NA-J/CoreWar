@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 13:46:42 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:34:33 by damboule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # define STRUCT_H
 
 # include "./virtual_machine.h"
+
+typedef struct			s_args
+{
+	int					player_nb;
+	char				**champ;
+}						t_args;
 
 typedef struct		header_s
 {
