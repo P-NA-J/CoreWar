@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dump.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 17:07:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/09 17:07:47 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:48:19 by damboule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/virtual_machine.h"
 #include "../includes/op.h"
+#include "../includes/prototypes.h"
 
 /*
 ** Dump : Fonction qui parcours la VM et Convertie/Print chaque Char en Hexa 

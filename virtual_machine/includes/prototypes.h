@@ -3,16 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 16:22:03 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:51:07 by damboule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOTYPES_H
 
 #define PROTOTYPES_H
+#include "./struct.h"
+
+/*
+** Dump
+*/
+
+void	ft_dump(const unsigned char vm[MEM_SIZE]);
+
+/*
+** Parsing
+*/
+
+int		ft_insertion_vm(const t_args *filecor, unsigned char vm[MEM_SIZE]);
+
+/*
+** Truc de paul : Bidon...
+*/
+
 
 t_process	*ft_create_processus(int nb_player, size_t ocp, unsigned char opcode);
 void		ft_add_process(t_process *tab[1024], t_process *process);
@@ -25,6 +43,7 @@ void		ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle);
 int			ft_error(void);
 void		ft_reset_begin_process_list(t_process *process_list);
 t_process	*ft_process_move(t_process *process, t_process *tab[1024], int cycle, int cycle_to_add);
+
 /*
 **	Prototypes des fonctions pour les instructions ASM.
 */
