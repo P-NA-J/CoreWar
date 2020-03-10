@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   virtual_machine.h                                  :+:      :+:    :+:   */
+/*   tab.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 16:14:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/09 17:07:57 by pauljull         ###   ########.fr       */
+/*   Created: 2020/03/08 14:17:53 by pauljull          #+#    #+#             */
+/*   Updated: 2020/03/08 14:55:52 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VIRTUAL_MACHINE_H
+#ifndef TAB_H
 
-# define VIRTUAL_MACHINE_H
+# define TAB_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "../includes/op.h"
+#include "./struct.h"
+#include "./prototypes.h"
+
+extern t_instruction	tab_instruction[2];
+
 #endif

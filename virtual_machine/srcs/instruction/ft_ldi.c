@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   virtual_machine.h                                  :+:      :+:    :+:   */
+/*   ft_ldi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 16:14:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/09 17:07:57 by pauljull         ###   ########.fr       */
+/*   Created: 2020/03/10 15:35:06 by pauljull          #+#    #+#             */
+/*   Updated: 2020/03/10 15:35:11 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VIRTUAL_MACHINE_H
+#include "../../includes/tab.h"
+#include "../../includes/struct.h"
 
-# define VIRTUAL_MACHINE_H
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "../includes/op.h"
-#endif
+void	ft_ldi(t_process *process, t_vm *vm)
+{
+	(void)process;
+	(void)vm;
+}

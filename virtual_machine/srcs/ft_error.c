@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   virtual_machine.h                                  :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 16:14:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/09 17:07:57 by pauljull         ###   ########.fr       */
+/*   Created: 2020/03/07 17:08:59 by pauljull          #+#    #+#             */
+/*   Updated: 2020/03/08 14:49:48 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VIRTUAL_MACHINE_H
+#include "../includes/virtual_machine.h"
 
-# define VIRTUAL_MACHINE_H
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "../includes/op.h"
-#endif
+int	ft_error(void)
+{
+	puts("Error.");
+	return (0);
+}
