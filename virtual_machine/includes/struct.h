@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/08 14:12:34 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:46:42 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,20 @@
 
 typedef struct		header_s
 {
-  unsigned int		magic;
-  char				prog_name[PROG_NAME_LENGTH + 1];
-  unsigned int		prog_size;
-  char				comment[COMMENT_LENGTH + 1];
+	unsigned int		magic;
+	char				prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int		prog_size;
+	char				comment[COMMENT_LENGTH + 1];
 }					header_t;
 
 typedef struct			 s_process
 {
 	struct s_process	*next;
 	struct s_process	*begin;
+	size_t				no;
 	size_t				pc;
 	size_t				cycle_left;
-	int					registre[16];
+	unsigned int		registre[16];
 	char				carry;
 	unsigned char		opcode;
 	char				padding[6];
@@ -48,7 +49,8 @@ typedef struct			s_vm
 {
 	unsigned char		vm[MEM_SIZE];
 	t_player			*player_list;
-	int					param[3][2];
+	unsigned int		param[3][2];
+	size_t				nb_process;
 }						t_vm;
 
 typedef struct			s_instruction
