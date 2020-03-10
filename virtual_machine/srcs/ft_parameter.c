@@ -6,25 +6,13 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 14:59:01 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:13:36 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/op.h"
 #include "../includes/tab.h"
 #include "../includes/debug.h"
-
-/*
-**	Fonction puissance.
-*/
-int		ft_pow(int a, int n)
-{
-	if (a == 0)
-		return (0);
-	if (n == 0)
-		return (1);
-	return (a * ft_pow(a, n - 1));
-}
 
 /*
 **	Fonction qui convertit les len-prochain bit en int.
@@ -38,7 +26,6 @@ void ft_convert_param(t_vm *vm, int len, int *i_ptr, int j)
 	while (index < len)
 	{
 		vm->param[j][0] |= vm->vm[index];
-//		ft_print_bit_32(vm->param[j][0]);
 		if (index < len - 1)
 			vm->param[j][0] <<= 8;
 		index += 1;
@@ -82,23 +69,56 @@ int		ft_get_param_value(t_process *process, t_vm *vm)
 	while (j < nb_param)
 	{
 		if (vm->param[j][1] == REG_BIT)
-		{
 			vm->param[j][0] = vm->vm[i++];
-			printf("Le parametre %d est un REGISTRE et vaut %d.\n", j, vm->param[j][0]);
-		}
 		else if (vm->param[j][1] == IND_BIT)
-		{
 			ft_convert_param(vm, i + 2, &i, j);
-			printf("Le parametre %d est un INDIRECT et vaut %d.\n", j, vm->param[j][0]);
-		}
 		else if (vm->param[j][1] == DIR_BIT)
-		{
 			ft_convert_param(vm, i + tab_instruction[process->opcode].dir_size, &i, j);
-			printf("Le parametre %d est un DIRECT et vaut %d.\n", j, vm->param[j][0]);
-		}
 		j += 1;
 	}
 	return (ft_check_value_param(process, vm));
+}
+
+/*
+**	Fonction qui va depalcer le pc dans le cas d'un OCP incorrect.
+*/
+
+int	ft_bad_ocp_parsing(unsigned char ocp, t_process *process)
+{
+	int	nb_param;
+	int	option;
+	int	j;
+
+	nb_param = tab_instruction[process->opcode].nb_param;
+	process->pc += 1;
+	j = 0;
+	while (j < nb_param)
+	{
+		option = 0b11000000 & ocp;
+		if (option == REG_BIT)
+		{
+			if (tab_instruction[process->opcode].param_type[j] & T_REG)
+				process->pc += 1;
+		}
+		else if (option == IND_BIT)
+		{
+			if (tab_instruction[process->opcode].param_type[j] & T_IND)
+				process->pc += 2;
+		}
+		else if (option == T_DIR)
+		{
+			if (tab_instruction[process->opcode].param_type[j] & T_DIR)
+				process->pc += tab_instruction[process->opcode].dir_size;
+		}
+		else
+		{
+			process->pc += 1;
+			return (ERROR);
+		}
+		ocp <<= 2;
+		j += 1;
+	}
+	return (ERROR);
 }
 
 /*
@@ -124,8 +144,8 @@ int		ft_get_param_type(t_process *process, t_vm *vm)
 			vm->param[i][1] = IND_BIT;
 		else if (mask == DIR_BIT)
 			vm->param[i][1] = DIR_BIT;
-//		else
-//			return (ft_bad_ocp_parsing(ocp, process->opcode));
+		else
+			return (ft_bad_ocp_parsing(vm->vm[process->pc + 1], process));
 		ocp <<= 2;
 		i += 1;
 	}
