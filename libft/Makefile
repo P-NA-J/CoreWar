@@ -29,6 +29,7 @@ SRC =	ft_add_array.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
 		ft_isascii.c \
+		ft_isspace.c\
 		ft_isprint.c \
 		ft_toupper.c \
 		ft_tolower.c \
@@ -114,6 +115,7 @@ $(addprefix obj/, %.o): $(addprefix src/, %.c)
 
 clean:
 	@rm -f $(PATH_OBJ)
+	@echo LIBFT OBJ have been deleted
 
 fclean: clean
 	@rm -f $(NAME)

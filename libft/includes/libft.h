@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 09:00:10 by pauljull          #+#    #+#             */
-/*   Updated: 2020/02/21 13:52:15 by aboitier         ###   ########.fr       */
+/*   Updated: 2020/03/10 18:03:59 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
+int					ft_isspace(char c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
