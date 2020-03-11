@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/10 18:17:50 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/10 18:41:56 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ int		ft_get_filecor(const int nb_args, char **args, t_args *filecor)
 	{
 		if (ft_getoccur(args[index], ".cor") == 0)
 		{
-			printf("wallah.\n");
 			filecor->champ[filecor->player_nb] = ft_strdup(args[index]);
 			filecor->player_nb++;
 		}
 		index++;
 	}
-	printf("nb_player = %d\n", filecor->player_nb);
 	if (filecor->player_nb >= 1 && filecor->player_nb <= 4)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
@@ -61,7 +59,8 @@ int		ft_parse(int nb_args, char **args, unsigned char vm[MEM_SIZE])
 	t_args			filecor;
 
 	ft_bzero(&filecor, sizeof(filecor));
-	ft_bzero(&vm, MEM_SIZE);
+	if (!(filecor.champ = (char **)ft_memalloc(sizeof(char*) * 4)))
+		return (EXIT_FAILURE);
 	if (ft_get_args(nb_args, args, &filecor))
 		return (EXIT_FAILURE);
 	if (ft_insertion_vm(&filecor, vm))
