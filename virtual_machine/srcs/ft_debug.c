@@ -30,11 +30,21 @@ void	ft_print_bit_32(int i)
 	printf("\n");
 }
 
-void	ft_debug_param(int param[3][2])
+void	ft_debug_param(unsigned int param[2])
 {
-	printf("[%d][%d]\n", param[0][0], param[0][1]);
-	printf("[%d][%d]\n", param[1][0], param[1][1]);
-	printf("[%d][%d]\n", param[2][0], param[2][1]);
+	if (param[1] == DIR_BIT)
+		printf("DIRECT   [%d]\n", param[0]);
+	else if (param[1] == IND_BIT)
+		printf("INDIRECT [%d]\n", param[0]);
+	else if (param[1] == REG_BIT)
+		printf("REGISTRE [%d]\n", param[0]);
+}
+
+void	ft_debug_params(unsigned int param[3][2])
+{
+	ft_debug_param(param[0]);
+	ft_debug_param(param[1]);
+	ft_debug_param(param[2]);
 }
 
 void	ft_debug_processus(t_process *processus)

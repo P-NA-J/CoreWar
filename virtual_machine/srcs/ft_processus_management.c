@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 17:52:51 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:03:29 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ t_process	*ft_create_processus(int nb_player, size_t pc, unsigned char opcode)
 	if (nb_player > 0 && nb_player <= LIMIT_CHAMP)
 		process->registre[0] = -nb_player;
 	else
+	{
+		free(process);
 		return (NULL);
+	}
+	process->no = nb_player;
 	process->pc = pc;
 	process->carry = 0;
 	process->cycle_left = 0;
@@ -73,7 +77,7 @@ int	ft_create_processus_list(int nb_player, t_process *tab[1024], t_vm *vm)
 	while (i < nb_player)
 	{
 		pc = (MEM_SIZE / nb_player) * i;
-		if(!(process = ft_create_processus(i + 1, pc, vm->vm[pc])))
+		if(!(process = ft_create_processus(i + 1, pc, vm->vm[pc] - 1)))
 			return (ERROR);
 		ft_add_process(tab + tab_instruction[process->opcode].cycle_to_exec, process);
 		i += 1;

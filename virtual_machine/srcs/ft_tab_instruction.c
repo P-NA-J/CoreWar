@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/10 17:23:39 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:58:02 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 
 t_instruction	tab_instruction[16] =
 {
-	{&ft_live, 10, 1, 4, {T_DIR}, {0}},
-	{&ft_ld, 5, 2, 4, {T_DIR | T_IND, T_REG}, {0}},
-	{&ft_st, 5, 2, 0, {T_REG, T_IND | T_REG},{0}},
-	{&ft_add, 10, 3, 0, {T_REG, T_REG, T_REG}, {0}},
-	{&ft_sub, 10, 3, 0, {T_REG, T_REG, T_REG}, {0}},
-	{&ft_and, 6, 3, 4, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, {0}},
-	{&ft_or, 6, 3, 4, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, {0}},
-	{&ft_xor, 6, 3, 4, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, {0}},
-	{&ft_zjmp, 20, 1, 2, {T_DIR}, {0}},
-	{&ft_ldi, 25, 3, 2, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, {0}},
-	{&ft_sti, 25, 3, 2, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, {0}},
-	{&ft_fork, 800, 1, 2, {T_DIR}, {0}},
-	{&ft_lld, 10, 2, 4, {T_DIR | T_IND, T_REG}, {0}},
-	{&ft_lldi, 50, 3, 2, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, {0}},
-	{&ft_lfork, 1000, 1, 2, {T_DIR}, {0}},
-	{&ft_aff, 2, 1, 0, {T_REG}, {0}}
+	{&ft_live, "live", 10, 1, 4, {T_DIR}, {0}},
+	{&ft_ld, "ld", 5, 2, 4, {T_DIR | T_IND, T_REG}, {0}},
+	{&ft_st, "st", 5, 2, 0, {T_REG, T_IND | T_REG},{0}},
+	{&ft_add, "add", 10, 3, 0, {T_REG, T_REG, T_REG}, {0}},
+	{&ft_sub, "sub", 10, 3, 0, {T_REG, T_REG, T_REG}, {0}},
+	{&ft_and, "and", 6, 3, 4, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, {0}},
+	{&ft_or, "or", 6, 3, 4, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, {0}},
+	{&ft_xor, "xor", 6, 3, 4, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, {0}},
+	{&ft_zjmp, "zjmp", 20, 1, 2, {T_DIR}, {0}},
+	{&ft_ldi, "ldi", 25, 3, 2, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, {0}},
+	{&ft_sti, "sti", 25, 3, 2, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, {0}},
+	{&ft_fork, "fork", 800, 1, 2, {T_DIR}, {0}},
+	{&ft_lld, "lld", 10, 2, 4, {T_DIR | T_IND, T_REG}, {0}},
+	{&ft_lldi, "lldi", 50, 3, 2, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, {0}},
+	{&ft_lfork, "lfork", 1000, 1, 2, {T_DIR}, {0}},
+	{&ft_aff, "aff", 2, 1, 0, {T_REG}, {0}}
 };
 
 /*
