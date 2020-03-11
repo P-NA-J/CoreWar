@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 15:27:47 by damboule         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:29:50 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct			s_vm
 typedef struct			s_instruction
 {
 	void				(*ft_instruction)(t_process *process, t_vm *vm);
+	char				*name;
 	size_t				cycle_to_exec;
 	unsigned char		nb_param;
 	unsigned char		dir_size;
