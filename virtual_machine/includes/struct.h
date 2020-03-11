@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 18:07:23 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:23:38 by damboule         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # define STRUCT_H
 
 # include "./virtual_machine.h"
+
+typedef struct			s_option
+{
+	int					d[2];
+	int					v[2];
+}						t_option;
 
 typedef struct			s_args
 {
