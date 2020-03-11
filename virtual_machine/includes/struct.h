@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 15:29:50 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:54:15 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct			s_instruction
 	char				*name;
 	size_t				cycle_to_exec;
 	unsigned char		nb_param;
+	unsigned char		ocp;
 	unsigned char		dir_size;
 	int					param_type[3];
 	char				padding[6];

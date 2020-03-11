@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 14:45:55 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 18:19:20 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	int	nb_param;
 	int	j;
 
-	to_skip = 1;
+	to_skip = 0;
+	if (tab_instruction[process->opcode].ocp == TRUE)
+		to_skip = 1;
 	nb_param = tab_instruction[process->opcode].nb_param;
 	j = 0;
 	while (j < nb_param)
@@ -40,7 +42,7 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 }
 
 /*
-**	Fonction qui execute l'instruction correspondante a l'opcode - 1 contenu dans process.
+**	Fonction qui execute l'instruction correspondante a l'opcode contenu dans process.
 */
 
 void	ft_exec_instruction(t_process *process, t_vm *vm)
@@ -50,7 +52,25 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 	to_exec = ft_get_param_type(process, vm);
 	if (to_exec == TRUE)
 	{
-		ft_debug_params(vm->param);
+
+
+		int	i = 0;
+		printf("[ %s ] ", tab_instruction[process->opcode].name);
+		fflush(stdout);
+		while (i < tab_instruction[process->opcode].nb_param)
+		{
+			if (vm->param[i][1] == REG_BIT)
+			{
+				printf("r");
+				fflush(stdout);
+			}
+			printf("%d ", vm->param[i][0]);
+			fflush(stdout);
+			i += 1;
+		}
+		printf("\n\n");
+		fflush(stdout);
+
 		tab_instruction[process->opcode].ft_instruction(process, vm);
 		ft_skip_instruction_sequency(process, vm);
 		bzero(vm->param, sizeof(vm->param));
@@ -77,8 +97,5 @@ void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 void	ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle)
 {
 	if (tab[cycle % 1024] != NULL)
-	{
-		printf("Il y a un processus à traiter.\n");
 		ft_exec_processus(tab, cycle, vm);
-	}
 }

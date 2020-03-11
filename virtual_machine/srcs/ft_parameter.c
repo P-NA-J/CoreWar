@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 13:37:16 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 18:19:09 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,23 @@
 **	Fonction qui convertit les len-prochain bit en int.
 */
 
-void ft_convert_param(t_vm *vm, int len, int *i_ptr, int j)
+int ft_convert_param(t_vm *vm, int len, int *i_ptr, int j)
 {
 	int	index;
 
 	index = *i_ptr;
+	ft_print_bit_32(vm->param[j][0]);
 	while (index < len)
 	{
 		vm->param[j][0] |= vm->vm[index];
+		ft_print_bit_32(vm->param[j][0]);
 		if (index < len - 1)
 			vm->param[j][0] <<= 8;
 		index += 1;
 	}
+	ft_print_bit_32(vm->param[j][0]);
 	*i_ptr = index;
+	return (TRUE);
 }
 
 /*
@@ -132,22 +136,27 @@ int		ft_get_param_type(t_process *process, t_vm *vm)
 	unsigned char	ocp;
 	unsigned char	mask;
 
-	ocp = vm->vm[process->pc + 1];
-	nb_param = tab_instruction[process->opcode].nb_param;
-	i = 0;
-	while (i < nb_param)
+	if (tab_instruction[process->opcode].ocp == TRUE)
 	{
-		mask = ocp & IND_BIT;
-		if (mask == REG_BIT)
-			vm->param[i][1] = REG_BIT;
-		else if (mask == IND_BIT)
-			vm->param[i][1] = IND_BIT;
-		else if (mask == DIR_BIT)
-			vm->param[i][1] = DIR_BIT;
-		else
-			return (ft_bad_ocp_parsing(vm->vm[process->pc + 1], process));
-		ocp <<= 2;
-		i += 1;
+		ocp = vm->vm[process->pc + 1];
+		nb_param = tab_instruction[process->opcode].nb_param;
+		i = 0;
+		while (i < nb_param)
+		{
+			mask = ocp & IND_BIT;
+			if (mask == REG_BIT)
+				vm->param[i][1] = REG_BIT;
+			else if (mask == IND_BIT)
+				vm->param[i][1] = IND_BIT;
+			else if (mask == DIR_BIT)
+				vm->param[i][1] = DIR_BIT;
+			else
+				return (ft_bad_ocp_parsing(vm->vm[process->pc + 1], process));
+			ocp <<= 2;
+			i += 1;
+		}
 	}
+	else
+		vm->param[0][1] = DIR_BIT;
 	return (ft_get_param_value(process, vm));
 }

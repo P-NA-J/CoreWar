@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:20 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 14:06:12 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:53:39 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_loading_processus(t_vm *vm, t_process *process, t_process *tab[1024], si
 
 void	ft_check_loading_processus(t_vm *vm, t_process *process, t_process *tab[1024], size_t cycle)
 {
-	if (vm->vm[process->pc] >= 16)
+	if (vm->vm[process->pc] == 0 || vm->vm[process->pc] > 16)
 		ft_move_pc(process, 1);
 	else
 		ft_loading_processus(vm, process, tab, cycle);
