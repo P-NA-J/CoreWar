@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 18:19:09 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:16:13 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,13 @@ int ft_convert_param(t_vm *vm, int len, int *i_ptr, int j)
 	int	index;
 
 	index = *i_ptr;
-	ft_print_bit_32(vm->param[j][0]);
 	while (index < len)
 	{
 		vm->param[j][0] |= vm->vm[index];
-		ft_print_bit_32(vm->param[j][0]);
 		if (index < len - 1)
 			vm->param[j][0] <<= 8;
 		index += 1;
 	}
-	ft_print_bit_32(vm->param[j][0]);
 	*i_ptr = index;
 	return (TRUE);
 }
@@ -68,7 +65,7 @@ int		ft_get_param_value(t_process *process, t_vm *vm)
 	int	nb_param;
 
 	nb_param = tab_instruction[process->opcode].nb_param;
-	i = process->pc + 2;
+	i = process->pc + 1 + tab_instruction[process->opcode].ocp;
 	j = 0;
 	while (j < nb_param)
 	{
