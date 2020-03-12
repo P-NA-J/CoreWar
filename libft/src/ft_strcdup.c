@@ -3,31 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/27 08:59:55 by pauljull          #+#    #+#             */
-/*   Updated: 2019/11/13 19:08:42 by pauljull         ###   ########.fr       */
+/*   Created: 2018/12/29 16:34:34 by aboitier          #+#    #+#             */
+/*   Updated: 2018/12/29 19:02:00 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
 #include <stdlib.h>
 
-char	*ft_strcdup(char *str, int c)
+char	*ft_strcdup(const char *s, char c)
 {
-	char	*s;
-	size_t	i;
+	size_t		i;
+	size_t		j;
+	char		*new;
 
 	i = 0;
-	if (!str)
+	j = 0;
+	while (s[i] != c && s[i])
+		i++;
+	if (!(new = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	if (!(s = (char *)malloc(sizeof(char) * (ft_strclen(str, c) + 1))))
-		return (NULL);
-	while (str[i] && str[i] != c)
+	while (j < i)
 	{
-		s[i] = str[i];
-		i += 1;
+		new[j] = s[j];
+		j++;
 	}
-	s[i] = 0;
-	return (s);
+	new[j] = '\0';
+	return (new);
 }
