@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/11 15:54:15 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/12 13:39:21 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct			 s_process
 	size_t				no;
 	size_t				pc;
 	size_t				cycle_left;
-	unsigned int		registre[16];
+	int					registre[16];
 	char				carry;
 	unsigned char		opcode;
 	char				padding[6];

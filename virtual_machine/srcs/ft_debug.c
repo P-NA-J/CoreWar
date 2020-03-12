@@ -1,8 +1,42 @@
 #include "../includes/debug.h"
+#include "../includes/struct.h"
+#include "../includes/tab.h"
 #define MASK_32 0b10000000000000000000000000000000
+
+
+void	ft_debug_instruction(t_process *process, t_vm *vm)
+{
+	int	i = 0;
+	printf("[ %s ] ", tab_instruction[process->opcode].name);
+	fflush(stdout);
+	while (i < tab_instruction[process->opcode].nb_param)
+	{
+		if (vm->param[i][1] == REG_BIT)
+		{
+			printf("r");
+			fflush(stdout);
+		}
+		if (vm->param[i][1] == IND_BIT ||
+		(vm->param[i][1] == DIR_BIT &&
+		tab_instruction[process->opcode].dir_size == 2))
+		{
+			printf("%hd ", (short)vm->param[i][0]);
+			fflush(stdout);
+		}
+		else
+		{
+			printf("%d ", vm->param[i][0]);
+			fflush(stdout);
+		}
+		i += 1;
+	}
+	printf("\n");
+	fflush(stdout);
+}
+
 void	ft_print_bit_32(int i)
 {
-	int	mask;
+	unsigned int	mask;
 	int	j;
 
 	mask = MASK_32;
