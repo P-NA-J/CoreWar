@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_processus_management.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 15:03:55 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/16 21:17:11 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_create_processus_list(int nb_player, t_process *tab[1024], t_vm *vm)
 		pc = (MEM_SIZE / nb_player) * i;
 		if(!(process = ft_create_processus(i + 1, pc, vm->vm[pc] - 1)))
 			return (ERROR);
-		ft_add_process(tab + tab_instruction[process->opcode].cycle_to_exec, process);
+		ft_add_process(tab + g_tab_instruction[process->opcode].cycle_to_exec, process);
 		i += 1;
 	}
 	return (TRUE);

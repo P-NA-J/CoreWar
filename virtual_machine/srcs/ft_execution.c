@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execution.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 15:03:40 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/16 21:17:06 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_skip_one_parameter_field(t_vm *vm, int to_skip, const int j, const uint8_
 	else if (vm->param[j][1] == IND_BIT)
 		to_skip += 2;
 	else if (vm->param[j][1] == DIR_BIT)
-		to_skip += tab_instruction[opcode].dir_size;
+		to_skip += g_tab_instruction[opcode].dir_size;
 	return (to_skip);
 }
 
@@ -35,9 +35,9 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	int	j;
 
 	to_skip = 0;
-	if (tab_instruction[process->opcode].ocp == TRUE)
+	if (g_tab_instruction[process->opcode].ocp == TRUE)
 		to_skip = 1;
-	nb_param = tab_instruction[process->opcode].nb_param;
+	nb_param = g_tab_instruction[process->opcode].nb_param;
 	j = 0;
 	while (j < nb_param)
 		to_skip = ft_skip_one_parameter_field(vm, to_skip, j++, process->opcode);
@@ -56,7 +56,7 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 	if (to_exec == TRUE)
 	{
 		ft_debug_instruction(process, vm);
-		tab_instruction[process->opcode].ft_instruction(process, vm);
+		g_tab_instruction[process->opcode].ft_instruction(process, vm);
 		ft_skip_instruction_sequency(process, vm);
 		bzero(vm->param, sizeof(vm->param));
 	}
