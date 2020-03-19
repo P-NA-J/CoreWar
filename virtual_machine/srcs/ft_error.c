@@ -6,7 +6,7 @@
 /*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:08:59 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/17 21:04:54 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/19 12:14:49 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	tab[7][128] =
 	"Probleme with size of the champion name.\n",
 	"Probleme with size of the executable code.\n",
 	"Probleme with size of the comment.\n"
-	"-n number is too low or to hight.\n"
+	"-n number is too low or to hight or is double.\n"
 };
 
 void	ft_print_error(int usage)
@@ -49,6 +49,6 @@ int		ft_usage(int usage)
 		ft_putstr("-dump N : Print the memory after N cycle\n\n");
 	}
 	else
-		ft_print_error(usage);
+		ft_print_error(usage - 1);
 	return (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/19 09:15:54 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/19 12:15:04 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 #define SIZE_NAME           4
 #define SIZE_EXEC           5
 #define SIZE_COMM           6
-#define FALSE_POS           7
+#define FALSE_POS           6
 
 
 #define CYCLE_MAX				15
