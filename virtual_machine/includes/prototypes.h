@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/10 18:06:34 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/19 07:55:02 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,24 @@
 ** Dump
 */
 
+int		ft_convert_to_int(unsigned char tab[4]);
 void	ft_dump(const unsigned char vm[MEM_SIZE]);
 
 /*
 ** Parsing
 */
 
-int		ft_insertion_vm(const t_args *filecor, unsigned char vm[MEM_SIZE]);
+int		ft_get_pos_player(t_args *filecor);
+int		ft_print_intro(t_player player[4]);
+int		ft_check_int(char *nombr);
+int		ft_usage(int usage);
+int		ft_free_filecor(t_args *filecor);
+int		ft_get_options(int index, char **args, t_option *option);
+int		ft_insertion_vm(t_args *filecor,
+						unsigned char vm[MEM_SIZE], t_player *player);
 int		ft_parse(int nb_args, char **args, unsigned char vm[MEM_SIZE]);
+int		ft_free_filecor(t_args *filecor);
+int		ft_get_options(const int nb_args, char **args, t_option *option);
 
 /*
 ** Truc de paul : Bidon...

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 13:39:21 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/19 08:00:16 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,29 @@
 
 # include "./virtual_machine.h"
 
+typedef struct			s_player
+{
+	char				magic[MAGIC + 1];
+	char				name[READ_NAME + 1];
+	char				comment[READ_COM + 1];
+	char				size[READ_EXEC + 1];
+	int					index_player;
+	uint32_t			nb_live;
+}						t_player;
+
 typedef struct			s_option
 {
-	int					d[2];
+	int					visu;
 	int					v[2];
+	int					d[2];
+	int					pad[2];
 }						t_option;
 
 typedef struct			s_args
 {
 	int					player_nb;
+	int					pos[4];
+	int					option[4];
 	char				**champ;
 }						t_args;
 
@@ -48,14 +62,6 @@ typedef struct			 s_process
 	unsigned char		opcode;
 	char				padding[6];
 }						t_process;
-
-typedef struct			s_player
-{
-	struct s_player		*next;
-	struct s_player		*begin;
-	char				*name;
-	uint32_t			nb_live;
-}						t_player;
 
 typedef struct			s_vm
 {

@@ -3,17 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:08:59 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 15:03:35 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/17 21:04:54 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/virtual_machine.h"
+#include "../includes/struct.h"
+#include "../includes/op.h"
+#include "../includes/prototypes.h"
+#include "../../libft/includes/libft.h"
 
-int	ft_error(void)
+char	tab[7][128] = 
 {
-	puts("Error.");
-	return (0);
+	"No valid \".cor\" file found.\n",
+	"Option or file \".cor\" are invalid : \"--help\" for usage.\n",
+	"The file \".cor\" can't ba open.\n",
+	"Probleme with the magic header.\n",
+	"Probleme with size of the champion name.\n",
+	"Probleme with size of the executable code.\n",
+	"Probleme with size of the comment.\n"
+	"-n number is too low or to hight.\n"
+};
+
+void	ft_print_error(int usage)
+{
+	ft_putstr(tab[usage]);
+}
+
+int		ft_usage(int usage)
+{
+	if (usage == 0)
+	{
+		ft_putstr("–----------------------------------------------------------\n");
+		ft_putstr("| Usage: ./corewar [-d N -v N | -n] <champion1.cor> <...> |\n");
+		ft_putstr("–----------------------------------------------------------\n\n");		
+		ft_putstr(" ####  VERBOSE\n");
+		ft_putstr("-v N	: Verbosity levels (0 : Show only essentials)\n\n");
+		ft_putstr("####  VISUALISATEUR ");
+		ft_putstr("\n-visu   : Bonus viewer cant print memory with colors...\n\n");
+		ft_putstr("####  PLAYER_POSITION\n");
+		ft_putstr("-n N    : Choice the positionement of the players\n\n");
+		ft_putstr("####  DUMP\n");
+		ft_putstr("-dump N : Print the memory after N cycle\n\n");
+	}
+	else
+		ft_print_error(usage);
+	return (EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: damboule <damboule@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/10 17:44:22 by damboule         ###   ########.fr       */
+/*   Updated: 2020/03/19 07:54:29 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,30 @@
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
 */
 
-#define NOT_READ                2192
+
+#define HEADER                 	1
+#define READ_NAME               128
+#define READ_COM                2048
 #define TO_READ                 682
+#define MAGIC	                4
+#define READ_EXEC	            4
+#define NOT_READ	            4
+
+/*
+** define usage
+*/
+
+#define USAGE             	0
+#define NO_ARGS             0
+#define PARSING             1
+#define FILECOR             2
+#define MC_HEADER           3
+#define SIZE_NAME           4
+#define SIZE_EXEC           5
+#define SIZE_COMM           6
+#define FALSE_POS           7
+
+
 #define CYCLE_MAX				15
 #define CYCLE_WAIT_MAX			1024
 #define ERROR					-1
