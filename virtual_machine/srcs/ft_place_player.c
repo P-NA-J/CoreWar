@@ -6,7 +6,7 @@
 /*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 20:30:42 by danglass          #+#    #+#             */
-/*   Updated: 2020/03/19 11:41:36 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/19 12:02:10 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ int		ft_get_pos_player(t_args *filecor)
 	ft_fill(filecor);
 	while (filecor->champ[index])
 	{
+		printf("filecor == %d && option == %d\n", filecor->player_nb, filecor->option[index]);
 		if (filecor->option[index] > 4 || filecor->option[index] < 0)
 			return (EXIT_FAILURE);
-		if (filecor->option[index] != 0 && filecor->pos[index]
-			&& filecor->option[index] < filecor->player_nb)
+		if (filecor->option[index] != 0 && filecor->option[index] != filecor->pos[index]
+			&& filecor->option[index] <= filecor->player_nb)
 			ft_replace(filecor, filecor->option[index], index);
 		index++;
 	}
