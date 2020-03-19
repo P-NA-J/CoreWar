@@ -7,9 +7,9 @@
 void	ft_debug_instruction(t_process *process, t_vm *vm)
 {
 	int	i = 0;
-	printf("[ %s ] ", tab_instruction[process->opcode].name);
+	printf("[ %s ] ", g_tab_instruction[process->opcode].name);
 	fflush(stdout);
-	while (i < tab_instruction[process->opcode].nb_param)
+	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
 		if (vm->param[i][1] == REG_BIT)
 		{
@@ -18,7 +18,7 @@ void	ft_debug_instruction(t_process *process, t_vm *vm)
 		}
 		if (vm->param[i][1] == IND_BIT ||
 		(vm->param[i][1] == DIR_BIT &&
-		tab_instruction[process->opcode].dir_size == 2))
+		g_tab_instruction[process->opcode].dir_size == 2))
 		{
 			printf("%hd ", (short)vm->param[i][0]);
 			fflush(stdout);
