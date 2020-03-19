@@ -3,14 +3,13 @@ CC = clang
 CFLAG = -Wall -Werror -Wextra -g3 -fsanitize=address,undefined
 LIB = ../libft/libft.a
 
-SRC =	test.c
+SRC =	main.c
 SRC +=	ft_dump.c
 SRC +=	ft_error.c
 SRC +=	ft_execution.c
 SRC +=	ft_loading.c
 SRC +=	ft_parameter.c
 SRC +=	ft_processus_management.c
-SRC +=	ft_virtual_machine.c
 SRC +=	ft_debug.c
 SRC +=	ft_tab_instruction.c
 SRC +=	ft_parsing.c
