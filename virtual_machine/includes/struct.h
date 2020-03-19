@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/19 09:16:17 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/19 09:42:10 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ typedef struct			 s_process
 typedef struct			s_vm
 {
 	unsigned char		vm[MEM_SIZE];
-	t_player			*player_list;
+	t_player			player_list[4];
+	t_option			opt;
 	t_process			*process_list[4];
 	unsigned int		param[3][2];
 	size_t				nb_process;
@@ -76,6 +77,7 @@ typedef struct			s_vm
 	int					no_decrease_check;
 	int					nb_champs_left;
 	int					period[2];
+	int					nb_player;
 }						t_vm;
 
 typedef struct			s_instruction

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/18 08:47:53 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/19 09:40:09 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,18 @@ int		ft_get_args(const int nb_arg, char **arg, t_args *filecor, t_option *op)
 	return (EXIT_SUCCESS);
 }
 
-int		ft_parse(int nb_args, char **args, unsigned char vm[MEM_SIZE])
+int		ft_parse(int nb_args, char **args, t_vm *vm)
 {
 	t_args			filecor;
-	t_option		option;
-	t_player		players[4];
 
-	ft_bzero(&players, sizeof(players));
-	ft_bzero(&option, sizeof(option));
 	ft_bzero(&filecor, sizeof(filecor));
 	if (!(filecor.champ = (char **)ft_memalloc(sizeof(char *) * (4 + 1))))
 		return (EXIT_FAILURE);
-	if (ft_get_args(nb_args, args, &filecor, &option))
+	if (ft_get_args(nb_args, args, &filecor, &(vm->opt)))
 		return (ft_free_filecor(&filecor));
-	if (ft_insertion_vm(&filecor, vm, players))
+	if (ft_insertion_vm(&filecor, vm->vm, vm->player_list))
 		return (ft_free_filecor(&filecor));
 	ft_free_filecor(&filecor);
-	ft_print_intro(players);
+	ft_print_intro(vm->player_list);
 	return (EXIT_SUCCESS);
 }

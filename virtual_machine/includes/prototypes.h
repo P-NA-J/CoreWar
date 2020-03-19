@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/19 07:55:02 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/19 09:40:58 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_free_filecor(t_args *filecor);
 int		ft_get_options(int index, char **args, t_option *option);
 int		ft_insertion_vm(t_args *filecor,
 						unsigned char vm[MEM_SIZE], t_player *player);
-int		ft_parse(int nb_args, char **args, unsigned char vm[MEM_SIZE]);
+int		ft_parse(int nb_args, char **args, t_vm *vm);
 int		ft_free_filecor(t_args *filecor);
 int		ft_get_options(const int nb_args, char **args, t_option *option);
 

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/18 10:39:24 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/19 09:41:15 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ void	ft_init(t_vm *vm, size_t *cycles, t_process *tab[CYCLE_WAIT_MAX])
 
 int		main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	t_vm			vm;
 	size_t			cycles;
 	t_process		*tab[CYCLE_WAIT_MAX];
 
 	ft_init(&vm, &cycles, tab);
-	ft_parse(ac - 1, av + 1, vm.vm);
-	
+	if (ft_parse(ac - 1, av + 1, &vm))
+		return (false);
 	return (0);
 }
 
