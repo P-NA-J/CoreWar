@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 13:39:21 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/18 10:02:41 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct			s_option
 typedef struct			s_args
 {
 	int					player_nb;
-	char				**champ;
+	char				*champ[4];
 }						t_args;
 
 typedef struct		header_s
@@ -43,6 +43,7 @@ typedef struct			 s_process
 	size_t				no;
 	size_t				pc;
 	size_t				cycle_left;
+	size_t				cycle_last_live;
 	int					registre[16];
 	char				carry;
 	unsigned char		opcode;
@@ -61,8 +62,14 @@ typedef struct			s_vm
 {
 	unsigned char		vm[MEM_SIZE];
 	t_player			*player_list;
+	t_process			*process_list[4];
 	unsigned int		param[3][2];
 	size_t				nb_process;
+	int					cycles_to_die;
+	int					nb_live;
+	int					no_decrease_check;
+	int					nb_champs_left;
+	int					period[2];
 }						t_vm;
 
 typedef struct			s_instruction

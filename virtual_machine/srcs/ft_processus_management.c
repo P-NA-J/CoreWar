@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/16 21:17:11 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/18 10:24:27 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 #include "../includes/virtual_machine.h"
 #include "../includes/tab.h"
 #include "../includes/debug.h"
+
+/*
+**	Fonction qui déplace correctement le PC d'une certaine valeur.
+*/
+
+void	ft_move_pc(t_process *process, int value)
+{
+	process->pc = (process->pc + value) % MEM_SIZE;
+}
 
 t_process	*ft_process_move(t_process *process, t_process *tab[1024], int cycle, int cycle_to_add)
 {
