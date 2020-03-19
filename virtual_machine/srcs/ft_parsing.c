@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/19 09:40:09 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/19 11:35:32 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		ft_parse(int nb_args, char **args, t_vm *vm)
 		return (ft_free_filecor(&filecor));
 	if (ft_insertion_vm(&filecor, vm->vm, vm->player_list))
 		return (ft_free_filecor(&filecor));
+	vm->nb_player = filecor.player_nb;
 	ft_free_filecor(&filecor);
-	ft_print_intro(vm->player_list);
 	return (EXIT_SUCCESS);
 }
