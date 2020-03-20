@@ -130,3 +130,18 @@ void	ft_debug_vm(t_vm *vm)
 	printf("period[0] = %d period[1] = %d\n", vm->period[0], vm->period[1]);
 	printf("nb_player = %d\n", vm->nb_player);
 }
+
+void	ft_debug_processus_list(t_process **process_list, const int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (process_list[i] == NULL)
+			printf("NULL\n");
+		else
+			printf("Processus N°%zu\n", process_list[i]->no);
+		i += 1;
+	}
+}

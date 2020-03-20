@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/18 10:24:27 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/20 16:39:01 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,21 @@ void	ft_add_process(t_process *tab[1024], t_process *process)
 	}
 }
 
+void	ft_add_process_list(t_vm *vm, t_process *process)
+{
+	int	i;
+
+	vm->nb_process += 1;
+	if (vm->nb_process > vm->nb_max_process)
+		vm->process_list = realloc(vm->process_list, vm->nb_max_process * 2);
+	i = 0;
+	while (vm->process_list[i] != 0)
+	{
+		i += 1;
+	}
+	vm->process_list[i] = process;
+}
+
 int	ft_create_processus_list(int nb_player, t_process *tab[1024], t_vm *vm)
 {
 	int	i;
@@ -89,6 +104,7 @@ int	ft_create_processus_list(int nb_player, t_process *tab[1024], t_vm *vm)
 		if(!(process = ft_create_processus(i + 1, pc, vm->vm[pc] - 1)))
 			return (ERROR);
 		ft_add_process(tab + g_tab_instruction[process->opcode].cycle_to_exec, process);
+		ft_add_process_list(vm, process);
 		i += 1;
 	}
 	return (TRUE);
