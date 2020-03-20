@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:27 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 15:04:44 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/20 10:41:11 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 void	ft_live(t_process *process, t_vm *vm)
 {
-	(void)process;
-	(void)vm;
+	int			nb_player;
+	int			param;
+
+	nb_player = vm->nb_player * (-&);
+	param = vm->param[0][0];
+	if (param < 0 && param >= )
 }
