@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_option.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:52:36 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/18 08:45:28 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/20 13:38:24 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int		ft_filloption(int *option, int *value, char **args, int index)
 
 int		ft_get_options(int index, char **args, t_option *option)
 {
-	if (ft_strcmp(args[index], "-visu") == 0 && (option->visu = 1))
+	if (ft_strcmp(args[index], "--visu") == 0 && (option->visu = 1))
 		return (EXIT_SUCCESS);	
-	else if (ft_strcmp(args[index], "-dump") == 0)
+	else if (ft_strcmp(args[index], "-d") == 0)
 		return (ft_filloption(&option->d[0], &option->d[1], args, index));
 	else if (ft_strcmp(args[index], "-v") == 0)
 		return (ft_filloption(&option->v[0], &option->v[1], args, index));
 	else if (ft_check_int(args[index]) == 0
-			&& (ft_strcmp(args[index - 1], "-dump") == 0
+			&& (ft_strcmp(args[index - 1], "-d") == 0
 				|| ft_strcmp(args[index - 1], "-v") == 0
 					|| ft_strcmp(args[index - 1], "-n") == 0))
 		return (EXIT_SUCCESS);
