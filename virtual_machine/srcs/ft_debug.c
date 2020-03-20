@@ -3,7 +3,6 @@
 #include "../includes/tab.h"
 #define MASK_32 0b10000000000000000000000000000000
 
-
 void	ft_debug_instruction(t_process *process, t_vm *vm)
 {
 	int	i = 0;
@@ -64,54 +63,70 @@ void	ft_print_bit_32(int i)
 	printf("\n");
 }
 
-void	ft_debug_param(unsigned int param[2])
+void	ft_debug_one_param(unsigned int param[2])
 {
 	if (param[1] == DIR_BIT)
-		printf("DIRECT   [%d]\n", param[0]);
+		printf("DIRECT   [%d].\n", param[0]);
 	else if (param[1] == IND_BIT)
-		printf("INDIRECT [%d]\n", param[0]);
+		printf("INDIRECT [%d].\n", param[0]);
 	else if (param[1] == REG_BIT)
-		printf("REGISTRE [%d]\n", param[0]);
+		printf("REGISTRE [%d].\n", param[0]);
+	else
+		printf("Pas de paramètre.\n");
 }
 
-void	ft_debug_params(unsigned int param[3][2])
+void	ft_debug_param(unsigned int param[3][2])
 {
-	ft_debug_param(param[0]);
-	ft_debug_param(param[1]);
-	ft_debug_param(param[2]);
+	printf("----------- PARAM ----------\n");
+	ft_debug_one_param(param[0]);
+	ft_debug_one_param(param[1]);
+	ft_debug_one_param(param[2]);
+	printf("----------------------------\n\n");
 }
 
-void	ft_debug_processus(t_process *processus)
+void	ft_debug_one_player(t_player player)
 {
-	printf("process->registre[%d] = %d\n",0, processus->registre[0]);
-	printf("process->registre[%d] = %d\n",1, processus->registre[1]);
-	printf("process->registre[%d] = %d\n",2, processus->registre[2]);
-	printf("process->registre[%d] = %d\n",3, processus->registre[3]);
-	printf("process->registre[%d] = %d\n",4, processus->registre[4]);
-	printf("process->registre[%d] = %d\n",5, processus->registre[5]);
-	printf("process->registre[%d] = %d\n",6, processus->registre[6]);
-	printf("process->registre[%d] = %d\n",7, processus->registre[7]);
-	printf("process->registre[%d] = %d\n",8, processus->registre[8]);
-	printf("process->registre[%d] = %d\n",9, processus->registre[9]);
-	printf("process->registre[%d] = %d\n",10, processus->registre[10]);
-	printf("process->registre[%d] = %d\n",11, processus->registre[11]);
-	printf("process->registre[%d] = %d\n",12, processus->registre[12]);
-	printf("process->registre[%d] = %d\n",13, processus->registre[13]);
-	printf("process->registre[%d] = %d\n",14, processus->registre[14]);
-	printf("process->registre[%d] = %d\n",15, processus->registre[15]);
-	printf("process->carry =        %hhd\n", processus->carry);
-	printf("process->pc  =          %zu\n", processus->pc);
-	printf("process->cycle_left =   %zu\n", processus->cycle_left);
-	printf("process->next =         %p\n", processus->next);
-	printf("process =               %p\n", processus);
-	printf("\n--------------------------------------------------------------------\n\n");
+	printf("magic = |%s|\n", player.magic);
+	printf("name = |%s|\n", player.name);
+	printf("comment = |%s|\n", player.comment);
+	printf("player_size = |%s|\n", player.size);
+	printf("index_player = %d\n", player.index_player);
+	printf("nb_live = %u\n\n", player.nb_live);
 }
 
-void	ft_debug_processus_list(t_process *processus_list)
+void	ft_debug_player_list(t_player player_list[4])
 {
-	while (processus_list != NULL)
-	{
-		ft_debug_processus(processus_list);
-		processus_list = processus_list->next;
-	}
+	printf("----------- PLAYER_LIST ----------\n");
+	ft_debug_one_player(player_list[0]);
+	ft_debug_one_player(player_list[1]);
+	ft_debug_one_player(player_list[2]);
+	ft_debug_one_player(player_list[3]);
+	printf("----------------------------------\n\n");
+}
+
+void	ft_debug_opt(t_option opt)
+{
+	printf("----------- OPT ----------\n");
+	printf("VISU : %d\n", opt.visu);
+	printf("v[0] = %d v[1] = %d\n", opt.v[0], opt.v[1]);
+	printf("d[0] = %d d[1] = %d\n", opt.d[0], opt.d[1]);
+	printf("pad[0] = %d pad[1] = %d\n", opt.pad[0], opt.pad[1]);
+	printf("--------------------------\n\n");
+}
+
+void	ft_debug_vm(t_vm *vm)
+{
+	ft_dump(vm->vm);
+	ft_debug_player_list(vm->player_list);
+	ft_debug_opt(vm->opt);
+	printf("ADDR(process_list) = %p\n", vm->process_list);
+	ft_debug_param(vm->param);
+	printf("cycle = %zu\n", vm->cycle);
+	printf("nb_process = %zu\n", vm->nb_process);
+	printf("cycles_to_die = %d\n", vm->cycles_to_die);
+	printf("nb_live = %d\n", vm->nb_live);
+	printf("no_decrease_check = %d\n", vm->no_decrease_check);
+	printf("nb_champs_left = %d\n", vm->nb_champs_left);
+	printf("period[0] = %d period[1] = %d\n", vm->period[0], vm->period[1]);
+	printf("nb_player = %d\n", vm->nb_player);
 }
