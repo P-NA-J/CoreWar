@@ -40,7 +40,7 @@ PATH_SRC = $(addprefix srcs/, $(SRC))
 PATH_OBJ = $(addprefix obj/, $(OBJ))
 PATH_HEADERS = $(addprefix includes/, $(HEADERS))
 
-all: $(EXE)
+all: libft_comp $(EXE)
 
 libft_comp:
 	if ! [ -d "../libft/obj/" ]; then mkdir obj ; fi

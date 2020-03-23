@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:52:36 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/20 13:38:24 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/20 16:47:32 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_get_options(int index, char **args, t_option *option)
 	else if (ft_strcmp(args[index], "-v") == 0)
 		return (ft_filloption(&option->v[0], &option->v[1], args, index));
 	else if (ft_check_int(args[index]) == 0
-			&& (ft_strcmp(args[index - 1], "-d") == 0
+			&& (ft_strcmp(args[index - 1], "-dump") == 0
 				|| ft_strcmp(args[index - 1], "-v") == 0
 					|| ft_strcmp(args[index - 1], "-n") == 0))
 		return (EXIT_SUCCESS);

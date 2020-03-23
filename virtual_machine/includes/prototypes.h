@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/19 09:40:58 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/23 10:17:33 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void		ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle);
 int			ft_error(void);
 void		ft_reset_begin_process_list(t_process *process_list);
 t_process	*ft_process_move(t_process *process, t_process *tab[1024], int cycle, int cycle_to_add);
+int			ft_check(t_vm *vm);
 
 /*
 **	Prototypes des fonctions pour les instructions ASM.

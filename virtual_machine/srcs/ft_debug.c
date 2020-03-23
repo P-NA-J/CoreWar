@@ -1,6 +1,7 @@
 #include "../includes/debug.h"
 #include "../includes/struct.h"
 #include "../includes/tab.h"
+#include "../includes/op.h"
 #define MASK_32 0b10000000000000000000000000000000
 
 void	ft_debug_instruction(t_process *process, t_vm *vm)
@@ -131,6 +132,25 @@ void	ft_debug_vm(t_vm *vm)
 	printf("nb_player = %d\n", vm->nb_player);
 }
 
+void	ft_debug_processus(t_process *process)
+{
+	printf("Processus N°%zu\n", process->no);
+	printf("PC : %zu\n", process->pc);
+	printf("cycle : %zu\n", process->cycle);
+	printf("cycle_left : %zu\n", process->cycle_left);
+	printf("cycle_last_live : %zu\n", process->cycle_last_live);
+	printf("nb_live : %d\n", process->nb_live);
+	printf("nb_live_period : %d\n", process->nb_live_period);
+	printf("carry : %d\n", process->carry);
+	printf("opcode : %d\n", process->opcode);
+	printf("[%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]\n",
+	process->registre[0], process->registre[1], process->registre[2],process->registre[3],
+	process->registre[4], process->registre[5], process->registre[6],process->registre[7],
+	process->registre[8], process->registre[9], process->registre[10],process->registre[11],
+	process->registre[12], process->registre[13], process->registre[14],process->registre[15]);
+	printf("--------------------------------\n");
+}
+
 void	ft_debug_processus_list(t_process **process_list, const int len)
 {
 	int	i;
@@ -141,7 +161,30 @@ void	ft_debug_processus_list(t_process **process_list, const int len)
 		if (process_list[i] == NULL)
 			printf("NULL\n");
 		else
-			printf("Processus N°%zu\n", process_list[i]->no);
+			ft_debug_processus(process_list[i]);
+		i += 1;
+	}
+}
+
+void	ft_debug_tab_process(t_process *tab[CYCLE_WAIT_MAX])
+{
+	size_t	i;
+	t_process	*tmp;
+
+	tmp = NULL;
+	i = 0;
+	while (i < CYCLE_WAIT_MAX)
+	{
+		if (tab[i] != NULL)
+		{
+			tmp = tab[i];
+			printf("i = %zu\n", i);
+			while (tmp != NULL)
+			{
+				ft_debug_processus(tmp);
+				tmp = tmp->next;
+			}
+		}
 		i += 1;
 	}
 }
