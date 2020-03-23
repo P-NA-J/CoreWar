@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sub.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:39 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 17:30:33 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/23 17:36:13 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_sub(t_process *process, t_vm *vm)
 {
 	int	sub;
 
-	sub = process->registre[vm->param[0][0]];
-	sub -= process->registre[vm->param[1][0]];
-	process->registre[vm->param[2][0]] = sub;
+	sub = process->registre[vm->param[0][0] - 1];
+	sub -= process->registre[vm->param[1][0] - 1];
+	process->registre[vm->param[2][0] - 1] = sub;
 }
