@@ -6,12 +6,13 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 10:23:05 by paul              #+#    #+#             */
-/*   Updated: 2020/03/18 10:24:01 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/23 15:23:59 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/virtual_machine.h"
+#include "../includes/prototypes.h"
 
 int	ft_check_decreasing(t_vm *vm)
 {
@@ -25,30 +26,29 @@ int	ft_check_decreasing(t_vm *vm)
 	return (vm->no_decrease_check);
 }
 
-int		ft_is_alive(t_vm *vm)
+void		ft_is_alive(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 {
-	int	i;
-	int	alive;
+	size_t	i;
 
-	alive = 0;
 	i = 0;
-	while (i < 4)
+	while (i < vm->nb_process)
 	{
-		if (vm->process_list[i]->cycle_last_live == vm->period[1])
-			alive += 1;
-		else
-			ft_rm_champs();
+		if (vm->process_list[i]->cycle_last_live < vm->cycle - vm->cycles_to_die)
+			ft_rm_processus(vm, tab);
 		i += 1;
 	}
-	return (alive);
 }
 
-int		ft_check(t_vm *vm)
+void	ft_reset_period(t_vm *vm)
 {
-	if (ft_is_alive(vm) == 1)
-		return (true);
+	vm->period[0] = 0;
+	vm->period[1] = vm->cycles_to_die;
+}
+
+void	ft_check(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
+{
+	ft_is_alive(vm, tab);
 	if (ft_check_decreasing(vm) == MAX_CHECKS)
 		vm->cycles_to_die -= CYCLE_DELTA;
 	ft_reset_period(vm);
-	return (false);
 }

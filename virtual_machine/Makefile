@@ -15,6 +15,7 @@ SRC +=	ft_loading.c
 SRC +=	ft_parameter.c
 SRC +=	ft_processus_management.c
 SRC +=	ft_debug.c
+SRC +=	ft_check.c
 SRC +=	ft_tab_instruction.c
 SRC +=	ft_parsing.c
 SRC +=	ft_insertion_vm.c
