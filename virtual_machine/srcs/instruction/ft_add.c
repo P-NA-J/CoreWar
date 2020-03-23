@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:31:49 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/12 15:04:24 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/03/23 17:30:08 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 void	ft_add(t_process *process, t_vm *vm)
 {
-	(void)process;
-	(void)vm;
+	int adition;
+
+	adition = process->registre[vm->param[0][0]];
+	adition += process->registre[vm->param[1][0]];
+	process->registre[vm->param[2][0]] = adition;
 }
