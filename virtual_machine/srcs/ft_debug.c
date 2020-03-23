@@ -136,11 +136,7 @@ void	ft_debug_processus(t_process *process)
 {
 	printf("Processus N°%zu\n", process->no);
 	printf("PC : %zu\n", process->pc);
-	printf("cycle : %zu\n", process->cycle);
-	printf("cycle_left : %zu\n", process->cycle_left);
 	printf("cycle_last_live : %zu\n", process->cycle_last_live);
-	printf("nb_live : %d\n", process->nb_live);
-	printf("nb_live_period : %d\n", process->nb_live_period);
 	printf("carry : %d\n", process->carry);
 	printf("opcode : %d\n", process->opcode);
 	printf("[%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]\n",

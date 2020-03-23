@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 12:18:09 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/23 18:20:58 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,33 @@
 #include "../includes/debug.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/libft.h"
+
+int		ft_get_value_ram(uint8_t vm[4], int	len)
+{
+	int	i;
+	int	res;
+
+	i = 0;
+	while (i < len)
+	{
+		res = vm[i];
+		if (i < len - 1)
+			res <<= 8;
+		i += 1;
+	}
+	return (res);
+}
+
+int		ft_recover_value_param(uint32_t param[2], t_process *process)
+{
+	if (param[1] == IND_BIT)
+		param = ft_get_value_ram(process->pc + (param[1] % IDX_MOD));
+	else if (param[1] == REG_BIT)
+		param = process->registre[param[0] - 1];
+	else
+		param = param[0];
+	return (param);
+}
 
 int	ft_init(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 {
@@ -33,8 +60,8 @@ void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 	while (vm->cycle < (size_t)vm->opt.d[1] || vm->nb_champs_left > 1)
 	{
 		ft_exec_cycle(vm, tab, vm->cycle);
-//		if (vm->period[0] == CYCLE_TO_DIE)
-//			ft_check(vm);
+		if (vm->period[0] == CYCLE_TO_DIE)
+			ft_check(vm, tab);
 		vm->cycle += 1;
 		vm->period[0] += 1;
 	}
@@ -43,12 +70,11 @@ void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 
 void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 {
-	while (vm->cycle < 500)
+	while (vm->nb_champs_left > 1)
 	{
-		printf("cycles : %zu\n", vm->cycle);
 		ft_exec_cycle(vm, tab, vm->cycle);
-//		if (vm->period[0] == CYCLE_TO_DIE)
-//			ft_check(vm);
+		if (vm->period[0] == CYCLE_TO_DIE)
+			ft_check(vm, tab);
 		vm->cycle += 1;
 		vm->period[0] += 1;
 	}
@@ -57,18 +83,17 @@ void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 int		main(int ac, char **av)
 {
 	t_vm			vm;
-	t_process		*tab[CYCLE_WAIT_MAX];
 
-	if (ft_init(&vm, tab) == false)
+	if (ft_init(&vm, vm.tab) == false)
 		return (false);
 	if (ft_parse(ac - 1, av + 1, &vm))
 		return (false);
-	if (!ft_create_processus_list(vm.nb_player, tab, &vm))
+	if (!ft_create_processus_list(vm.nb_player, vm.tab, &vm))
 		return (false);
 	if (vm.opt.d[0] == true)
-		ft_loop_dumped(&vm, tab);
+		ft_loop_dumped(&vm, vm.tab);
 	else
-		ft_loop_std(&vm, tab);
+		ft_loop_std(&vm, vm.tab);
 	return (0);
 }
 
