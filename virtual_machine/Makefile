@@ -1,7 +1,7 @@
 EXE = corewar
 CC = clang 
 CFLAG = -Wall -Werror -Wextra -g3 -fsanitize=address,undefined
-LIB = ../libft/libft.a
+LIB = ../libft/libftprintf.a
 
 SRC =	main.c
 SRC +=	ft_place_player.c
@@ -35,6 +35,7 @@ SRC +=	instruction/ft_sti.c
 SRC +=	instruction/ft_sub.c
 SRC +=	instruction/ft_xor.c
 SRC +=	instruction/ft_zjmp.c
+SRC +=	instruction/ft_utils.c
 
 OBJ = $(SRC:.c=.o)
 PATH_SRC = $(addprefix srcs/, $(SRC))
@@ -44,7 +45,6 @@ PATH_HEADERS = $(addprefix includes/, $(HEADERS))
 all: libft_comp $(EXE)
 
 libft_comp:
-	if ! [ -d "../libft/obj/" ]; then mkdir obj ; fi
 	make -C ../libft
 
 obj_dir:
@@ -58,17 +58,17 @@ $(addprefix obj/, %.o): $(addprefix srcs/, %.c)
 	$(CC) $(CFLAG) -c $< -o $@
 
 lib_clean:
-	make clean -C libft/
+	make clean -C ../libft/
 
 lib_fclean:
-	make fclean -C libft/
+	make fclean -C ../libft/
 
-clean:
+clean: lib_clean
 	rm -f $(PATH_OBJ) $(PATH_OBJ_OP)
 
-fclean: clean
+fclean: clean lib_fclean
 	rm -f $(EXE)
 
-re: fclean all
+re: fclean_libft fclean all
 
 .PHONY : libft clean fclean re comp lib_clean lib_fclean

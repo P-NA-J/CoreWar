@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_intro.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 13:01:40 by danglass          #+#    #+#             */
-/*   Updated: 2020/03/17 19:20:56 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/25 18:50:14 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
-#include "../../libft/includes/libft.h"
+#include "../../libft/includes/prototypes.h"
 
 char	player_tab[5][12] = 
 {

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:20 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 12:08:15 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/23 19:47:50 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ void	ft_loading_processus(t_vm *vm, t_process *process, t_process *tab[1024], si
 
 	process->opcode = vm->vm[process->pc] - 1;
 	cycle_to_add = g_tab_instruction[process->opcode].cycle_to_exec;
-//	process->cycle_left = cycle_to_add;
 	tab[(cycle + cycle_to_add) % 1024] = ft_process_move(process, tab, cycle, cycle_to_add);
 }
 
 void	ft_check_loading_processus(t_vm *vm, t_process *process, t_process *tab[1024], size_t cycle)
 {
-	if (vm->vm[process->pc] == 0 || vm->vm[process->pc] > 16)
+	if (vm->vm[process->pc % MEM_SIZE] == 0 || vm->vm[process->pc % MEM_SIZE] > 16)
+	{
+		printf("MOVING PC\n");
 		ft_move_pc(process, 1);
+		tab[1010] = ft_process_move(process, tab, cycle, 1010 - cycle);
+	}
 	else
 		ft_loading_processus(vm, process, tab, cycle);
 }

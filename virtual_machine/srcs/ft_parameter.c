@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/16 21:17:13 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/23 19:30:10 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_check_value_param(t_process *process, t_vm *vm)
 	i = 0;
 	while (i < nb_param)
 	{
-		if (vm->param[i][1] == REG_CODE && (vm->param[i][1] <= 0 || vm->param[i][1] >= 17))
+		if (vm->param[i][1] == REG_BIT && (vm->param[i][0] <= 0 || vm->param[i][0] >= 17))
 			return (ERROR);
 		i += 1;
 	}
@@ -135,7 +135,7 @@ int		ft_get_param_type(t_process *process, t_vm *vm)
 
 	if (g_tab_instruction[process->opcode].ocp == TRUE)
 	{
-		ocp = vm->vm[process->pc + 1];
+		ocp = vm->vm[(process->pc + 1) % MEM_SIZE];
 		nb_param = g_tab_instruction[process->opcode].nb_param;
 		i = 0;
 		while (i < nb_param)
@@ -148,7 +148,7 @@ int		ft_get_param_type(t_process *process, t_vm *vm)
 			else if (mask == DIR_BIT)
 				vm->param[i][1] = DIR_BIT;
 			else
-				return (ft_bad_ocp_parsing(vm->vm[process->pc + 1], process));
+				return (ft_bad_ocp_parsing(vm->vm[(process->pc + 1) % MEM_SIZE], process));
 			ocp <<= 2;
 			i += 1;
 		}

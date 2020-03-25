@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:26 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 18:40:20 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/25 09:35:38 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/tab.h"
 #include "../../includes/struct.h"
-
-int		ft_value_from_address(int pc, int indirect, t_vm *vm)
-{
-	int param;
-	int pos;
-
-	pos = pc + (indirect % IDX_MOD);
-	param = ft_convert_to_int(vm->vm + pos);
-	return (param);
-}
+#include "../../includes/prototypes.h"
 
 void	ft_sti(t_process *process, t_vm *vm)
 {
@@ -40,6 +31,6 @@ void	ft_sti(t_process *process, t_vm *vm)
 	if (REG_BIT == vm->param[2][1])
 		param_2 = process->registre[vm->param[1][0] - 1];
 	pos = process->pc + ((param_1 + param_2) % IDX_MOD);
-	ft_convert_to_char(vm->vm,
-	process->registre[vm->param[0][0]], pos + 4);
+	ft_convert_to_char(vm,
+	process->registre[vm->param[0][0] - 1], pos + 4);
 }

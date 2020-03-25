@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 16:35:43 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 10:00:20 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct			s_vm
 	int					nb_champs_left;
 	int					period[2];
 	int					nb_player;
+	int					last_champ_alive;
 }						t_vm;
 
 typedef struct			s_instruction

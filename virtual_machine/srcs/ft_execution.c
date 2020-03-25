@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/16 21:17:06 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/23 19:38:02 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,8 @@ void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 void	ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle)
 {
 	if (tab[cycle % 1024] != NULL)
+	{
+		printf("J'execute un processus.\n");
 		ft_exec_processus(tab, cycle, vm);
+	}
 }

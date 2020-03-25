@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:28:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 16:42:53 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 18:51:47 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../includes/virtual_machine.h"
 #include "../includes/tab.h"
 #include "../includes/debug.h"
-#include "../../libft/includes/libft.h"
+#include "../../libft/includes/prototypes.h"
 
 /*
 **	Fonction qui déplace correctement le PC d'une certaine valeur.
@@ -88,10 +88,26 @@ void	ft_add_process_list(t_vm *vm, t_process *process)
 	vm->process_list[i] = process;
 }
 
-void	ft_rm_processus(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
+void	ft_slide_up(t_process **process_list, int i, int nb)
 {
-	(void)vm;
-	(void)tab;
+	while (i < nb)
+	{
+		process_list[i] = process_list[i + 1];
+		i += 1;
+	}
+}
+
+void	ft_rm_processus(t_vm *vm, t_process *tab, t_process *process)
+{
+	int	i;
+
+	i = 0;
+	while (vm->process_list[i] != process)
+		i += 1;
+	ft_slide_up(vm->process_list, i, vm->nb_process);
+	while (tab->next != process)
+		tab = tab->next;
+	tab->next = process->next;
 }
 
 t_process	*ft_cpy_processus(t_process *processus)

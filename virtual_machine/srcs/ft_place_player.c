@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_place_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 20:30:42 by danglass          #+#    #+#             */
-/*   Updated: 2020/03/19 12:16:34 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/25 18:50:00 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
-#include "../../libft/includes/libft.h"
+#include "../../libft/includes/prototypes.h"
 
 
 int		ft_replace(t_args *filecor, int pos, int index)

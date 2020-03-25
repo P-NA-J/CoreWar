@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:08:59 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/19 12:14:49 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/25 18:51:35 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
-#include "../../libft/includes/libft.h"
+#include "../../libft/includes/prototypes.h"
 
 char	tab[7][128] = 
 {

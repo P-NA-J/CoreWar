@@ -6,14 +6,14 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/20 13:44:30 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 18:52:00 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
-#include "../../libft/includes/libft.h"
+#include "../../libft/includes/prototypes.h"
 
 int		ft_getoccur(char *args, const char *cor)
 {
