@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:59:05 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/25 20:33:08 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/26 12:54:39 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
-
-uint32_t		ft_convert_to_int(unsigned char tab[4])
-{
-	uint32_t		result;
-	int		index;
-
-	result = 0;
-	index = 0;
-	while (index < 4)
-	{
-		result |= tab[index];
-		if (index < 3)
-			result <<= 8;
-		index++;
-	}
-	return (result);
-}
 
 void	ft_cpy_printablechar(char *dst, unsigned char *src, int max)
 {
