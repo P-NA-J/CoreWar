@@ -6,12 +6,14 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 19:38:02 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 20:53:44 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/tab.h"
 #include "../includes/debug.h"
+#include "../includes/op.h"
+#include "../../libft/includes/prototypes.h"
 
 int	ft_skip_one_parameter_field(t_vm *vm, int to_skip, const int j, const uint8_t opcode)
 {
@@ -33,6 +35,7 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	int	to_skip;
 	int	nb_param;
 	int	j;
+	int i;
 
 	to_skip = 0;
 	if (g_tab_instruction[process->opcode].ocp == TRUE)
@@ -41,6 +44,11 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	j = 0;
 	while (j < nb_param)
 		to_skip = ft_skip_one_parameter_field(vm, to_skip, j++, process->opcode);
+	ft_printf("ADV %d (%#.4x -> %#.4x)", to_skip + 1, process->pc, process->pc + to_skip + 1);
+	i = 0;
+	while (i <= to_skip)
+		ft_printf( " %.2x", vm->vm[(process->pc + i++) % MEM_SIZE]);
+	ft_printf("\n");
 	ft_move_pc(process, to_skip + 1);
 }
 
@@ -82,8 +90,5 @@ void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 void	ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle)
 {
 	if (tab[cycle % 1024] != NULL)
-	{
-		printf("J'execute un processus.\n");
 		ft_exec_processus(tab, cycle, vm);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 18:42:38 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 19:55:28 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 {
 	while (vm->cycle < (size_t)vm->opt.d[1] && vm->nb_process > 1)
 	{
-		printf("cycles : %zu\n", vm->cycle);
+		ft_printf("It is now cycle %zu\n", vm->cycle);
 		ft_exec_cycle(vm, tab, vm->cycle);
 		if (vm->period[0] == CYCLE_TO_DIE)
 			ft_check(vm, tab);
@@ -76,6 +76,7 @@ void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 {
 	while (vm->nb_process > 1)
 	{
+		ft_printf("It is now cycle %zu\n", vm->cycle);
 		ft_exec_cycle(vm, tab, vm->cycle);
 		if (vm->period[0] == CYCLE_TO_DIE)
 			ft_check(vm, tab);

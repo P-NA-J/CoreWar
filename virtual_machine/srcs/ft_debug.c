@@ -2,30 +2,30 @@
 #include "../includes/struct.h"
 #include "../includes/tab.h"
 #include "../includes/op.h"
+#include "../../libft/includes/prototypes.h"
 #define MASK_32 0b10000000000000000000000000000000
 
 void	ft_debug_instruction(t_process *process, t_vm *vm)
 {
 	int	i = 0;
-	printf("[ %s ] ", g_tab_instruction[process->opcode].name);
-	fflush(stdout);
+	ft_printf("P%4d | %s", process->no, g_tab_instruction[process->opcode].name);
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
 		if (vm->param[i][1] == REG_BIT)
 		{
-			printf("r");
+			printf(" r");
 			fflush(stdout);
 		}
 		if (vm->param[i][1] == IND_BIT ||
 		(vm->param[i][1] == DIR_BIT &&
 		g_tab_instruction[process->opcode].dir_size == 2))
 		{
-			printf("%hd ", (short)vm->param[i][0]);
+			printf(" %hd", (short)vm->param[i][0]);
 			fflush(stdout);
 		}
 		else
 		{
-			printf("%d ", vm->param[i][0]);
+			printf(" %d", vm->param[i][0]);
 			fflush(stdout);
 		}
 		i += 1;

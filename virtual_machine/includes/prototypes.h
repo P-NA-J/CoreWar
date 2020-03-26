@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 09:40:54 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 20:33:03 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 ** Dump
 */
 
-int		ft_convert_to_int(unsigned char tab[4]);
 void	ft_dump(const unsigned char vm[MEM_SIZE]);
 
 /*
@@ -62,7 +61,7 @@ int		ft_recover_value_param(uint8_t vm[MEM_SIZE], uint32_t param[2], t_process *
 int		ft_get_value_ram(uint8_t vm[4], int	len);
 void	ft_convert_to_char(t_vm *vm, int reg, int pos);
 int		ft_value_from_address(int pc, int indirect, t_vm *vm);
-int		ft_convert_to_int(unsigned char tab[4]);
+uint32_t		ft_convert_to_int(unsigned char tab[4]);
 
 /*
 **	Prototypes des fonctions pour les instructions ASM.

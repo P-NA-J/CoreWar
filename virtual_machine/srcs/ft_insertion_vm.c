@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:59:05 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/25 18:52:20 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 20:33:08 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 
-int		ft_convert_to_int(unsigned char tab[4])
+uint32_t		ft_convert_to_int(unsigned char tab[4])
 {
-	int		result;
+	uint32_t		result;
 	int		index;
 
 	result = 0;

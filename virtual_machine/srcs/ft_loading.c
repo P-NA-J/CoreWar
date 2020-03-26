@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:20 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/23 19:47:50 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 20:06:34 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_check_loading_processus(t_vm *vm, t_process *process, t_process *tab[102
 {
 	if (vm->vm[process->pc % MEM_SIZE] == 0 || vm->vm[process->pc % MEM_SIZE] > 16)
 	{
-		printf("MOVING PC\n");
 		ft_move_pc(process, 1);
 		tab[1010] = ft_process_move(process, tab, cycle, 1010 - cycle);
 	}

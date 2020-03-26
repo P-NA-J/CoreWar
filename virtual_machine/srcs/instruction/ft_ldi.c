@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:06 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 09:42:05 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/25 20:29:25 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	ft_ldi(t_process *process, t_vm *vm)
 		param_2 = process->registre[vm->param[1][0] - 1];
 	value = param_1 + param_2;
 	value = ft_value_from_address(process->pc, value, vm);
+	process->carry = (process->carry == 1 ? 0 : 1);
 }

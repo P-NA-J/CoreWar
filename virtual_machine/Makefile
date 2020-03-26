@@ -69,6 +69,6 @@ clean: lib_clean
 fclean: clean lib_fclean
 	rm -f $(EXE)
 
-re: fclean_libft fclean all
+re: fclean all
 
 .PHONY : libft clean fclean re comp lib_clean lib_fclean
