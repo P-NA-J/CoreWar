@@ -6,7 +6,7 @@
 /*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/26 17:17:37 by danglass         ###   ########.fr       */
+/*   Updated: 2020/03/26 17:33:17 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ uint32_t		ft_convert2bytes_to_int(unsigned char tab[4])
 
 void	ft_lld(t_process *process, t_vm *vm)
 {
-	int pos;
 	int	param_1;
 	int	param_2;
 
@@ -42,9 +41,8 @@ void	ft_lld(t_process *process, t_vm *vm)
 		process->registre[param_2 - 1] = param_1;
 	else if (IND_BIT == vm->param[0][1])
 	{
-		pos = process->pc + (param_1 % IDX_MOD);
 		process->registre[param_2 - 1] =
-		ft_convert2bytes_to_int(vm->vm + pos);
+		ft_convert2bytes_to_int(vm->vm + param_1);
 	}
 	process->carry = (process->carry == 1 ? 0 : 1);
 }
