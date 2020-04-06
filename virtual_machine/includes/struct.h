@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 10:00:20 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:37:37 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 # define STRUCT_H
 
-# include "./virtual_machine.h"
+# include "./op.h"
+# include <stdlib.h>
 
 typedef struct			s_player
 {

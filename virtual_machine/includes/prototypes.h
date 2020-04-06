@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/03 15:46:49 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:32:43 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ int			ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2]);
 void		ft_skip_instruction_sequency(t_process *process, t_vm *vm);
 void		ft_print_param(int param, int type, int opcode);
 
+/*
+**	Boucle central du fonctionnement de la VM.
+*/
+
+void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
+void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
 
 /*
 **	Loading feature
