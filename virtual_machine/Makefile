@@ -26,6 +26,7 @@ SRC +=	ft_insertion_vm.c
 SRC +=	ft_core_loop.c
 SRC +=	ft_initialisation.c
 SRC +=	ft_recover_value.c
+SRC +=	ft_skip.c
 SRC +=	instruction/ft_add.c
 SRC +=	instruction/ft_aff.c
 SRC +=	instruction/ft_and.c

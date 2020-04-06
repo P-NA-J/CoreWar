@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/26 20:04:32 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 10:50:18 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,48 +78,6 @@ int		ft_get_param_value(t_process *process, t_vm *vm)
 		j += 1;
 	}
 	return (ft_check_value_param(process, vm));
-}
-
-/*
-**	Fonction qui va depalcer le pc dans le cas d'un OCP incorrect.
-*/
-
-int	ft_bad_ocp_parsing(unsigned char ocp, t_process *process)
-{
-	int	nb_param;
-	int	option;
-	int	j;
-
-	nb_param = g_tab_instruction[process->opcode].nb_param;
-	process->pc += 1;
-	j = 0;
-	while (j < nb_param)
-	{
-		option = 0b11000000 & ocp;
-		if (option == REG_BIT)
-		{
-			if (g_tab_instruction[process->opcode].param_type[j] & T_REG)
-				process->pc += 1;
-		}
-		else if (option == IND_BIT)
-		{
-			if (g_tab_instruction[process->opcode].param_type[j] & T_IND)
-				process->pc += 2;
-		}
-		else if (option == T_DIR)
-		{
-			if (g_tab_instruction[process->opcode].param_type[j] & T_DIR)
-				process->pc += g_tab_instruction[process->opcode].dir_size;
-		}
-		else
-		{
-			process->pc += 1;
-			return (ERROR);
-		}
-		ocp <<= 2;
-		j += 1;
-	}
-	return (ERROR);
 }
 
 /*
