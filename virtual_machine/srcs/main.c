@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/06 09:31:19 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 10:26:19 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,20 @@ int		ft_recover_value_param(uint8_t vm[MEM_SIZE], uint32_t param[2], t_process *
 	return (parameter);
 }
 
-int	ft_init(t_vm *vm)
-{
-	ft_bzero(vm, sizeof(vm[0]));
-	ft_bzero(vm->tab, CYCLE_WAIT_MAX * sizeof(t_process *));
-	vm->cycles_to_die = CYCLE_TO_DIE;
-	vm->nb_max_process = 64;
-	if (!(vm->process_list = (t_process **)ft_memalloc(sizeof(t_process *) * 64)))
-		return (false);
-	return (true);
-}
-
 int		main(int ac, char **av)
 {
 	t_vm			vm;
 
-	if (ft_init(&vm) == false)
+	if (ft_initialisation(&vm) == false)
 		return (false);
 	if (ft_parse(ac - 1, av + 1, &vm))
 		return (false);
 	if (!ft_processus_player_initialisation(&vm))
 		return (false);
-	if (vm.opt.d[0] == true)
+/*	if (vm.opt.d[0] == true)
 		ft_loop_dumped(&vm, vm.tab);
 	else
 		ft_loop_std(&vm, vm.tab);
-	return (0);
+*/	return (0);
 }
 

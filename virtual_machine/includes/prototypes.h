@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/06 09:32:43 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:54:46 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ uint32_t	ft_convert_to_int(unsigned char tab[4]);
 int			ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2]);
 void		ft_skip_instruction_sequency(t_process *process, t_vm *vm);
 void		ft_print_param(int param, int type, int opcode);
+
+/*
+**	Fonction d'initialisation de toutes les structures importantes au fonctionnement de la VM.
+*/
+
+int	ft_initialisation(t_vm *vm);
 
 /*
 **	Boucle central du fonctionnement de la VM.

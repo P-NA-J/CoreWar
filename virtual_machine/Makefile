@@ -24,6 +24,7 @@ SRC +=	ft_tab_instruction.c
 SRC +=	ft_parsing.c
 SRC +=	ft_insertion_vm.c
 SRC +=	ft_core_loop.c
+SRC +=	ft_initialisation.c
 SRC +=	instruction/ft_add.c
 SRC +=	instruction/ft_aff.c
 SRC +=	instruction/ft_and.c

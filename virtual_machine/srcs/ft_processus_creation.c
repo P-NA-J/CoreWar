@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:44 by paul              #+#    #+#             */
-/*   Updated: 2020/04/03 14:12:47 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 10:20:10 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_process	*ft_processus_create(const size_t no, const size_t pc)
 	if (!(processus = (t_process *)ft_memalloc(sizeof(t_process))))
 		return (NULL);
 	processus->no = no;
-	processus->pc = pc;
+	processus->pc = pc % MEM_SIZE;
 	return (processus);
 }
