@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/19 12:15:04 by danglass         ###   ########.fr       */
+/*   Updated: 2020/04/03 11:51:29 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 
 #define CYCLE_MAX				15
 #define CYCLE_WAIT_MAX			1024
+#define STAND_BY				1010
 #define ERROR					-1
 #define TRUE					1
 #define LIMIT_CHAMP				4

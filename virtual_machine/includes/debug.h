@@ -15,7 +15,10 @@ void	ft_debug_processus(t_process *processus);
 void	ft_debug_params(unsigned int param[3][2]);
 void	ft_debug_instruction(t_process *process, t_vm *vm);
 void	ft_print_bit_32(int i);
+void	ft_print_bit_8(unsigned char c);
+void	ft_print_bit_16(unsigned short c);
 void	ft_debug_vm(t_vm *vm);
 void	ft_debug_processus_list(t_process **process_list, const int len);
 void	ft_debug_tab_process(t_process *tab[CYCLE_WAIT_MAX]);
+void	ft_debug_critical_error(t_vm *vm);
 #endif
