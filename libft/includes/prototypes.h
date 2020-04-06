@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 10:00:52 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 18:48:46 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:37:50 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define LIBFTPROTOTYPES_H
 #include "struct.h"
+#include <stdlib.h>
 
 /*
 **	GET_NEXT_LINE
