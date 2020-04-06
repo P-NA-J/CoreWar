@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 19:55:28 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/03 15:53:51 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int		ft_recover_value_param(uint8_t vm[MEM_SIZE], uint32_t param[2], t_process *
 	return (parameter);
 }
 
-int	ft_init(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
+int	ft_init(t_vm *vm)
 {
 	ft_bzero(vm, sizeof(vm[0]));
-	ft_bzero(tab, CYCLE_WAIT_MAX * sizeof(t_process *));
+	ft_bzero(vm->tab, CYCLE_WAIT_MAX * sizeof(t_process *));
 	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->nb_max_process = 64;
 	if (!(vm->process_list = (t_process **)ft_memalloc(sizeof(t_process *) * 64)))
@@ -60,10 +60,15 @@ int	ft_init(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 
 void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 {
-	while (vm->cycle < (size_t)vm->opt.d[1] && vm->nb_process > 1)
+	while (vm->cycle <= (size_t)vm->opt.d[1] && vm->nb_process > 1)
 	{
 		ft_printf("It is now cycle %zu\n", vm->cycle);
 		ft_exec_cycle(vm, tab, vm->cycle);
+		ft_loading_check_processus(vm, vm->cycle);
+		
+		ft_debug_tab_process(tab);
+		exit(0);
+		
 		if (vm->period[0] == CYCLE_TO_DIE)
 			ft_check(vm, tab);
 		vm->cycle += 1;
@@ -78,6 +83,11 @@ void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 	{
 		ft_printf("It is now cycle %zu\n", vm->cycle);
 		ft_exec_cycle(vm, tab, vm->cycle);
+		ft_loading_check_processus(vm, vm->cycle);
+		
+		ft_debug_tab_process(tab);
+		exit(0);
+		
 		if (vm->period[0] == CYCLE_TO_DIE)
 			ft_check(vm, tab);
 		vm->cycle += 1;
@@ -89,11 +99,11 @@ int		main(int ac, char **av)
 {
 	t_vm			vm;
 
-	if (ft_init(&vm, vm.tab) == false)
+	if (ft_init(&vm) == false)
 		return (false);
 	if (ft_parse(ac - 1, av + 1, &vm))
 		return (false);
-	if (!ft_create_processus_list(vm.nb_player, vm.tab, &vm))
+	if (!ft_processus_player_initialisation(&vm))
 		return (false);
 	if (vm.opt.d[0] == true)
 		ft_loop_dumped(&vm, vm.tab);
