@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 20:05:55 by paul             ###   ########.fr       */
+/*   Updated: 2020/03/26 20:04:32 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int ft_convert_param(t_vm *vm, int len, int *i_ptr, int j)
 	index = *i_ptr;
 	while (index < len)
 	{
-		vm->param[j][0] |= vm->vm[index];
+		vm->param[j][0] |= vm->vm[index % MEM_SIZE];
 		if (index < len - 1)
 			vm->param[j][0] <<= 8;
 		index += 1;
@@ -65,7 +65,7 @@ int		ft_get_param_value(t_process *process, t_vm *vm)
 	int	nb_param;
 
 	nb_param = g_tab_instruction[process->opcode].nb_param;
-	i = process->pc + 1 + g_tab_instruction[process->opcode].ocp;
+	i = (process->pc + 1 + g_tab_instruction[process->opcode].ocp) % MEM_SIZE;
 	j = 0;
 	while (j < nb_param)
 	{

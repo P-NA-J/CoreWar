@@ -5,33 +5,34 @@
 #include "../../libft/includes/prototypes.h"
 #define MASK_32 0b10000000000000000000000000000000
 
+void	ft_print_param(int param, int type, int opcode)
+{
+	if (type == REG_BIT)
+		ft_printf("r%d", param);
+	if (type == IND_BIT ||
+		(type == DIR_BIT &&
+		g_tab_instruction[opcode].dir_size == 2))
+		ft_printf("%hd", param);
+	else
+		ft_printf("%d", param);
+}
+
 void	ft_debug_instruction(t_process *process, t_vm *vm)
 {
 	int	i = 0;
-	ft_printf("P%4d | %s", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%4d | %s ", process->no, g_tab_instruction[process->opcode].name);
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
 		if (vm->param[i][1] == REG_BIT)
-		{
-			printf(" r");
-			fflush(stdout);
-		}
+			ft_printf("r");
 		if (vm->param[i][1] == IND_BIT ||
 		(vm->param[i][1] == DIR_BIT &&
 		g_tab_instruction[process->opcode].dir_size == 2))
-		{
-			printf(" %hd", (short)vm->param[i][0]);
-			fflush(stdout);
-		}
+			ft_printf("%d ", vm->param[i][0]);
 		else
-		{
-			printf(" %d", vm->param[i][0]);
-			fflush(stdout);
-		}
+			ft_printf("%d ", vm->param[i][0]);
 		i += 1;
 	}
-	printf("\n");
-	fflush(stdout);
 }
 
 void	ft_print_bit_32(int i)
@@ -60,6 +61,40 @@ void	ft_print_bit_32(int i)
 			printf(" ");
 			fflush(stdout);
 		}
+	}
+	printf("\n");
+}
+
+void	ft_print_bit_16(unsigned short c)
+{
+	unsigned short	mask;
+
+	mask = 0b1000000000000000;
+	while (mask != 0)
+	{
+		if (mask & c)
+			printf("1");
+		else
+			printf("0");
+		mask >>= 1;
+		if (mask == 0b10000000)
+			printf(" ");
+	}
+	printf("\n");
+}
+
+void	ft_print_bit_8(unsigned char c)
+{
+	unsigned char	mask;
+
+	mask = 0b10000000;
+	while (mask != 0)
+	{
+		if (mask & c)
+			printf("1");
+		else
+			printf("0");
+		mask >>= 1;
 	}
 	printf("\n");
 }
@@ -138,13 +173,17 @@ void	ft_debug_processus(t_process *process)
 	printf("PC : %zu\n", process->pc);
 	printf("cycle_last_live : %zu\n", process->cycle_last_live);
 	printf("carry : %d\n", process->carry);
-	printf("opcode : %d\n", process->opcode);
-	printf("[%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]\n",
+	printf("tab_places : %zu\n", process->tab_places);
+	printf("operation : %s\n", g_tab_instruction[process->opcode].name);
+	if (process->next == NULL)
+		printf("NEXT : %p\n", process->next);
+	else
+		printf("NEXT : Processus N°%zu\n", process->next->no);
+	printf("[%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]\n\n",
 	process->registre[0], process->registre[1], process->registre[2],process->registre[3],
 	process->registre[4], process->registre[5], process->registre[6],process->registre[7],
 	process->registre[8], process->registre[9], process->registre[10],process->registre[11],
 	process->registre[12], process->registre[13], process->registre[14],process->registre[15]);
-	printf("--------------------------------\n");
 }
 
 void	ft_debug_processus_list(t_process **process_list, const int len)
@@ -152,6 +191,7 @@ void	ft_debug_processus_list(t_process **process_list, const int len)
 	int	i;
 
 	i = 0;
+	printf("___________________LIST_PROCESS___________________\n\n");
 	while (i < len)
 	{
 		if (process_list[i] == NULL)
@@ -169,16 +209,38 @@ void	ft_debug_tab_process(t_process *tab[CYCLE_WAIT_MAX])
 
 	tmp = NULL;
 	i = 0;
-	while (i < CYCLE_WAIT_MAX)
+	printf("___________________TAB_PROCESS____________________\n\n");
+	while (i < 1024)
 	{
 		if (tab[i] != NULL)
 		{
 			tmp = tab[i];
-			printf("i = %zu\n", i);
+			printf(_GREEN "i = %zu\n" _RESET, i);
 			while (tmp != NULL)
 			{
 				ft_debug_processus(tmp);
 				tmp = tmp->next;
+			}
+			printf("---------------------------------------------\n");
+		}
+		i += 1;
+	}
+}
+
+void	ft_debug_critical_error(t_vm *vm)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < vm->nb_process)
+	{
+		if (vm->process_list[i]->next)
+		{
+			if (vm->process_list[i]->no == vm->process_list[i]->next->no)
+			{
+				printf(_RED "Processus N°%zu\n" _RESET, vm->process_list[i]->no);
+				printf(_RED "/!\\ CRITICAL ERROR /!\\" _RESET);
+				exit(0);
 			}
 		}
 		i += 1;

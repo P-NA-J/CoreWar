@@ -6,11 +6,12 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 10:23:05 by paul              #+#    #+#             */
-/*   Updated: 2020/03/23 18:59:37 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/03 10:10:13 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
+#include "../includes/debug.h"
 #include "../includes/virtual_machine.h"
 #include "../includes/prototypes.h"
 
@@ -33,11 +34,8 @@ void		ft_is_alive(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 	i = 0;
 	while (i < vm->nb_process)
 	{
-		if (vm->process_list[i]->cycle_last_live < vm->cycle - vm->cycles_to_die)
-		{
-			ft_rm_processus(vm, *(tab + vm->process_list[i]->tab_places), vm->process_list[i]);
-			vm->nb_process -= 1;
-		}
+		if (vm->process_list[i]->cycle_last_live < (vm->cycle - vm->cycles_to_die))
+			ft_processus_rm(vm, tab, vm->process_list[i]);
 		i += 1;
 	}
 }

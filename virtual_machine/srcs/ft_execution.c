@@ -6,13 +6,14 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 20:53:44 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/03 15:47:15 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/tab.h"
 #include "../includes/debug.h"
 #include "../includes/op.h"
+#include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 
 int	ft_skip_one_parameter_field(t_vm *vm, int to_skip, const int j, const uint8_t opcode)
@@ -63,9 +64,7 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 	to_exec = ft_get_param_type(process, vm);
 	if (to_exec == TRUE)
 	{
-		ft_debug_instruction(process, vm);
 		g_tab_instruction[process->opcode].ft_instruction(process, vm);
-		ft_skip_instruction_sequency(process, vm);
 		bzero(vm->param, sizeof(vm->param));
 	}
 }
@@ -76,10 +75,10 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 
 void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 {
-	while (tab[cycle % 1024] != NULL)
+	while (tab[cycle % 1000] != NULL)
 	{
-		ft_exec_instruction(tab[cycle % 1024], vm);
-		ft_check_loading_processus(vm, tab[cycle % 1024], tab, cycle);
+		ft_exec_instruction(tab[cycle % 1000], vm);
+		ft_loading_try_processus(vm, tab[cycle % 1000], cycle);
 	}
 }
 
@@ -89,6 +88,6 @@ void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 
 void	ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle)
 {
-	if (tab[cycle % 1024] != NULL)
+	if (tab[cycle % 1000] != NULL)
 		ft_exec_processus(tab, cycle, vm);
 }
