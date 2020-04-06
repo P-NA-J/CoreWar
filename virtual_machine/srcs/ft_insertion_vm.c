@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:59:05 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/26 12:54:39 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:41:34 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 void	ft_cpy_printablechar(char *dst, unsigned char *src, int max)
 {

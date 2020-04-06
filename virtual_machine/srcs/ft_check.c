@@ -6,13 +6,12 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 10:23:05 by paul              #+#    #+#             */
-/*   Updated: 2020/04/03 10:10:13 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:40:19 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/debug.h"
-#include "../includes/virtual_machine.h"
 #include "../includes/prototypes.h"
 
 int	ft_check_decreasing(t_vm *vm)

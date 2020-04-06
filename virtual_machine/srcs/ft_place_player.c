@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 20:30:42 by danglass          #+#    #+#             */
-/*   Updated: 2020/03/25 18:50:00 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:36:31 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
-
+#include <stdlib.h>
 
 int		ft_replace(t_args *filecor, int pos, int index)
 {

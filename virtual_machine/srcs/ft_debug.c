@@ -3,6 +3,8 @@
 #include "../includes/tab.h"
 #include "../includes/op.h"
 #include "../../libft/includes/prototypes.h"
+#include <stdlib.h>
+#include <stdio.h>
 #define MASK_32 0b10000000000000000000000000000000
 
 void	ft_print_param(int param, int type, int opcode)

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/03 15:47:15 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/06 09:39:09 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 	if (to_exec == TRUE)
 	{
 		g_tab_instruction[process->opcode].ft_instruction(process, vm);
-		bzero(vm->param, sizeof(vm->param));
+		ft_bzero(vm->param, sizeof(vm->param));
 	}
 }
 
