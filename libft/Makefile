@@ -32,6 +32,7 @@ SRCS_FT_PRINTF +=		ft_putendl_fd.c
 SRCS_FT_PRINTF +=		ft_putnbr_fd.c
 SRCS_FT_PRINTF +=		ft_higher_value.c
 SRCS_FT_PRINTF +=		ft_nb_digit.c
+SRCS_FT_PRINTF +=		tab_global.c
 
 SRCS_MEMORY =			ft_memset.c
 SRCS_MEMORY +=			ft_bzero.c
