@@ -6,24 +6,38 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:37 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/26 13:56:30 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/03 14:08:02 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/tab.h"
 #include "../../includes/struct.h"
 #include "../../includes/prototypes.h"
-
+#include "../../../libft/includes/prototypes.h"
+#include "../../includes/debug.h"
+/*
+static void	ft_verbose(t_process *process, uint32_t param, size_t pc)
+{
+	ft_printf("P%4zu | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("%hd (%zu)\n", param, pc);
+}
+*/
 void	ft_fork(t_process *process, t_vm *vm)
 {
 	t_process	*new_process;
 	short		param;
+	size_t		pc;
+	size_t		no;
 
 	param = vm->param[0][0];
-	if (!(new_process = ft_cpy_processus(process)))
+	pc = (process->pc + (param % IDX_MOD)) % MEM_SIZE;
+	no = vm->nb_process + 1;
+	if (!(new_process = ft_processus_cpy(process, pc, no)))
 		exit(0);
-	new_process->pc = process->pc + (param % IDX_MOD);
-	new_process->opcode = vm->vm[new_process->pc];
-	ft_add_process(vm->tab + g_tab_instruction[new_process->opcode].cycle_to_exec, new_process);
-	ft_add_process_list(vm, new_process);
-}
+/*	new_process->opcode = vm->vm[new_process->pc] - 1;
+	ft_printf("%s\n", g_tab_instruction[new_process->opcode].name);
+	ft_processus_tab_add(vm->tab[(vm->cycle + g_tab_instruction[new_process->opcode].cycle_to_exec) % 1000], new_process);
+	ft_processus_list_add(vm, new_process);
+	ft_verbose(process, vm->param[0][0], new_process->pc);
+	ft_skip_instruction_sequency(process, vm);
+*/}

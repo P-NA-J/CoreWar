@@ -6,13 +6,15 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 09:34:14 by paul              #+#    #+#             */
-/*   Updated: 2020/03/26 14:13:19 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/02 14:19:52 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/struct.h"
 #include "../../includes/prototypes.h"
+#include "../../../libft/includes/prototypes.h"
 #include "../../includes/op.h"
+#include "../../includes/debug.h"
 
 uint32_t		ft_convert_to_int(unsigned char tab[4])
 {
@@ -36,10 +38,11 @@ void	ft_convert_to_char(t_vm *vm, int reg, int pos)
 	int	i;
 
 	i = 0;
+	pos = (pos >= 0 ? pos : MEM_SIZE + pos);
 	while (i < 4)
 	{
 		vm->vm[pos % MEM_SIZE] = reg;
-		pos--;
+		pos = (pos > 0 ? pos - 1 : MEM_SIZE + (pos - 1));
 		reg >>= 8;
 		i += 1;
 	}
