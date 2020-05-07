@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 09:34:14 by paul              #+#    #+#             */
-/*   Updated: 2020/04/02 14:19:52 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/22 22:29:07 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_convert_to_char(t_vm *vm, int reg, int pos)
 
 int		ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2])
 {
-	if (tab[1] == IND_BIT)
+	if (tab[1] == T_IND)
 		return (ft_value_from_address(pc, tab[0], vm));
 	return (tab[0]);
 }

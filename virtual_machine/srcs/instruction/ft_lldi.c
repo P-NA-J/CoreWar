@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/31 13:43:24 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 12:42:32 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 {
 	int	i;
 
-	ft_printf("P%4d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
 	i = 0;
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
-		if (param[i][1] == REG_BIT)
+		if (param[i][1] == T_REG)
 			ft_printf("r");
-		if (param[i][1] == DIR_BIT)
-			ft_printf("%hd ", param[i][0]);
+		if (param[i][1] == T_DIR)
+			ft_printf("%hd", param[i][0]);
 		else
-			ft_printf("%d ", param[i][0]);
+			ft_printf("%d", param[i][0]);
+		if (i < g_tab_instruction[process->opcode].nb_param - 1)
+			ft_printf(" ");
 		i += 1;
 	}
 	ft_printf("\n");
@@ -40,9 +42,9 @@ int		ft_lldi_param_recover_value(t_process *process, uint32_t tab[2])
 	int	param;
 
 	param = tab[0];
-	if (tab[1] == DIR_BIT)
+	if (tab[1] == T_DIR)
 		param = (short)tab[0];
-	else if (tab[1] == REG_BIT)
+	else if (tab[1] == T_REG)
 		param = process->registre[param - 1];
 	return (param);
 }

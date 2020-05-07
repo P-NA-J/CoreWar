@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:18 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/30 18:50:12 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 12:26:20 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 {
 	int	i;
 
-	ft_printf("P%4d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
 	i = 0;
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
-		if (param[i][1] == REG_BIT)
+		if (param[i][1] == T_REG)
 			ft_printf("r");
-		if (param[i][1] == IND_BIT)
-			ft_printf("%hd ", param[i][0]);
+		if (param[i][1] == T_IND)
+			ft_printf("%hd", param[i][0]);
 		else
-			ft_printf("%d ", param[i][0]);
+			ft_printf("%d", param[i][0]);
+		if (i < g_tab_instruction[process->opcode].nb_param - 1)
+			ft_printf(" ");
 		i += 1;
 	}
 	ft_printf("\n");
@@ -43,9 +45,9 @@ void	ft_st(t_process *process, t_vm *vm)
 
 	param_1 = vm->param[0][0];
 	param_2 = vm->param[1][0];
-	if (vm->param[1][1] == REG_BIT)
+	if (vm->param[1][1] == T_REG)
 		process->registre[param_2 - 1] = process->registre[param_1 - 1];
-	else if (vm->param[1][1] == IND_BIT)
+	else if (vm->param[1][1] == T_IND)
 	{
 		pos = process->pc + (param_2 % IDX_MOD);
 		ft_convert_to_char(vm,

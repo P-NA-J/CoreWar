@@ -9,10 +9,10 @@
 
 void	ft_print_param(int param, int type, int opcode)
 {
-	if (type == REG_BIT)
+	if (type == T_REG)
 		ft_printf("r%d", param);
-	if (type == IND_BIT ||
-		(type == DIR_BIT &&
+	if (type == T_IND ||
+		(type == T_DIR &&
 		g_tab_instruction[opcode].dir_size == 2))
 		ft_printf("%hd", param);
 	else
@@ -25,10 +25,10 @@ void	ft_debug_instruction(t_process *process, t_vm *vm)
 	ft_printf("P%4d | %s ", process->no, g_tab_instruction[process->opcode].name);
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
-		if (vm->param[i][1] == REG_BIT)
+		if (vm->param[i][1] == T_REG)
 			ft_printf("r");
-		if (vm->param[i][1] == IND_BIT ||
-		(vm->param[i][1] == DIR_BIT &&
+		if (vm->param[i][1] == T_IND ||
+		(vm->param[i][1] == T_DIR &&
 		g_tab_instruction[process->opcode].dir_size == 2))
 			ft_printf("%d ", vm->param[i][0]);
 		else
@@ -47,24 +47,15 @@ void	ft_print_bit_32(int i)
 	while (j < 32)
 	{
 		if (mask & i)
-		{
-			printf("1");
-			fflush(stdout);
-		}
+			ft_printf("1");
 		else
-		{
-			printf("0");
-			fflush(stdout);
-		}
+			ft_printf("0");
 		mask >>= 1;
 		j += 1;
 		if ((j % 8) == 0)
-		{
-			printf(" ");
-			fflush(stdout);
-		}
+			ft_printf(" ");
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	ft_print_bit_16(unsigned short c)
@@ -75,14 +66,14 @@ void	ft_print_bit_16(unsigned short c)
 	while (mask != 0)
 	{
 		if (mask & c)
-			printf("1");
+			ft_printf("1");
 		else
-			printf("0");
+			ft_printf("0");
 		mask >>= 1;
 		if (mask == 0b10000000)
-			printf(" ");
+			ft_printf(" ");
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	ft_print_bit_8(unsigned char c)
@@ -93,21 +84,21 @@ void	ft_print_bit_8(unsigned char c)
 	while (mask != 0)
 	{
 		if (mask & c)
-			printf("1");
+			ft_printf("1");
 		else
-			printf("0");
+			ft_printf("0");
 		mask >>= 1;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	ft_debug_one_param(unsigned int param[2])
 {
-	if (param[1] == DIR_BIT)
+	if (param[1] == T_DIR)
 		printf("DIRECT   [%d].\n", param[0]);
-	else if (param[1] == IND_BIT)
+	else if (param[1] == T_IND)
 		printf("INDIRECT [%d].\n", param[0]);
-	else if (param[1] == REG_BIT)
+	else if (param[1] == T_REG)
 		printf("REGISTRE [%d].\n", param[0]);
 	else
 		printf("Pas de paramètre.\n");
@@ -171,17 +162,17 @@ void	ft_debug_vm(t_vm *vm)
 
 void	ft_debug_processus(t_process *process)
 {
-	printf("Processus N°%zu\n", process->no);
-	printf("PC : %zu\n", process->pc);
-	printf("cycle_last_live : %zu\n", process->cycle_last_live);
-	printf("carry : %d\n", process->carry);
-	printf("tab_places : %zu\n", process->tab_places);
-	printf("operation : %s\n", g_tab_instruction[process->opcode].name);
+	ft_printf("Processus N°%zu\n", process->no);
+	ft_printf("PC : %x\n", process->pc);
+	ft_printf("cycle_last_live : %zu\n", process->cycle_last_live);
+	ft_printf("carry : %d\n", process->carry);
+	ft_printf("tab_places : %zu\n", process->tab_places);
+	ft_printf("operation : %s\n", g_tab_instruction[process->opcode].name);
 	if (process->next == NULL)
-		printf("NEXT : %p\n", process->next);
+		ft_printf("NEXT : %p\n", process->next);
 	else
-		printf("NEXT : Processus N°%zu\n", process->next->no);
-	printf("[%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]\n\n",
+		ft_printf("NEXT : Processus N°%zu\n", process->next->no);
+	ft_printf("[%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d][%d]\n\n",
 	process->registre[0], process->registre[1], process->registre[2],process->registre[3],
 	process->registre[4], process->registre[5], process->registre[6],process->registre[7],
 	process->registre[8], process->registre[9], process->registre[10],process->registre[11],
@@ -211,19 +202,19 @@ void	ft_debug_tab_process(t_process *tab[CYCLE_WAIT_MAX])
 
 	tmp = NULL;
 	i = 0;
-	printf("___________________TAB_PROCESS____________________\n\n");
+	ft_printf("___________________TAB_PROCESS____________________\n\n");
 	while (i < 1024)
 	{
 		if (tab[i] != NULL)
 		{
 			tmp = tab[i];
-			printf(_GREEN "i = %zu\n" _RESET, i);
+			ft_printf(_GREEN "i = %zu\n" _RESET, i);
 			while (tmp != NULL)
 			{
 				ft_debug_processus(tmp);
 				tmp = tmp->next;
 			}
-			printf("---------------------------------------------\n");
+			ft_printf("---------------------------------------------\n");
 		}
 		i += 1;
 	}

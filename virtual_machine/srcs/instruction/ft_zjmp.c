@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:38:04 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/30 18:58:47 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 12:43:11 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void	ft_verbose(t_process *process, uint32_t param)
 {
-	ft_printf("P%4d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
 	ft_printf("%hd", param);
 }
 

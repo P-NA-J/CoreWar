@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/04/02 11:57:58 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/23 11:28:29 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
+#include <stdbool.h>
 
 int		ft_getoccur(char *args, const char *cor)
 {
@@ -22,7 +23,7 @@ int		ft_getoccur(char *args, const char *cor)
 	length = ft_strlen(args) - 4;
 	if (length >= 1)
 		return (ft_strncmp(args + length, cor, 3));
-	return (1);
+	return (true);
 }
 
 int		ft_get_filecor(int nb_args, char **args, t_args *filecor, t_option *op)

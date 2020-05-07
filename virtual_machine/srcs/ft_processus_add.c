@@ -6,38 +6,17 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:38 by paul              #+#    #+#             */
-/*   Updated: 2020/04/03 14:49:24 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 09:31:07 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
+#include "../includes/debug.h"
 #include "../includes/prototypes.h"
 #include "../includes/tab.h"
+#include "../../libft/includes/prototypes.h"
 #include <stdlib.h>
 
-/*
-void	ft_processus_tab_front_add(t_process **tab, t_process *process, int cycle_dest)
-{
-	process->next = tab[cycle_dest];
-	tab[cycle_dest] = process;
-}
-
-void	ft_processus_tab_core_add(t_process *process, t_process *tmp)
-{
-	while (tmp->next && (tmp->next->no > process->no))
-		tmp = tmp->next;
-	process->next = tmp->next;
-	tmp->next = process;
-}
-
-void	ft_processus_tab_add(t_process *process, t_process *tab[1024], t_vm *vm)
-{
-	if (tab[vm->cycle % 1000] == NULL || (tab[vm->cycle % 1000]->no < process->no))
-		ft_processus_tab_front_add(tab, process, vm->cycle + g_tab_instruction[process->opcode].cycle_to_exec);
-	else
-		ft_processus_tab_core_add(process, tab[vm->cycle % 1000]);
-}
-*/
 void	ft_processus_list_add(t_vm *vm, t_process *process)
 {
 	size_t	i;
@@ -53,6 +32,7 @@ void	ft_processus_list_add(t_vm *vm, t_process *process)
 
 t_process	*ft_processus_tab_front_add(t_process *tab, t_process *process)
 {
+	process->prev = NULL;
 	process->next = tab;
 	return (process);
 }
@@ -62,6 +42,7 @@ void	ft_processus_tab_core_add(t_process *process, t_process *tmp)
 	while (tmp->next && (tmp->next->no > process->no))
 		tmp = tmp->next;
 	process->next = tmp->next;
+//	process->prev = tmp;
 	tmp->next = process;
 }
 

@@ -6,13 +6,15 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:54 by paul              #+#    #+#             */
-/*   Updated: 2020/04/03 15:29:39 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 09:30:43 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/prototypes.h"
 #include "../includes/op.h"
+#include "../includes/debug.h"
+#include "../../libft/includes/prototypes.h"
 
 /*
 **	Fonction qui déplace correctement le PC d'une certaine valeur.
@@ -32,10 +34,8 @@ void	ft_move_pc(t_process *process, int value)
 
 void	ft_process_move(t_process *process, t_vm *vm, int src, int dest)
 {
-	t_process	*tmp;
-
-	dest = dest % 1000;
-	tmp = vm->tab[dest];
-	vm->tab[src] = process->next;
+//	if (vm->tab[src]->prev != NULL)
+//		vm->tab[src]->prev->next = vm->tab[src]->next;
+	vm->tab[src] = vm->tab[src]->next;
 	ft_processus_tab_add(process, vm, dest);
 }

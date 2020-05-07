@@ -6,13 +6,14 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/06 10:31:30 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 09:21:00 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/debug.h"
 #include "../includes/prototypes.h"
+#include "../../libft/includes/prototypes.h"
 #include <stdbool.h>
 
 int		main(int ac, char **av)
@@ -31,4 +32,3 @@ int		main(int ac, char **av)
 		ft_loop_std(&vm, vm.tab);
 	return (0);
 }
-

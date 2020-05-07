@@ -6,12 +6,14 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:50 by paul              #+#    #+#             */
-/*   Updated: 2020/04/03 14:13:41 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/04 08:32:05 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
 #include "../includes/prototypes.h"
+#include "../../libft/includes/prototypes.h"
+#include "../includes/debug.h"
 
 void	ft_process_list_slide_up(t_process **process_list, int i, int nb)
 {

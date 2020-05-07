@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:39 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/28 22:04:43 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 12:36:52 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 {
 	int	i;
 
-	ft_printf("P%4d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
 	i = 0;
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
-		if (param[i][1] == REG_BIT)
+		if (param[i][1] == T_REG)
 			ft_printf("r");
-		ft_printf("%d ", param[i][0]);
+		ft_printf("%d", param[i][0]);
+		if (i < g_tab_instruction[process->opcode].nb_param - 1)
+			ft_printf(" ");
 		i += 1;
 	}
 	ft_printf("\n");

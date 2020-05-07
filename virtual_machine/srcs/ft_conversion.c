@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dump.c                                          :+:      :+:    :+:   */
+/*   ft_conversion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 17:07:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/23 11:22:04 by paul             ###   ########.fr       */
+/*   Created: 2020/04/22 18:08:29 by paul              #+#    #+#             */
+/*   Updated: 2020/04/23 11:19:00 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/op.h"
-#include "../includes/prototypes.h"
-#include "../../libft/includes/prototypes.h"
+#include "../includes/struct.h"
+#include <stdbool.h>
 
 /*
-** Dump : Fonction qui parcours la VM et Convertie/Print chaque Char en Hexa 
+**	Fonction qui convertit les len-prochain bit en int.
 */
 
-void	ft_dump(const unsigned char vm[MEM_SIZE])
+int ft_convert_RAM_to_param(t_vm *vm, int len, int *i_ptr, int j)
 {
-	int		len;
+	int	index;
 
-	len = 0;
-	while (len < MEM_SIZE)
+	index = *i_ptr;
+	while (index < len)
 	{
-		if (len % 64 == 0)
-			ft_printf("0x%.4x : ", len);
-		if ((len + 1) % 64 == 0)
-			ft_printf("%.2x\n", vm[len]);
-		else
-			ft_printf("%.2x ", vm[len]);
-		len++;
+		vm->param[j][0] |= vm->vm[index % MEM_SIZE];
+		if (index < len - 1)
+			vm->param[j][0] <<= 8;
+		index += 1;
 	}
+	*i_ptr = index;
+	return (true);
 }

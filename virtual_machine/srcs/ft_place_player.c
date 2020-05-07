@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 20:30:42 by danglass          #+#    #+#             */
-/*   Updated: 2020/04/06 09:36:31 by paul             ###   ########.fr       */
+/*   Updated: 2020/04/23 11:25:14 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_replace(t_args *filecor, int pos, int index)
 		{
 			filecor->pos[tmp] += 1;
 			tmp += 1;
-		}		
+		}
 	}
 	if (pos > index + 1)
 	{
@@ -37,7 +37,7 @@ int		ft_replace(t_args *filecor, int pos, int index)
 		{
 			filecor->pos[tmp] += -1;
 			tmp += -1;
-		}		
+		}
 	}
 	return (EXIT_SUCCESS);
 }
