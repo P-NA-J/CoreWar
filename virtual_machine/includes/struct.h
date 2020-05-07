@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/06 09:37:37 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 08:51:13 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct		header_s
 typedef struct			 s_process
 {
 	struct s_process	*next;
-	struct s_process	*begin;
+	struct s_process	*prev;
 	size_t				no;
 	size_t				pc;
 	size_t				cycle_last_live;

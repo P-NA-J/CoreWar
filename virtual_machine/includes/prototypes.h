@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/04/06 10:33:38 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/07 09:56:08 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ uint32_t	ft_convert_to_int(unsigned char tab[4]);
 int			ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2]);
 void		ft_skip_instruction_sequency(t_process *process, t_vm *vm);
 void		ft_print_param(int param, int type, int opcode);
+int			ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process);
+int			ft_param_set_struct(t_process *process, t_vm *vm);
+int			ft_convert_RAM_to_param(t_vm *vm, int len, int *i_ptr, int j);
 
 /*
 **	Fonction de recuperation des valeurs depuis des indirect, des paramètres, des registres ou depuis la RAM.
