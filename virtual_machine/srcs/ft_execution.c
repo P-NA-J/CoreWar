@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 12:45:44 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 15:36:02 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 {
 	unsigned char	to_exec;
 
+	if (process->opcode == 100)
+	{
+		return ;
+	}
 	to_exec = ft_param_set_struct(process, vm);
 	if (to_exec == true)
 	{
@@ -39,10 +43,10 @@ void	ft_exec_instruction(t_process *process, t_vm *vm)
 
 void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 {
-	while (tab[cycle % 1000] != NULL)
+	while (tab[cycle % 1024] != NULL)
 	{
-		ft_exec_instruction(tab[cycle % 1000], vm);
-		ft_loading_try_processus(vm, tab[cycle % 1000], cycle);
+		ft_exec_instruction(tab[cycle % 1024], vm);
+		ft_loading_try_processus(vm, tab[cycle % 1024], cycle);
 	}
 }
 
@@ -52,7 +56,7 @@ void	ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 
 void	ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle)
 {
-	if (tab[cycle % 1000] != NULL)
+	if (tab[cycle % 1024] != NULL)
 	{
 		ft_exec_processus(tab, cycle, vm);
 	}

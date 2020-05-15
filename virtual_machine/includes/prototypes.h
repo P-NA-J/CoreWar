@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 09:56:08 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:13:28 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_get_value_ram(uint8_t vm[4], int	len);
 void		ft_convert_to_char(t_vm *vm, int reg, int pos);
 int			ft_value_from_address(size_t pc, int indirect, t_vm *vm);
 uint32_t	ft_convert_to_int(unsigned char tab[4]);
-int			ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2]);
+int			ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2], t_process *process);
 void		ft_skip_instruction_sequency(t_process *process, t_vm *vm);
 void		ft_print_param(int param, int type, int opcode);
 int			ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process);

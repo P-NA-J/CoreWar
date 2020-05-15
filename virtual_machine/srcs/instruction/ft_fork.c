@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:37 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 12:40:15 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:20:01 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	ft_verbose(t_process *process, uint32_t param, size_t pc)
 {
 	ft_printf("P%5zu | %s ", process->no, g_tab_instruction[process->opcode].name);
 	ft_printf("%hd (%zu)\n", param, pc);
+//	ft_printf("%hd (%zu) carry = %d\n", param, pc, process->carry);
 }
 
 void	ft_fork(t_process *process, t_vm *vm)
@@ -34,8 +35,16 @@ void	ft_fork(t_process *process, t_vm *vm)
 	no = vm->nb_process + 1;
 	if (!(new_process = ft_processus_cpy(process, pc, no)))
 		exit(0);
-	new_process->opcode = vm->vm[new_process->pc] - 1;
-	ft_processus_tab_add(new_process, vm, (vm->cycle + g_tab_instruction[new_process->opcode].cycle_to_exec) % 1000);
+	if (vm->vm[new_process->pc % MEM_SIZE] == 0 || vm->vm[new_process->pc % MEM_SIZE] > 16)
+	{
+		new_process->opcode = 100;
+		ft_processus_tab_add(new_process, vm, (vm->cycle + 1) % 1024);
+	}
+	else
+	{
+		new_process->opcode = vm->vm[new_process->pc] - 1;
+		ft_processus_tab_add(new_process, vm, (vm->cycle + g_tab_instruction[new_process->opcode].cycle_to_exec) % 1024);
+	}
 	ft_processus_list_add(vm, new_process);
 	ft_verbose(process, vm->param[0][0], new_process->pc);
 	ft_skip_instruction_sequency(process, vm);

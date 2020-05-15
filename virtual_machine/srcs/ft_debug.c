@@ -150,7 +150,7 @@ void	ft_debug_vm(t_vm *vm)
 	ft_debug_opt(vm->opt);
 	printf("ADDR(process_list) = %p\n", vm->process_list);
 	ft_debug_param(vm->param);
-	printf("cycle = %zu\n", vm->cycle);
+	printf("cycle = %d\n", vm->cycle);
 	printf("nb_process = %zu\n", vm->nb_process);
 	printf("cycles_to_die = %d\n", vm->cycles_to_die);
 	printf("nb_live = %d\n", vm->nb_live);
@@ -167,7 +167,11 @@ void	ft_debug_processus(t_process *process)
 	ft_printf("cycle_last_live : %zu\n", process->cycle_last_live);
 	ft_printf("carry : %d\n", process->carry);
 	ft_printf("tab_places : %zu\n", process->tab_places);
-	ft_printf("operation : %s\n", g_tab_instruction[process->opcode].name);
+	ft_printf("opcode : %d\n", process->opcode);
+	if (process->opcode == 255)
+		ft_printf("operation : ERROR\n");
+	else if (process->opcode >= 0 && process->opcode < 16)
+		ft_printf("operation : %s\n", g_tab_instruction[process->opcode].name);
 	if (process->next == NULL)
 		ft_printf("NEXT : %p\n", process->next);
 	else

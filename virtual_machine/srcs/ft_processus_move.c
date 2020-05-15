@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:54 by paul              #+#    #+#             */
-/*   Updated: 2020/05/07 09:30:43 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 15:18:49 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_move_pc(t_process *process, int value)
 
 void	ft_process_move(t_process *process, t_vm *vm, int src, int dest)
 {
-//	if (vm->tab[src]->prev != NULL)
-//		vm->tab[src]->prev->next = vm->tab[src]->next;
 	vm->tab[src] = vm->tab[src]->next;
 	ft_processus_tab_add(process, vm, dest);
 }

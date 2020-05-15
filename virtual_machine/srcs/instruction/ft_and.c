@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:28 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 12:39:54 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:19:08 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 		i += 1;
 	}
 	ft_printf("r%d\n", param[2][0]);
+//	ft_printf("r%d carry = %d\n", param[2][0], process->carry);
 }
 
 void	ft_and(t_process *process, t_vm *vm)
@@ -39,9 +40,9 @@ void	ft_and(t_process *process, t_vm *vm)
 	int	param_2;
 	int	param_3;
 
-	param_1 = ft_parameter_recover_value(vm, process->pc, vm->param[0]);
-	param_2 = ft_parameter_recover_value(vm, process->pc, vm->param[1]);
-	param_3 = ft_parameter_recover_value(vm, process->pc, vm->param[2]);
+	param_1 = ft_parameter_recover_value(vm, process->pc, vm->param[0], process);
+	param_2 = ft_parameter_recover_value(vm, process->pc, vm->param[1], process);
+	param_3 = ft_parameter_recover_value(vm, process->pc, vm->param[2], process);
 	process->registre[param_3 - 1] = param_1 & param_2;
 	process->carry = (process->registre[vm->param[2][0] - 1] == 0 ? 1 : 0);
 	ft_verbose(process, vm->param);

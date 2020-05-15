@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 12:42:07 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:29:17 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 		i += 1;
 	}
 	ft_printf("\n");
+//	ft_printf("carry = %d\n", process->carry);
 }
 
 uint32_t		ft_convert2bytes_to_int(unsigned char tab[4])

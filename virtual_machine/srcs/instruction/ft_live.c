@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:27 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 12:41:28 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:21:37 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	ft_verbose(t_process *process, int param)
 	ft_printf("P%5d | %s ", process->no,
 	g_tab_instruction[process->opcode].name);
 	ft_printf("%d\n", param);
+//	ft_printf("%d carry = %d\n", param, process->carry);
 }
 
 void	ft_live(t_process *process, t_vm *vm)

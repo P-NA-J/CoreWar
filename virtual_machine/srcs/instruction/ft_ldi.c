@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:06 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/07 12:40:37 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:20:22 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 		i += 1;
 	}
 	ft_printf("\n");
+//	ft_printf("carry = %d\n", process->carry);
 	ft_printf("       | -> load from ");
 	if (param[0][1] == T_DIR)
 	{
