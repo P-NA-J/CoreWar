@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 16:03:19 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/15 15:14:10 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int		ft_check_value_param(t_process *process, t_vm *vm)
 	while (i < nb_param)
 	{
 		if (vm->param[i][1] == T_REG && (vm->param[i][0] <= 0 || vm->param[i][0] >= 17))
-			return (ft_skip_bad_ocp_parsing(vm, process));
+		{
+//			return (ft_skip_bad_ocp_parsing(vm, process, ocp));
+			ft_skip_instruction_sequency(process, vm);
+			return (false);
+		}
 		i += 1;
 	}
 	return (true);
@@ -93,7 +97,7 @@ int		ft_param_get_type(uint8_t ocp, t_process *process, t_vm *vm, const int i)
 		vm->param[i][1] = T_DIR;
 	else
 	{
-		return (ft_skip_bad_ocp_parsing(vm, process));
+		return (ft_skip_bad_ocp_parsing(vm, process, ocp));
 	}
 	return (true);
 }

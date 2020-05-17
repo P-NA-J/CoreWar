@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 10:39:28 by paul              #+#    #+#             */
-/*   Updated: 2020/05/07 12:19:47 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/15 19:59:55 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 #include "../includes/tab.h"
+#include "../includes/debug.h"
 #include <stdbool.h>
 
 void	ft_print_skip(t_vm *vm, t_process *process, int to_skip)
@@ -59,35 +60,43 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	ft_move_pc(process, to_skip + 1);
 }
 
+uint8_t	ft_convert_ocp(uint8_t ocp)
+{
+	if (ocp == IND_BIT)
+		return (T_IND);
+	else if (ocp == DIR_BIT)
+		return (T_DIR);
+	else if (ocp == REG_BIT)
+		return (T_REG);
+	else
+		return (0);
+}
+
 /*
 **	Fonction qui va deplacer le pc dans le cas d'un OCP incorrect.
 */
 
-int	ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process)
+int	ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, uint8_t ocp)
 {
 	int	nb_param;
 	int	j;
 	int	i;
-	(void)vm;
+	uint8_t	mask;
+
 	nb_param = g_tab_instruction[process->opcode].nb_param;
 	j = 0;
 	i = 0;
 	while (j < nb_param)
 	{
-		if (g_tab_instruction[process->opcode].param_type[j] & T_REG)
-			i += 1;
-		else if (g_tab_instruction[process->opcode].param_type[j] & T_IND)
-			i += 2;
-		else if (g_tab_instruction[process->opcode].param_type[j] & T_DIR)
+		mask = ft_convert_ocp(ocp & IND_BIT);
+		if (mask == T_DIR)
 			i += g_tab_instruction[process->opcode].dir_size;
-		else
-		{
-			i += 1;
-			return (false);
-		}
+		else if (mask != 0)
+			i += mask;
+		ocp <<= 2;
 		j += 1;
 	}
-	ft_print_skip(vm, process, i);
-	process->pc += i + 1;
+	ft_print_skip(vm, process, i + 1);
+	process->pc += i + 2;
 	return (false);
 }

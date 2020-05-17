@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:20 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 16:04:30 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/16 17:49:56 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,12 @@ void	ft_loading_try_processus(t_vm *vm, t_process *process, size_t cycle)
 {
 	if (vm->vm[process->pc % MEM_SIZE] == 0 || vm->vm[process->pc % MEM_SIZE] > 16)
 	{
-		if (process->no == 12)
-			ft_printf(_RED "Yes\n" _RESET);
 		ft_move_pc(process, 1);
 		process->opcode = 100;
 		ft_process_move(process, vm, cycle % 1024, (cycle + 1) % 1024);
 	}
 	else
 	{
-		if (process->no == 12)
-			ft_printf(_RED  "Je peux loader\n" _RESET);
 		ft_loading_processus(vm, process, cycle);
 	}
 }

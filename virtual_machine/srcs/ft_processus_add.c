@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:38 by paul              #+#    #+#             */
-/*   Updated: 2020/05/14 18:54:08 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/16 15:24:44 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 #include "../includes/tab.h"
 #include "../../libft/includes/prototypes.h"
 #include <stdlib.h>
+
+void	ft_fill_realloc(t_vm *vm)
+{
+	int	end;
+	int	i;
+
+	end = vm->nb_max_process * 2;
+	i = vm->nb_max_process;
+	while (i < end)
+	{
+		vm->process_list[i++] = NULL;
+	}
+}
 
 void	ft_processus_list_add(t_vm *vm, t_process *process)
 {
@@ -29,7 +42,8 @@ void	ft_processus_list_add(t_vm *vm, t_process *process)
 			ft_printf("C'est cassé.\n");
 			exit(0);
 		}
-		vm->process_list[vm->nb_max_process] = NULL;
+		ft_fill_realloc(vm);
+		vm->nb_max_process *= 2;
 	}
 	i = 0;
 	while (vm->process_list[i] != NULL)

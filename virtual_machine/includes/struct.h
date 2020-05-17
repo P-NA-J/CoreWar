@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 18:22:48 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/16 18:29:49 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct			s_vm
 	int				cycle;
 	size_t				nb_process;
 	size_t				nb_max_process;
+	size_t				last_process;
 	int					cycles_to_die;
 	int					nb_live;
 	int					no_decrease_check;

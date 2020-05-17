@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:52:36 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/25 18:51:03 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/15 13:44:55 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_check_int(char *nombr)
 	int		result;
 
 	result = ft_atoi(nombr);
-	if ((result == 0 && nombr[0] != '0') || result > 10000)
+	if ((result == 0 && nombr[0] != '0') || result > 2147483647)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:37 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:20:01 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/16 18:31:43 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ void	ft_fork(t_process *process, t_vm *vm)
 
 	param = vm->param[0][0];
 	pc = (process->pc + (param % IDX_MOD)) % MEM_SIZE;
-	no = vm->nb_process + 1;
+	no = vm->last_process + 1;
+	vm->last_process += 1;
 	if (!(new_process = ft_processus_cpy(process, pc, no)))
 		exit(0);
+	ft_verbose(process, vm->param[0][0], new_process->pc);
 	if (vm->vm[new_process->pc % MEM_SIZE] == 0 || vm->vm[new_process->pc % MEM_SIZE] > 16)
 	{
 		new_process->opcode = 100;
 		ft_processus_tab_add(new_process, vm, (vm->cycle + 1) % 1024);
+		new_process->pc += 1;
 	}
 	else
 	{
@@ -46,6 +49,5 @@ void	ft_fork(t_process *process, t_vm *vm)
 		ft_processus_tab_add(new_process, vm, (vm->cycle + g_tab_instruction[new_process->opcode].cycle_to_exec) % 1024);
 	}
 	ft_processus_list_add(vm, new_process);
-	ft_verbose(process, vm->param[0][0], new_process->pc);
 	ft_skip_instruction_sequency(process, vm);
 }
