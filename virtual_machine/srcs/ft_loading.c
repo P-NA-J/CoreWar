@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:20 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/16 17:49:56 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/25 14:51:56 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_loading_processus(t_vm *vm, t_process *process, size_t cycle)
 
 void	ft_loading_try_processus(t_vm *vm, t_process *process, size_t cycle)
 {
+	if (process->no == 3)
+		ft_printf("[%x] PC = %.2x\n", vm->vm[process->pc % MEM_SIZE], process->pc % MEM_SIZE);
 	if (vm->vm[process->pc % MEM_SIZE] == 0 || vm->vm[process->pc % MEM_SIZE] > 16)
 	{
 		ft_move_pc(process, 1);
