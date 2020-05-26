@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:37 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/16 18:31:43 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/25 20:34:32 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_fork(t_process *process, t_vm *vm)
 		new_process->opcode = vm->vm[new_process->pc] - 1;
 		ft_processus_tab_add(new_process, vm, (vm->cycle + g_tab_instruction[new_process->opcode].cycle_to_exec) % 1024);
 	}
+	new_process->cycle_last_live = vm->cycle;
 	ft_processus_list_add(vm, new_process);
 	ft_skip_instruction_sequency(process, vm);
 }

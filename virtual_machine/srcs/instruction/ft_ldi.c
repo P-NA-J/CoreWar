@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:06 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:20:22 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/25 18:19:43 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,19 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 		ft_printf("%hd + ", param[0][0]);
 	}
 	else
+	{
 		ft_printf("%d + ", param[0][0]);
+	}
 	if (param[1][1] == T_DIR)
 	{
 		ft_printf("%hd = ", param[1][0]);
 	}
 	else
+	{
 		ft_printf("%d = ", param[1][0]);
+	}
 	ft_printf("%d", param[0][0] + param[1][0]);
-	ft_printf(" (with pc and mod %d)\n", process->pc + ((short)param[0][0] + (short)param[1][0]) % IDX_MOD);
+	ft_printf(" (with pc and mod %d)\n", (int)process->pc + (((int)param[0][0] + (int)param[1][0]) % IDX_MOD));
 }
 
 int		ft_ldi_param_recover_value(t_vm *vm, t_process *process, uint32_t tab[2])

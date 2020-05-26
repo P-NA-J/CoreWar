@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 10:39:28 by paul              #+#    #+#             */
-/*   Updated: 2020/05/25 14:31:44 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/25 15:25:01 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_print_skip(t_vm *vm, t_process *process, int to_skip)
 {
 	int i;
 
-	ft_printf("ADV %d (%#.4x -> %#.4x) P%zu", to_skip + 1, process->pc, process->pc + to_skip + 1, process->no);
+	ft_printf("ADV %d (%#.4x -> %#.4x) ", to_skip + 1, process->pc, process->pc + to_skip + 1);
 	i = 0;
 	while (i <= to_skip)
 		ft_printf( "%.2x ", vm->vm[(process->pc + i++) % MEM_SIZE]);

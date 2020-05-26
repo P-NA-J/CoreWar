@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:27 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/15 20:28:49 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/25 19:35:47 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	ft_live(t_process *process, t_vm *vm)
 	int			nb_player;
 	int			param;
 
+	if (process->no == 1290)
+	{
+		ft_printf("Splendiiiiiiiiiide\n");
+		exit(0);
+	}
 	nb_player = vm->nb_player;
 	param = vm->param[0][0] * (-1);
 	ft_verbose(process, vm->param[0][0]);
