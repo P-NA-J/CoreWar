@@ -1,6 +1,6 @@
 EXE = corewar
 CC = clang 
-CFLAG = -Wall -Werror -Wextra -g3 -fsanitize=address,undefined
+CFLAG = -Wall -Werror -Wextra
 LIB = ../libft/libftprintf.a
 
 SRC =	main.c
