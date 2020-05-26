@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:27 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 09:57:10 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 15:39:32 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_live(t_process *process, t_vm *vm)
 	vm->nb_live += 1;
 	if (param > 0 && param <= nb_player)
 	{
-//		ft_printf("un processus dit que le joueur %d(%s) est en vie.\n", param, vm->player_list[param - 1].name);
+		//Òft_printf("un processus dit que le joueur %d(%s) est en vie.\n", param, vm->player_list[param - 1].name);
 		if (vm->opt.v[1] & 1)
 			ft_printf("Player %d (%s) is said to be alive\n", param, vm->player_list[param - 1].name);
 		vm->last_champ_alive = vm->player_list[param - 1].index_player;

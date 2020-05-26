@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 20:30:42 by danglass          #+#    #+#             */
-/*   Updated: 2020/04/23 11:25:14 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 18:57:15 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,61 +16,23 @@
 #include "../../libft/includes/prototypes.h"
 #include <stdlib.h>
 
-int		ft_replace(t_args *filecor, int pos, int index)
-{
-	int tmp;
-
-	tmp = 0;
-	filecor->pos[index] = pos;
-	tmp = pos - 1;
-	if (pos < index + 1)
-	{
-		while (tmp < index)
-		{
-			filecor->pos[tmp] += 1;
-			tmp += 1;
-		}
-	}
-	if (pos > index + 1)
-	{
-		while (tmp > index)
-		{
-			filecor->pos[tmp] += -1;
-			tmp += -1;
-		}
-	}
-	return (EXIT_SUCCESS);
-}
-
-void	ft_fill(t_args *filecor)
-{
-	int index;
-
-	index = 0;
-	while (filecor->champ[index])
-	{
-		filecor->pos[index] = index + 1;
-		index++;
-	}
-}
 
 int		ft_double_option(t_args *filecor)
 {
 	int index;
 	int check;
+	int	i;
 
 	index = 0;
 	while (index < 4)
 	{
 		check = 0;
-		if (filecor->option[0] == index + 1)
-			check++;
-		if (filecor->option[1] == index + 1)
-			check++;
-		if (filecor->option[2] == index + 1)
-			check++;
-		if (filecor->option[3] == index + 1)
-			check++;
+		i = 0;
+		while (i < 4)
+		{
+			if (filecor->option[i++] == index + 1)
+				check += 1;
+		}
 		if (check >= 2)
 			return (EXIT_FAILURE);
 		index++;
@@ -78,22 +40,61 @@ int		ft_double_option(t_args *filecor)
 	return (EXIT_SUCCESS);
 }
 
+int		ft_check_tab(t_args *filecor, int value)
+{
+	int	i;
+
+	i = 0;
+	while (i < filecor->player_nb)
+	{
+		if (filecor->option[i++] == value)
+			return (TRUE);
+	}
+	return (FALSE);
+}
+
+void	ft_replace_tab(t_args *filecor, int value)
+{
+	int	i;
+
+	i = 0;
+	while (i < filecor->player_nb)
+	{
+		if (filecor->option[i] == 0)
+		{
+			filecor->option[i] = value;
+			return ;
+		}
+		i += 1;
+	}
+}
+
+int		ft_wrong_number_player(t_args *filecor)
+{
+	int	i;
+
+	i = 0;
+	while (i < filecor->player_nb)
+	{
+		if (filecor->option[i] > filecor->player_nb)
+			return (FALSE);
+		i += 1;
+	}
+	return (TRUE);
+}
+
 int		ft_get_pos_player(t_args *filecor)
 {
 	int index;
 
-	index = 0;
-	ft_fill(filecor);
-	if (ft_double_option(filecor))
+	if (ft_double_option(filecor) || ft_wrong_number_player(filecor) == FALSE)
 		return (EXIT_FAILURE);
-	while (filecor->champ[index])
+	index = 0;
+	while (index < filecor->player_nb)
 	{
-		if (filecor->option[index] > 4 || filecor->option[index] < 0)
-			return (EXIT_FAILURE);
-		if (filecor->option[index] != 0 && filecor->option[index] != filecor->pos[index]
-			&& filecor->option[index] <= filecor->player_nb)
-			ft_replace(filecor, filecor->option[index], index);
-		index++;
+		if (ft_check_tab(filecor, index + 1) == FALSE)
+			ft_replace_tab(filecor, index + 1);
+		index += 1;
 	}
 	return (EXIT_SUCCESS);
 }

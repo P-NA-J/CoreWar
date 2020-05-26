@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:14:40 by damboule          #+#    #+#             */
-/*   Updated: 2020/03/25 18:50:29 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 19:28:09 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void		free_tab(char **filecor)
 	index = 0;
 	while (index < 5)
 	{
-		filecor[index] = NULL;
 		free(filecor[index]);
+		filecor[index] = NULL;
 		index++;
 	}
-	filecor = NULL;
 	free(filecor);
+	filecor = NULL;
 }
 
 int		ft_free_filecor(t_args *filecor)

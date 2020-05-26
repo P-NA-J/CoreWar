@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/15 16:43:39 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 19:26:02 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ int		main(int ac, char **av)
 		ft_loop_dumped(&vm, vm.tab);
 	else
 		ft_loop_std(&vm, vm.tab);
+	
+	while (1)
+		;
 	return (0);
 }

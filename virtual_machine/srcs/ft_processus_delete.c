@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:50 by paul              #+#    #+#             */
-/*   Updated: 2020/05/16 14:58:14 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 19:32:25 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_processus_tab_rm(t_process *tab[1024], t_process *process)
 			tmp = tmp->next;
 		tmp->next = process->next;
 	}
+	free(process);
 }
 
 void	ft_processus_rm(t_vm *vm, t_process *tab[1024], t_process *process)

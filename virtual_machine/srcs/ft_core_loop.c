@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 09:23:15 by paul              #+#    #+#             */
-/*   Updated: 2020/05/26 09:50:45 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 12:01:26 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 		if (vm->opt.v[1] & 2)
 			ft_printf("It is now cycle %zu\n", vm->cycle);
 	}
-	ft_dump(vm->vm);
+	if (vm->cycle < vm->opt.d[1])
+		ft_printf("Contestant %zu, \"%s\", has won !\n", vm->last_champ_alive, vm->player_list[vm->last_champ_alive - 1].name);
+	else
+		ft_dump(vm->vm);
 }
 
 void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])

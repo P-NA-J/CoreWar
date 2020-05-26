@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/16 18:29:49 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 17:44:34 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct			s_option
 typedef struct			s_args
 {
 	int					player_nb;
-	int					pos[4];
 	int					option[4];
 	char				**champ;
 }						t_args;
@@ -57,6 +56,7 @@ typedef struct			 s_process
 	struct s_process	*prev;
 	size_t				no;
 	size_t				pc;
+	int					to_load;
 	int				cycle_last_live;
 	size_t				tab_places;
 	int					registre[16];

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:59:05 by damboule          #+#    #+#             */
-/*   Updated: 2020/04/06 09:41:34 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 19:25:23 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
 void	ft_cpy_printablechar(char *dst, unsigned char *src, int max)
 {
@@ -46,13 +47,19 @@ void	ft_cpy_printablechar(char *dst, unsigned char *src, int max)
 int		ft_players_data(int fd, char *player, int value_read, int arg)
 {
 	unsigned char	name[value_read];
+	char			*char_tmp;
 
 	if (read(fd, name, value_read) < value_read)
 		return (EXIT_FAILURE);
 	if (arg == 1 && ft_convert_to_int(name) != COREWAR_EXEC_MAGIC)
 		return (EXIT_FAILURE);
-	if (arg == 2 && ft_strcpy(player, ft_itoa(ft_convert_to_int(name))))
+	char_tmp = ft_itoa(ft_convert_to_int(name));
+	if (arg == 2 && ft_strcpy(player, char_tmp))
+	{
+		free(char_tmp);
 		return (EXIT_SUCCESS);
+	}
+	free(char_tmp);
 	ft_cpy_printablechar(player, name, value_read);
 	return (EXIT_SUCCESS);
 }
@@ -80,20 +87,37 @@ int		ft_read(const char *filecor,
 	return (EXIT_SUCCESS);
 }
 
+int	ft_create_player(t_player *player, t_args *filecor, int value, unsigned char vm[MEM_SIZE])
+{
+	int	i;
+	int	write_pos;
+
+	i = 0;
+	while (i < filecor->player_nb)
+	{
+		if (filecor->option[i] == value)
+		{
+			player->index_player = value;
+			write_pos = (MEM_SIZE / filecor->player_nb) * (value - 1);
+			if (ft_read(filecor->champ[i], vm, write_pos, player))
+				return (EXIT_FAILURE);
+			return (EXIT_SUCCESS);
+		}
+		i += 1;
+	}
+	return (EXIT_FAILURE);
+}
+
 int		ft_insertion_vm(t_args *filecor,
 						unsigned char vm[MEM_SIZE], t_player player[4])
 {
-	int		write_pos;
-	int		nb_champ;
+	int		i;
 
-	nb_champ = 0;
-	while (filecor->champ[nb_champ] != NULL)
+	i = 0;
+	while (i < filecor->player_nb)
 	{
-		player[nb_champ].index_player = filecor->pos[nb_champ];
-		write_pos = (MEM_SIZE / filecor->player_nb) * nb_champ;
-		if (ft_read(filecor->champ[nb_champ], vm, write_pos, &player[nb_champ]))
-			return (EXIT_FAILURE);
-		nb_champ++;
+		ft_create_player(&player[i], filecor, i + 1, vm);
+		i += 1;
 	}
 	return (EXIT_SUCCESS);
 }

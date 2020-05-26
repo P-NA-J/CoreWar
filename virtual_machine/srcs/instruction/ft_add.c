@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:31:49 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:18:21 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 12:36:03 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 
 void	ft_add(t_process *process, t_vm *vm)
 {
-	int addition;
-	int	param_1;
-	int	param_2;
-	int	param_3;
+	long	addition;
+	long	param_1;
+	long	param_2;
+	long	param_3;
 
 	param_1 = vm->param[0][0];
 	param_2 = vm->param[1][0];
@@ -48,6 +48,7 @@ void	ft_add(t_process *process, t_vm *vm)
 	addition += process->registre[param_2 - 1];
 	process->registre[param_3 - 1] = addition;
 	process->carry = (addition == 0 ? 1 : 0);
-	ft_verbose(process, vm->param);
+	if (vm->opt.v[1] & 4)
+		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);
 }

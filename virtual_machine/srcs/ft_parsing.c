@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/04/23 11:28:29 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 17:59:52 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_get_filecor(int nb_args, char **args, t_args *filecor, t_option *op)
 	while (index < nb_args)
 	{
 		if (ft_strcmp(args[index], "-n") == 0
-				&& ft_check_int(args[index + 1]) == 0)
+				&& ft_check_int(args[index + 1]) == 0 && ft_atoi(args[index + 1]) < 5 && ft_atoi(args[index + 1]) > 0)
 			filecor->option[filecor->player_nb] = ft_atoi(args[index + 1]);
 		else if (ft_getoccur(args[index], ".cor") == 0
 				&& filecor->player_nb <= 4)

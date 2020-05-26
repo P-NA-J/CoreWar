@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 09:34:14 by paul              #+#    #+#             */
-/*   Updated: 2020/05/14 17:11:47 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 12:30:23 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ void	ft_convert_to_char(t_vm *vm, int reg, int pos)
 int		ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2], t_process *process)
 {
 	if (tab[1] == T_IND)
+	{
 		return (ft_value_from_address(pc, tab[0], vm));
+	}
 	if (tab[1] == T_REG)
+	{
 		return (process->registre[tab[0] - 1]);
+	}
 	return (tab[0]);
 }
 

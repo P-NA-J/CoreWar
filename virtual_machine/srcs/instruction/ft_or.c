@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:07 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 09:57:30 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 12:30:14 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	ft_or(t_process *process, t_vm *vm)
 
 	param_1 = ft_parameter_recover_value(vm, process->pc, vm->param[0], process);
 	param_2 = ft_parameter_recover_value(vm, process->pc, vm->param[1], process);
-	param_3 = ft_parameter_recover_value(vm, process->pc, vm->param[2], process);
+	param_3 = vm->param[2][0];
+//	param_3 = ft_parameter_recover_value(vm, process->pc, vm->param[2], process);
 	process->registre[vm->param[2][0] - 1] = param_1 | param_2;
 	process->carry = (process->registre[vm->param[2][0] - 1] == 0 ? 1 : 0);
 	if (vm->opt.v[1] & 4)
