@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:18 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:27:41 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 09:57:36 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_st(t_process *process, t_vm *vm)
 		ft_convert_to_char(vm,
 		process->registre[param_1 - 1], pos + 3);
 	}
-	ft_verbose(process, vm->param);
+	if (vm->opt.v[1] & 4)
+		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);
 }

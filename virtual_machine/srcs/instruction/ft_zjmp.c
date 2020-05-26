@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:38:04 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:25:32 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 10:00:22 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,34 @@ static void	ft_verbose(t_process *process, uint32_t param)
 	ft_printf("%hd", param);
 }
 
+/*
+	Refacto en mettant les ok/failed dans la focntion de verbose
+*/
+
 void	ft_zjmp(t_process *process, t_vm *vm)
 {
 	short	param;
 
 	param = vm->param[0][0];
-	ft_verbose(process, vm->param[0][0]);
-	if (process->carry == 1)
+	if (vm->opt.v[1] & 4)
 	{
-		ft_printf(" OK\n");
-		process->pc = (process->pc + (param % IDX_MOD)) % MEM_SIZE;
+		ft_verbose(process, vm->param[0][0]);
+		if (process->carry == 1)
+		{
+			ft_printf(" OK\n");
+			process->pc = (process->pc + (param % IDX_MOD)) % MEM_SIZE;
+		}
+		else
+		{
+			ft_printf(" FAILED\n");
+			ft_skip_instruction_sequency(process, vm);
+		}
 	}
 	else
 	{
-		ft_printf(" FAILED\n");
-		ft_skip_instruction_sequency(process, vm);
+		if (process->carry == 1)
+			process->pc = (process->pc + (param % IDX_MOD)) % MEM_SIZE;
+		else
+			ft_skip_instruction_sequency(process, vm);
 	}
 }

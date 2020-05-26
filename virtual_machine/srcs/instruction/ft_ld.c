@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:52 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:28:32 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 09:56:49 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	ft_ld(t_process *process, t_vm *vm)
 //	process->carry = (process->registre[param_2 - 1] == 0 ? 1 : 0);
 	process->carry = (param_1 == 0 ? 1 : 0);
 	vm->param[0][0] = process->registre[param_2 - 1];
-	ft_verbose(process, vm->param);
+	if (vm->opt.v[1] & 4)
+		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);
 }
 

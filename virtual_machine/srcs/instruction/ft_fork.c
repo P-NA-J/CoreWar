@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:37 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/25 20:34:32 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 09:56:41 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_fork(t_process *process, t_vm *vm)
 	vm->last_process += 1;
 	if (!(new_process = ft_processus_cpy(process, pc, no)))
 		exit(0);
-	ft_verbose(process, vm->param[0][0], new_process->pc);
+	if (vm->opt.v[1] & 4)
+		ft_verbose(process, vm->param[0][0], new_process->pc);
 	if (vm->vm[new_process->pc % MEM_SIZE] == 0 || vm->vm[new_process->pc % MEM_SIZE] > 16)
 	{
 		new_process->opcode = 100;

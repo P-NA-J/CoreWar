@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 10:39:28 by paul              #+#    #+#             */
-/*   Updated: 2020/05/25 15:25:01 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 09:55:51 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	i = 0;
 	while (i < nb_param)
 		to_skip = ft_skip_one_parameter_field(vm, to_skip, i++, process->opcode);
-	ft_print_skip(vm, process, to_skip);
+	if (vm->opt.v[1] & 16)
+		ft_print_skip(vm, process, to_skip);
 	ft_move_pc(process, to_skip + 1);
 }
 
@@ -96,7 +97,8 @@ int	ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, uint8_t ocp)
 		ocp <<= 2;
 		j += 1;
 	}
-	ft_print_skip(vm, process, i + 1);
+	if (vm->opt.v[1] & 16)
+		ft_print_skip(vm, process, i + 1);
 	process->pc += i + 2;
 	return (false);
 }

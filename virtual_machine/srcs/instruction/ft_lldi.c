@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/14 17:26:54 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 09:57:24 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_lldi(t_process *process, t_vm *vm)
 	value = param_1 + param_2;
 	process->registre[param_3 - 1] = value;
 	process->carry = (value == 0 ? 1 : 0);
-	ft_verbose(process, vm->param);
+	if (vm->opt.v[1] & 4)
+		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);
 }
