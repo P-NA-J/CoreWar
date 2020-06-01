@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:06:40 by paul              #+#    #+#             */
-/*   Updated: 2020/05/28 15:16:06 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/01 13:18:58 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,17 @@ static int		ft_processus_create_player(t_vm *vm, const int count,
 		return (false);
 	processus->registre[0] = -(count + 1);
 	ft_processus_list_add(vm, processus);
-	processus->opcode = vm->vm[processus->pc] - 1;
-	ft_processus_tab_add(processus, vm,
-	g_tab_instruction[processus->opcode].cycle_to_exec);
+	if (vm->vm[processus->pc] > 0 && vm->vm[processus->pc] < 17)
+	{
+		processus->opcode = vm->vm[processus->pc] - 1;
+		ft_processus_tab_add(processus, vm,
+		g_tab_instruction[processus->opcode].cycle_to_exec);
+	}
+	else
+	{
+		processus->opcode = 100;
+		ft_processus_tab_add(processus, vm, 0);
+	}
 	return (true);
 }
 
