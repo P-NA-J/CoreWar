@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 18:08:29 by paul              #+#    #+#             */
-/*   Updated: 2020/04/23 11:19:00 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 21:11:12 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	Fonction qui convertit les len-prochain bit en int.
 */
 
-int ft_convert_RAM_to_param(t_vm *vm, int len, int *i_ptr, int j)
+int		ft_convert_ram_to_param(t_vm *vm, int len, int *i_ptr, int j)
 {
 	int	index;
 

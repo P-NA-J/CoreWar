@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:59:05 by damboule          #+#    #+#             */
-/*   Updated: 2020/05/26 19:25:23 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 20:34:58 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-void	ft_cpy_printablechar(char *dst, unsigned char *src, int max)
+void		ft_cpy_printablechar(char *dst, unsigned char *src, int max)
 {
-	int index;
-	int	a;
+	int		index;
+	int		a;
 
 	a = 0;
 	index = 0;
@@ -44,10 +44,10 @@ void	ft_cpy_printablechar(char *dst, unsigned char *src, int max)
 ** fonction leaks sur ft_itoa
 */
 
-int		ft_players_data(int fd, char *player, int value_read, int arg)
+int			ft_players_data(int fd, char *player, int value_read, int arg)
 {
-	unsigned char	name[value_read];
-	char			*char_tmp;
+	uint8_t	name[value_read];
+	char	*char_tmp;
 
 	if (read(fd, name, value_read) < value_read)
 		return (EXIT_FAILURE);
@@ -64,12 +64,12 @@ int		ft_players_data(int fd, char *player, int value_read, int arg)
 	return (EXIT_SUCCESS);
 }
 
-int		ft_read(const char *filecor,
+int			ft_read(const char *filecor,
 				unsigned char vm[MEM_SIZE], int write_pos, t_player *player)
 {
 	char	skip[NOT_READ + 1];
 	int		fd;
-	
+
 	if ((fd = open(filecor, O_RDONLY)) == -1)
 		return (ft_usage(FILECOR));
 	if (ft_players_data(fd, player->magic, MAGIC, HEADER))
@@ -87,10 +87,11 @@ int		ft_read(const char *filecor,
 	return (EXIT_SUCCESS);
 }
 
-int	ft_create_player(t_player *player, t_args *filecor, int value, unsigned char vm[MEM_SIZE])
+int			ft_create_player(t_player *player, t_args *filecor, int value,
+					unsigned char vm[MEM_SIZE])
 {
-	int	i;
-	int	write_pos;
+	int		i;
+	int		write_pos;
 
 	i = 0;
 	while (i < filecor->player_nb)
@@ -108,7 +109,7 @@ int	ft_create_player(t_player *player, t_args *filecor, int value, unsigned char
 	return (EXIT_FAILURE);
 }
 
-int		ft_insertion_vm(t_args *filecor,
+int			ft_insertion_vm(t_args *filecor,
 						unsigned char vm[MEM_SIZE], t_player player[4])
 {
 	int		i;

@@ -6,14 +6,14 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/15 14:58:55 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 21:43:02 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOTYPES_H
 
-#define PROTOTYPES_H
-#include "./struct.h"
+# define PROTOTYPES_H
+# include "./struct.h"
 
 /*
 ** Dump
@@ -37,54 +37,48 @@ int			ft_parse(int nb_args, char **args, t_vm *vm);
 int			ft_free_filecor(t_args *filecor);
 int			ft_get_options(const int nb_args, char **args, t_option *option);
 
-/*
-** Truc de paul : Bidon...
-*/
-
 void		ft_move_pc(t_process *process, int value);
 int			ft_get_param_type(t_process *process, t_vm *vm);
 void		ft_exec_cycle(t_vm *vm, t_process *tab[1024], size_t cycle);
 int			ft_error(void);
 void		ft_reset_begin_process_list(t_process *process_list);
 void		ft_check(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
-int			ft_recover_value_param(uint8_t vm[MEM_SIZE], uint32_t param[2], t_process *process);
+int			ft_recover_value_param(uint8_t vm[MEM_SIZE],
+									uint32_t param[2], t_process *process);
 int			ft_get_value_ram(uint8_t vm[4], int	len);
 void		ft_convert_to_char(t_vm *vm, int reg, int pos);
 int			ft_value_from_address(size_t pc, int indirect, t_vm *vm);
 uint32_t	ft_convert_to_int(unsigned char tab[4]);
-int			ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2], t_process *process);
+int			ft_parameter_recover_value(t_vm *vm, size_t pc,
+										uint32_t tab[2], t_process *process);
 void		ft_skip_instruction_sequency(t_process *process, t_vm *vm);
 void		ft_print_param(int param, int type, int opcode);
 int			ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, uint8_t ocp);
 int			ft_param_set_struct(t_process *process, t_vm *vm);
-int			ft_convert_RAM_to_param(t_vm *vm, int len, int *i_ptr, int j);
+int			ft_convert_ram_to_param(t_vm *vm, int len, int *i_ptr, int j);
 
-/*
-**	Fonction de recuperation des valeurs depuis des indirect, des paramètres, des registres ou depuis la RAM.
-*/
+int			ft_recover_value_param(uint8_t vm[MEM_SIZE],
+									uint32_t param[2], t_process *process);
+int			ft_recover_value_ram(uint8_t vm[4], int	len);
 
-int		ft_recover_value_param(uint8_t vm[MEM_SIZE], uint32_t param[2], t_process *process);
-int		ft_recover_value_ram(uint8_t vm[4], int	len);
-
-/*
-**	Fonction d'initialisation de toutes les structures importantes au fonctionnement de la VM.
-*/
-
-int	ft_initialisation(t_vm *vm);
+int			ft_initialisation(t_vm *vm);
+int			ft_check_value_param(t_process *process, t_vm *vm);
+int			ft_param_check_type(t_vm *vm, t_process *process);
 
 /*
 **	Boucle central du fonctionnement de la VM.
 */
 
-void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
-void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
+void		ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
+void		ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX]);
 
 /*
 **	Loading feature
 */
 
-void	ft_loading_check_processus(t_vm *vm, size_t cycle);
-void	ft_loading_try_processus(t_vm *vm, t_process *process, size_t cycle);
+void		ft_loading_check_processus(t_vm *vm, size_t cycle);
+void		ft_loading_try_processus(t_vm *vm, t_process *process,
+									size_t cycle);
 
 /*
 **	Gestion des processus.
@@ -92,11 +86,12 @@ void	ft_loading_try_processus(t_vm *vm, t_process *process, size_t cycle);
 
 void		ft_processus_list_add(t_vm *vm, t_process *process);
 void		ft_processus_tab_add(t_process *process, t_vm *vm, size_t cycle);
-//void		ft_processus_tab_add(t_process *process, t_process *tab[1024], t_vm *vm);
 t_process	*ft_processus_create(const size_t no, const size_t pc);
 t_process	*ft_processus_cpy(t_process *processus, size_t pc, size_t no);
-void		ft_processus_rm(t_vm *vm, t_process *tab[1024], t_process *process);
-void		ft_process_move(t_process *process, t_vm *vm, int cycle, int cycle_to_add);
+void		ft_processus_rm(t_vm *vm, t_process *tab[1024],
+			t_process *process);
+void		ft_process_move(t_process *process, t_vm *vm,
+			int cycle, int cycle_to_add);
 int			ft_processus_player_initialisation(t_vm *vm);
 void		ft_move_pc(t_process *process, int value);
 

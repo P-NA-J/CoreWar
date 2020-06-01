@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 10:39:28 by paul              #+#    #+#             */
-/*   Updated: 2020/05/26 09:55:51 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/28 15:16:17 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 #include "../includes/tab.h"
-#include "../includes/debug.h"
 #include <stdbool.h>
 
-void	ft_print_skip(t_vm *vm, t_process *process, int to_skip)
+void		ft_print_skip(t_vm *vm, t_process *process, int to_skip)
 {
-	int i;
+	int		i;
 
-	ft_printf("ADV %d (%#.4x -> %#.4x) ", to_skip + 1, process->pc, process->pc + to_skip + 1);
+	ft_printf("ADV %d (%#.4x -> %#.4x) ", to_skip + 1, process->pc,
+	process->pc + to_skip + 1);
 	i = 0;
 	while (i <= to_skip)
-		ft_printf( "%.2x ", vm->vm[(process->pc + i++) % MEM_SIZE]);
+		ft_printf("%.2x ", vm->vm[(process->pc + i++) % MEM_SIZE]);
 	ft_printf("\n");
 }
 
-int	ft_skip_one_parameter_field(t_vm *vm, int to_skip, const int j, const uint8_t opcode)
+int			ft_skip_one_parameter_field(t_vm *vm, int to_skip, const int j,
+								const uint8_t opcode)
 {
 	if (vm->param[j][1] == T_REG)
 		to_skip += 1;
@@ -43,11 +44,11 @@ int	ft_skip_one_parameter_field(t_vm *vm, int to_skip, const int j, const uint8_
 **	Fonction qui va deplacer le PC lorsque l'instruction a été executer.
 */
 
-void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
+void		ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 {
-	int	to_skip;
-	int	nb_param;
-	int i;
+	int		to_skip;
+	int		nb_param;
+	int		i;
 
 	to_skip = 0;
 	if (g_tab_instruction[process->opcode].ocp == true)
@@ -55,13 +56,16 @@ void	ft_skip_instruction_sequency(t_process *process, t_vm *vm)
 	nb_param = g_tab_instruction[process->opcode].nb_param;
 	i = 0;
 	while (i < nb_param)
-		to_skip = ft_skip_one_parameter_field(vm, to_skip, i++, process->opcode);
+	{
+		to_skip = ft_skip_one_parameter_field(vm, to_skip,
+		i++, process->opcode);
+	}
 	if (vm->opt.v[1] & 16)
 		ft_print_skip(vm, process, to_skip);
 	ft_move_pc(process, to_skip + 1);
 }
 
-uint8_t	ft_convert_ocp(uint8_t ocp)
+uint8_t		ft_convert_ocp(uint8_t ocp)
 {
 	if (ocp == IND_BIT)
 		return (T_IND);
@@ -77,11 +81,11 @@ uint8_t	ft_convert_ocp(uint8_t ocp)
 **	Fonction qui va deplacer le pc dans le cas d'un OCP incorrect.
 */
 
-int	ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, uint8_t ocp)
+int			ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, uint8_t ocp)
 {
-	int	nb_param;
-	int	j;
-	int	i;
+	int		nb_param;
+	int		j;
+	int		i;
 	uint8_t	mask;
 
 	nb_param = g_tab_instruction[process->opcode].nb_param;

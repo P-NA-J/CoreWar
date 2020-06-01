@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_aff.c                                           :+:      :+:    :+:   */
+/*   comparaison.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 15:34:11 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/28 15:12:29 by paul             ###   ########.fr       */
+/*   Created: 2020/05/31 18:39:38 by paul              #+#    #+#             */
+/*   Updated: 2020/06/01 11:57:57 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tab.h"
-#include "../../includes/struct.h"
-#include "../../../libft/includes/prototypes.h"
-
-void	ft_aff(t_process *process, t_vm *vm)
+int		ft_max(int a, int b)
 {
-	if (vm->opt.v[1] & 4)
-		ft_printf("Aff : %d\n", process->registre[vm->param[0][0] - 1]);
-	ft_skip_instruction_sequency(process, vm);
+	return ((a > b ? a : b));
+}
+
+int		ft_min(int a, int b)
+{
+	return ((a < b ? a : b));
 }

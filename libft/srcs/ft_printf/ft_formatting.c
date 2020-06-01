@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 02:41:49 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 18:29:53 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/31 18:39:14 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_pre_conversion(t_flag *c_arg, char type, int base_l)
 	if (c_arg->precision == 0 && c_arg->nb_s == 0 && c_arg->nb_u == 0 &&
 	!((c_arg->flag & SHARP_FLAG) && (c_arg->flag & O_FLAG)))
 		c_arg->radical = 0;
-	max = MAX(c_arg->precision, c_arg->radical);
+	max = ft_max(c_arg->precision, c_arg->radical);
 	if (((c_arg->flag & D_FLAG) && c_arg->nb_s >= 0 &&
 	((PLUS_FLAG & c_arg->flag) || (SPACE_FLAG & c_arg->flag)))
 	|| c_arg->nb_s < 0)
@@ -56,7 +56,7 @@ void	ft_prefix(t_buffer *buff, t_flag *c_arg)
 {
 	int max;
 
-	max = MAX(c_arg->precision, c_arg->radical);
+	max = ft_max(c_arg->precision, c_arg->radical);
 	if (c_arg->nb_s >= 0 && (PLUS_FLAG & c_arg->flag) && (c_arg->flag & D_FLAG))
 		ft_write_in_buffer(buff, '+', 1);
 	if (c_arg->nb_s >= 0 && (SPACE_FLAG & c_arg->flag) &&
@@ -79,7 +79,7 @@ void	ft_padding(t_buffer *buff, t_flag *c_arg)
 {
 	int	max;
 
-	max = MAX(c_arg->precision, c_arg->radical);
+	max = ft_max(c_arg->precision, c_arg->radical);
 	if (c_arg->lmc > (max + c_arg->prefix))
 	{
 		if (c_arg->flag & ZERO_FLAG && !(c_arg->flag & MINUS_FLAG))

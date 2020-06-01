@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:14:40 by damboule          #+#    #+#             */
-/*   Updated: 2020/05/26 19:28:09 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 21:04:40 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		free_tab(char **filecor)
 	filecor = NULL;
 }
 
-int		ft_free_filecor(t_args *filecor)
+int			ft_free_filecor(t_args *filecor)
 {
 	free_tab(filecor->champ);
 	filecor = NULL;

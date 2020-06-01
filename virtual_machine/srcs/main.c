@@ -6,19 +6,18 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 19:26:02 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/28 15:12:05 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/struct.h"
-#include "../includes/debug.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 #include <stdbool.h>
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_vm			vm;
+	t_vm	vm;
 
 	if (ft_initialisation(&vm) == false)
 		return (false);
@@ -30,8 +29,5 @@ int		main(int ac, char **av)
 		ft_loop_dumped(&vm, vm.tab);
 	else
 		ft_loop_std(&vm, vm.tab);
-	
-	while (1)
-		;
 	return (0);
 }

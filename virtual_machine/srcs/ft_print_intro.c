@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 13:01:40 by danglass          #+#    #+#             */
-/*   Updated: 2020/03/25 18:50:14 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 20:38:48 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 
-char	player_tab[5][12] = 
+char	g_player_tab[5][12] =
 {
 	"* Player 1,",
 	"* Player 2,",
@@ -25,9 +25,9 @@ char	player_tab[5][12] =
 
 int		ft_print_player(t_player player)
 {
-	ft_putstr(player_tab[player.index_player - 1]);
+	ft_putstr(g_player_tab[player.index_player - 1]);
 	ft_putstr(" weighing ");
-	ft_putstr(player.size);		
+	ft_putstr(player.size);
 	ft_putstr(" bytes, \"");
 	ft_putstr(player.name);
 	ft_putstr("\" (\"");

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 20:30:42 by danglass          #+#    #+#             */
-/*   Updated: 2020/05/26 18:57:15 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 20:37:47 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
 #include <stdlib.h>
-
 
 int		ft_double_option(t_args *filecor)
 {

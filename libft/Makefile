@@ -33,6 +33,7 @@ SRCS_FT_PRINTF +=		ft_putnbr_fd.c
 SRCS_FT_PRINTF +=		ft_higher_value.c
 SRCS_FT_PRINTF +=		ft_nb_digit.c
 SRCS_FT_PRINTF +=		tab_global.c
+SRCS_FT_PRINTF +=		comparaison.c
 
 SRCS_MEMORY =			ft_memset.c
 SRCS_MEMORY +=			ft_bzero.c
@@ -115,6 +116,7 @@ PATH_OBJ_LIST =			$(addprefix obj/list/, $(OBJ_LIST))
 all: obj $(NAME)
 
 obj:
+	if ! [ -d "obj" ]; then mkdir obj ; fi
 	if ! [ -d "obj/ft_printf" ]; then mkdir obj/ft_printf ; fi
 	if ! [ -d "obj/memory" ]; then mkdir obj/memory ; fi
 	if ! [ -d "obj/string" ]; then mkdir obj/string ; fi

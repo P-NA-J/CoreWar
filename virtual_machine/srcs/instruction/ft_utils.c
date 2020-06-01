@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 09:34:14 by paul              #+#    #+#             */
-/*   Updated: 2020/05/26 12:30:23 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/28 15:13:57 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include "../../includes/prototypes.h"
 #include "../../../libft/includes/prototypes.h"
 #include "../../includes/op.h"
-#include "../../includes/debug.h"
 
 uint32_t		ft_convert_to_int(unsigned char tab[4])
 {
-	uint32_t		result;
-	int		index;
+	uint32_t	result;
+	int			index;
 
 	result = 0;
 	index = 0;
@@ -33,9 +32,9 @@ uint32_t		ft_convert_to_int(unsigned char tab[4])
 	return (result);
 }
 
-void	ft_convert_to_char(t_vm *vm, int reg, int pos)
+void			ft_convert_to_char(t_vm *vm, int reg, int pos)
 {
-	int	i;
+	int			i;
 
 	i = 0;
 	pos = (pos >= 0 ? pos : MEM_SIZE + pos);
@@ -48,23 +47,20 @@ void	ft_convert_to_char(t_vm *vm, int reg, int pos)
 	}
 }
 
-int		ft_parameter_recover_value(t_vm *vm, size_t pc, uint32_t tab[2], t_process *process)
+int				ft_parameter_recover_value(t_vm *vm, size_t pc,
+					uint32_t tab[2], t_process *process)
 {
 	if (tab[1] == T_IND)
-	{
 		return (ft_value_from_address(pc, tab[0], vm));
-	}
 	if (tab[1] == T_REG)
-	{
 		return (process->registre[tab[0] - 1]);
-	}
 	return (tab[0]);
 }
 
-int		ft_value_from_address(size_t pc, int indirect, t_vm *vm)
+int				ft_value_from_address(size_t pc, int indirect, t_vm *vm)
 {
-	int param;
-	int pos;
+	int			param;
+	int			pos;
 
 	pos = (pc + (indirect % IDX_MOD)) % MEM_SIZE;
 	param = ft_convert_to_int(vm->vm + pos);

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 17:44:34 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/26 21:27:42 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ typedef struct			s_args
 	char				**champ;
 }						t_args;
 
-typedef struct		header_s
+typedef struct			s_header
 {
 	unsigned int		magic;
 	char				prog_name[PROG_NAME_LENGTH + 1];
 	unsigned int		prog_size;
 	char				comment[COMMENT_LENGTH + 1];
-}					header_t;
+}						t_header;
 
-typedef struct			 s_process
+typedef struct			s_process
 {
 	struct s_process	*next;
 	struct s_process	*prev;
 	size_t				no;
 	size_t				pc;
 	int					to_load;
-	int				cycle_last_live;
+	int					cycle_last_live;
 	size_t				tab_places;
 	int					registre[16];
 	char				carry;
@@ -73,7 +73,7 @@ typedef struct			s_vm
 	t_option			opt;
 	t_process			**process_list;
 	unsigned int		param[3][2];
-	int				cycle;
+	int					cycle;
 	size_t				nb_process;
 	size_t				nb_max_process;
 	size_t				last_process;

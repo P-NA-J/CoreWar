@@ -6,21 +6,21 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 09:57:18 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/28 15:13:14 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/tab.h"
 #include "../../includes/struct.h"
 #include "../../includes/prototypes.h"
-#include "../../includes/debug.h"
 #include "../../../libft/includes/prototypes.h"
 
-static void	ft_verbose(t_process *process, uint32_t param[3][2])
+static void		ft_verbose(t_process *process, uint32_t param[3][2])
 {
-	int	i;
+	int			i;
 
-	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no,
+	g_tab_instruction[process->opcode].name);
 	i = 0;
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
@@ -32,13 +32,12 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 		i += 1;
 	}
 	ft_printf("\n");
-//	ft_printf("carry = %d\n", process->carry);
 }
 
 uint32_t		ft_convert2bytes_to_int(unsigned char tab[4])
 {
-	uint32_t		result;
-	int		index;
+	uint32_t	result;
+	int			index;
 
 	result = 0;
 	index = 0;
@@ -52,10 +51,10 @@ uint32_t		ft_convert2bytes_to_int(unsigned char tab[4])
 	return (result);
 }
 
-void	ft_lld(t_process *process, t_vm *vm)
+void			ft_lld(t_process *process, t_vm *vm)
 {
-	int	param_1;
-	int	param_2;
+	int			param_1;
+	int			param_2;
 
 	param_1 = vm->param[0][0];
 	param_2 = vm->param[1][0];
@@ -66,7 +65,6 @@ void	ft_lld(t_process *process, t_vm *vm)
 		process->registre[param_2 - 1] =
 		ft_convert2bytes_to_int(vm->vm + param_1);
 	}
-//	process->carry = (process->registre[param_2 - 1] == 0 ? 1 : 0);
 	process->carry = (param_1 == 0 ? 1 : 0);
 	if (vm->opt.v[1] & 4)
 		ft_verbose(process, vm->param);

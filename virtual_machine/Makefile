@@ -1,6 +1,6 @@
 EXE = corewar
 CC = clang 
-CFLAG = -Wall -Werror -Wextra
+CFLAG = -Wall -Werror -Wextra -g3 -fsanitize=address,undefined
 LIB = ../libft/libftprintf.a
 
 SRC =	main.c
@@ -13,12 +13,12 @@ SRC +=	ft_error.c
 SRC +=	ft_execution.c
 SRC +=	ft_loading.c
 SRC +=	ft_parameter.c
+SRC +=	ft_parameter_check.c
 SRC +=	ft_processus_add.c
 SRC +=	ft_processus_creation.c
 SRC +=	ft_processus_delete.c
 SRC +=	ft_processus_move.c
 SRC +=	ft_processus_player_initialisation.c
-SRC +=	ft_debug.c
 SRC +=	ft_check.c
 SRC +=	ft_tab_instruction.c
 SRC +=	ft_parsing.c

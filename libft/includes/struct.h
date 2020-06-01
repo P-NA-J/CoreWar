@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 10:01:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/03/25 18:48:57 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/31 18:03:49 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define LIBFTSTRUCT_H
 
-#include <stdlib.h>
-#include <stdarg.h>
-#include "macro.h"
+# include <stdlib.h>
+# include <stdarg.h>
+# include "macro.h"
 
 typedef struct		s_buffer
 {

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:38:04 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 10:00:22 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/28 15:14:09 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include "../../includes/struct.h"
 #include "../../includes/prototypes.h"
 #include "../../../libft/includes/prototypes.h"
-#include "../../includes/debug.h"
 
 static void	ft_verbose(t_process *process, uint32_t param)
 {
-	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no,
+	g_tab_instruction[process->opcode].name);
 	ft_printf("%hd", param);
 }
 
 /*
-	Refacto en mettant les ok/failed dans la focntion de verbose
+**	Refacto en mettant les ok/failed dans la focntion de verbose
 */
 
-void	ft_zjmp(t_process *process, t_vm *vm)
+void		ft_zjmp(t_process *process, t_vm *vm)
 {
 	short	param;
 

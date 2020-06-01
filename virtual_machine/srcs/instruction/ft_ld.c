@@ -6,21 +6,21 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:52 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 09:56:49 by paul             ###   ########.fr       */
+/*   Updated: 2020/05/28 15:12:44 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/tab.h"
 #include "../../includes/struct.h"
 #include "../../includes/prototypes.h"
-#include "../../includes/debug.h"
 #include "../../../libft/includes/prototypes.h"
 
 static void	ft_verbose(t_process *process, uint32_t param[3][2])
 {
-	int	i;
+	int		i;
 
-	ft_printf("P%5d | %s ", process->no, g_tab_instruction[process->opcode].name);
+	ft_printf("P%5d | %s ", process->no,
+	g_tab_instruction[process->opcode].name);
 	i = 0;
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
@@ -32,14 +32,13 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 		i += 1;
 	}
 	ft_printf("\n");
-//	ft_printf("carry = %d\n", process->carry);
 }
 
-void	ft_ld(t_process *process, t_vm *vm)
+void		ft_ld(t_process *process, t_vm *vm)
 {
-	int pos;
-	int	param_1;
-	int	param_2;
+	int		pos;
+	int		param_1;
+	int		param_2;
 
 	param_1 = vm->param[0][0];
 	param_2 = vm->param[1][0];
@@ -54,11 +53,9 @@ void	ft_ld(t_process *process, t_vm *vm)
 		process->registre[param_2 - 1] =
 		ft_convert_to_int(vm->vm + pos);
 	}
-//	process->carry = (process->registre[param_2 - 1] == 0 ? 1 : 0);
 	process->carry = (param_1 == 0 ? 1 : 0);
 	vm->param[0][0] = process->registre[param_2 - 1];
 	if (vm->opt.v[1] & 4)
 		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);
 }
-
