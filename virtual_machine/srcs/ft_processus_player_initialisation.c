@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:06:40 by paul              #+#    #+#             */
-/*   Updated: 2020/06/01 13:18:58 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/01 13:23:41 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int		ft_processus_create_player(t_vm *vm, const int count,
 	t_process	*processus;
 
 	vm->last_process = count + 1;
+	vm->last_champ_alive = count + 1;
 	if (!(processus = ft_processus_create(count + 1,
 	(MEM_SIZE / nb_player) * count)))
 		return (false);
