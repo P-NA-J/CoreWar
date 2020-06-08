@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ldi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:06 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/05 14:40:15 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/08 10:29:33 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void		ft_ldi(t_process *process, t_vm *vm)
 	process->registre[param_3 - 1] = value;
 	if (value == 0)
 		process->carry = (process->carry == 1 ? 0 : 1);
-//	process->carry = (value != 0 ? 0 : 1);
 	if (vm->opt.v[1] & 4)
 		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lldi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/02 13:59:07 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/08 10:29:48 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 	ft_second_line(process, param);
 }
 
-int			ft_lldi_param_recover_value(t_vm *vm, t_process *process, uint32_t tab[2])
+int			ft_lldi_param_recover_value(t_vm *vm, t_process *process,
+										uint32_t tab[2])
 {
 	int		param;
 

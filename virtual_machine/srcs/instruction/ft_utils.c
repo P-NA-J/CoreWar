@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 09:34:14 by paul              #+#    #+#             */
-/*   Updated: 2020/06/05 14:40:50 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/08 10:31:08 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ int				ft_parameter_recover_value(t_vm *vm, size_t pc,
 	return (tab[0]);
 }
 
-int				ft_unrestr_value_from_address(size_t pc, short indirect, t_vm *vm)
+int				ft_unrestr_value_from_address(size_t pc, short indirect,
+												t_vm *vm)
 {
-	int		param;
+	int			param;
 	int			pos;
 	uint8_t		tab[4];
 

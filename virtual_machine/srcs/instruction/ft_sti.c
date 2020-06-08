@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:26 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/05 18:11:37 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/08 10:30:15 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int			ft_sti_param_recover_value(t_vm *vm, t_process *process,
 
 void		ft_sti(t_process *process, t_vm *vm)
 {
-	long		param_1;
-	long		param_2;
-	long		param_3;
+	long	param_1;
+	long	param_2;
+	long	param_3;
 	long	pos;
 
 	param_1 = vm->param[0][0];

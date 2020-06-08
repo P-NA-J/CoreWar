@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/02 14:08:05 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/08 10:32:00 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static void		ft_verbose(t_process *process, uint32_t param[3][2])
 	ft_printf("\n");
 }
 
-short		ft_convert2bytes_to_int(unsigned char tab[4])
+short			ft_convert2bytes_to_int(unsigned char tab[4])
 {
-	short	result;
+	short		result;
 	int			index;
 
 	result = 0;
@@ -65,8 +65,8 @@ void			ft_lld(t_process *process, t_vm *vm)
 		process->registre[param_2 - 1] = param_1;
 	else if (T_IND == vm->param[0][1])
 	{
-//		process->registre[param_2 - 1] = ft_convert2bytes_to_int(vm->vm + param_1);
-		process->registre[param_2 - 1] = ft_convert2bytes_to_int(vm->vm + (process->pc + param_1) % MEM_SIZE);
+		process->registre[param_2 - 1] = ft_convert2bytes_to_int(vm->vm +
+										(process->pc + param_1) % MEM_SIZE);
 		param_1 = process->registre[param_2 - 1];
 	}
 	process->carry = (param_1 == 0 ? 1 : 0);
