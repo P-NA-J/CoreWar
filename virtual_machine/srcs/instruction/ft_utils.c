@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 09:34:14 by paul              #+#    #+#             */
-/*   Updated: 2020/05/28 15:13:57 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/05 14:40:50 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,32 @@ int				ft_parameter_recover_value(t_vm *vm, size_t pc,
 	return (tab[0]);
 }
 
-int				ft_value_from_address(size_t pc, int indirect, t_vm *vm)
+int				ft_unrestr_value_from_address(size_t pc, short indirect, t_vm *vm)
+{
+	int		param;
+	int			pos;
+	uint8_t		tab[4];
+
+	pos = (pc + indirect) % MEM_SIZE;
+	tab[0] = vm->vm[pos++ % MEM_SIZE];
+	tab[1] = vm->vm[pos++ % MEM_SIZE];
+	tab[2] = vm->vm[pos++ % MEM_SIZE];
+	tab[3] = vm->vm[pos % MEM_SIZE];
+	param = ft_convert_to_int(tab);
+	return (param);
+}
+
+int				ft_value_from_address(size_t pc, short indirect, t_vm *vm)
 {
 	int			param;
 	int			pos;
+	uint8_t		tab[4];
 
 	pos = (pc + (indirect % IDX_MOD)) % MEM_SIZE;
-	param = ft_convert_to_int(vm->vm + pos);
+	tab[0] = vm->vm[pos++ % MEM_SIZE];
+	tab[1] = vm->vm[pos++ % MEM_SIZE];
+	tab[2] = vm->vm[pos++ % MEM_SIZE];
+	tab[3] = vm->vm[pos % MEM_SIZE];
+	param = ft_convert_to_int(tab);
 	return (param);
 }

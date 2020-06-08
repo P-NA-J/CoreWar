@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:26 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/28 15:13:41 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/05 18:11:37 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int			ft_sti_param_recover_value(t_vm *vm, t_process *process,
 
 void		ft_sti(t_process *process, t_vm *vm)
 {
-	int		param_1;
-	int		param_2;
-	int		param_3;
-	int		pos;
+	long		param_1;
+	long		param_2;
+	long		param_3;
+	long	pos;
 
 	param_1 = vm->param[0][0];
 	param_2 = ft_sti_param_recover_value(vm, process, vm->param[1]);

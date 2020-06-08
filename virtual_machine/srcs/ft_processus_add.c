@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:38 by paul              #+#    #+#             */
-/*   Updated: 2020/05/28 15:15:40 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/05 19:17:43 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ void		ft_processus_list_add(t_vm *vm, t_process *process)
 		vm->nb_max_process *= 2;
 	}
 	i = 0;
-	while (vm->process_list[i] != NULL)
+/*	while (vm->process_list[i] != NULL)
+	{
 		i += 1;
-	vm->process_list[i] = process;
+		ft_printf("i = %d\n", i);
+	}
+*/	vm->process_list[vm->nb_process - 1] = process;
 }
 
 t_process	*ft_processus_tab_front_add(t_process *tab, t_process *process)

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 10:39:28 by paul              #+#    #+#             */
-/*   Updated: 2020/05/28 15:16:17 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/04 16:02:10 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ uint8_t		ft_convert_ocp(uint8_t ocp)
 **	Fonction qui va deplacer le pc dans le cas d'un OCP incorrect.
 */
 
-int			ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, uint8_t ocp)
+int			ft_skip_bad_ocp_parsing(t_vm *vm, t_process *process, int nb_param)
 {
-	int		nb_param;
 	int		j;
 	int		i;
 	uint8_t	mask;
+	uint8_t	ocp;
 
-	nb_param = g_tab_instruction[process->opcode].nb_param;
+	ocp = vm->vm[(process->pc + 1) % MEM_SIZE];
 	j = 0;
 	i = 0;
 	while (j < nb_param)

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 21:27:42 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/05 18:46:06 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ typedef struct			s_process
 	struct s_process	*prev;
 	size_t				no;
 	size_t				pc;
+	size_t				tab_places;
 	int					to_load;
 	int					cycle_last_live;
-	size_t				tab_places;
 	int					registre[16];
 	char				carry;
 	unsigned char		opcode;
@@ -72,11 +72,11 @@ typedef struct			s_vm
 	t_player			player_list[4];
 	t_option			opt;
 	t_process			**process_list;
-	unsigned int		param[3][2];
-	int					cycle;
 	size_t				nb_process;
 	size_t				nb_max_process;
 	size_t				last_process;
+	unsigned int		param[3][2];
+	int					cycle;
 	int					cycles_to_die;
 	int					nb_live;
 	int					no_decrease_check;

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/28 15:13:14 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/02 14:08:05 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void		ft_verbose(t_process *process, uint32_t param[3][2])
 	{
 		if (param[i][1] == T_REG)
 			ft_printf("r");
-		ft_printf("%d", param[i][0]);
+		if (param[i][1] == T_IND)
+			ft_printf("%hd", process->registre[param[1][0] - 1]);
+		else
+			ft_printf("%d", param[i][0]);
 		if (i < g_tab_instruction[process->opcode].nb_param - 1)
 			ft_printf(" ");
 		i += 1;
@@ -34,9 +37,9 @@ static void		ft_verbose(t_process *process, uint32_t param[3][2])
 	ft_printf("\n");
 }
 
-uint32_t		ft_convert2bytes_to_int(unsigned char tab[4])
+short		ft_convert2bytes_to_int(unsigned char tab[4])
 {
-	uint32_t	result;
+	short	result;
 	int			index;
 
 	result = 0;
@@ -62,8 +65,9 @@ void			ft_lld(t_process *process, t_vm *vm)
 		process->registre[param_2 - 1] = param_1;
 	else if (T_IND == vm->param[0][1])
 	{
-		process->registre[param_2 - 1] =
-		ft_convert2bytes_to_int(vm->vm + param_1);
+//		process->registre[param_2 - 1] = ft_convert2bytes_to_int(vm->vm + param_1);
+		process->registre[param_2 - 1] = ft_convert2bytes_to_int(vm->vm + (process->pc + param_1) % MEM_SIZE);
+		param_1 = process->registre[param_2 - 1];
 	}
 	process->carry = (param_1 == 0 ? 1 : 0);
 	if (vm->opt.v[1] & 4)

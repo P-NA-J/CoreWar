@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/05/26 21:25:39 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/02 12:34:18 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@
 typedef char	t_arg_type;
 
 # define T_REG					1
-# define T_DIR					4
 # define T_IND					2
+# define T_DIR					4
 # define T_LAB					8
 
 # define PROG_NAME_LENGTH		128

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:42:42 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/28 15:15:23 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/05 14:39:46 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int			ft_param_get_type(uint8_t ocp, t_process *process,
 	else if (mask == DIR_BIT &&
 	(g_tab_instruction[process->opcode].param_type[i] & T_DIR) != 0)
 		vm->param[i][1] = T_DIR;
-	else
-		return (ft_skip_bad_ocp_parsing(vm, process, ocp));
+//	else
+//		return (ft_skip_bad_ocp_parsing(vm, process, g_tab_instruction[process->opcode].nb_param));
 	return (true);
 }
 
