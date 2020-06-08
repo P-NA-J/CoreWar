@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_processus_add.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:38 by paul              #+#    #+#             */
-/*   Updated: 2020/06/05 19:17:43 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/08 08:23:47 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_processus_list_add(t_vm *vm, t_process *process)
 	size_t	i;
 
 	vm->nb_process += 1;
-	if (vm->nb_process > vm->nb_max_process)
+	if (vm->nb_process >= vm->nb_max_process)
 	{
 		if (!(vm->process_list = realloc(vm->process_list,
 		vm->nb_max_process * 2 * sizeof(t_process *))))
@@ -41,12 +41,7 @@ void		ft_processus_list_add(t_vm *vm, t_process *process)
 		vm->nb_max_process *= 2;
 	}
 	i = 0;
-/*	while (vm->process_list[i] != NULL)
-	{
-		i += 1;
-		ft_printf("i = %d\n", i);
-	}
-*/	vm->process_list[vm->nb_process - 1] = process;
+	vm->process_list[vm->nb_process - 1] = process;
 }
 
 t_process	*ft_processus_tab_front_add(t_process *tab, t_process *process)
