@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lldi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:56 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/08 10:29:48 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:11:07 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	ft_second_line(t_process *process, uint32_t param[3][2])
 	else
 		ft_printf("%d = ", param[1][0]);
 	ft_printf("%d", param[0][0] + param[1][0]);
-	ft_printf(" (with pc and mod %d)\n", (int)process->pc +
-	(((int)param[0][0] + (int)param[1][0]) % IDX_MOD));
+	ft_printf(" (with pc %d)\n", (int)process->pc +
+	(((int)param[0][0] + (int)param[1][0])));
 }
 
 static void	ft_verbose(t_process *process, uint32_t param[3][2])

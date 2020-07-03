@@ -1,0 +1,106 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: albanbotier <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/15 18:31:48 by albanboti         #+#    #+#             */
+/*   Updated: 2020/06/04 14:59:58 by albanboti        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/asm.h"
+
+static int	line_in_buff(t_env *e, char *buff, char **s, int cmd)
+{
+	while (**s && **s != '"')
+	{
+		if (e->i >= (cmd == NAME_CMD ? PROG_NAME_LENGTH : COMMENT_LENGTH))
+		{
+			e->i = -1;
+			if (cmd_too_long(e, ft_strchr(e->file->begin->s, '"'), cmd) == -1)
+				return (0);
+		}
+		else if (e->i != -1)
+			buff[e->i++] = **s;
+		(*s)++;
+	}
+	return (1);
+}
+
+static int	parse_str_cmd(t_env *e, char *buff, char *s, int cmd)
+{
+	int		end;
+
+	end = 0;
+	while (!end)
+	{
+		if (!line_in_buff(e, buff, &s, cmd))
+			return (0);
+		if (*s == '"' && (end = 1))
+		{
+			if (check_end_str(e, s + 1, cmd, 0) <= 0)
+				return (0);
+		}
+		else if (add_line(e, &s) != 1)
+			return (missing_quote(e, e->file->begin->s));
+		else if (e->i >= (cmd == NAME_CMD ? PROG_NAME_LENGTH : COMMENT_LENGTH))
+		{
+			e->i = -1;
+			if (cmd_too_long(e, ft_strchr(e->file->begin->s, '"'), cmd) == -1)
+				return (0);
+		}
+		else if (e->i != -1)
+			buff[e->i++] = '\n';
+	}
+	return (1);
+}
+
+static int	parse_cmd(t_env *e, char *s, unsigned char *cp, int cmd)
+{
+	char	buff[BS_HEADER];
+	char	*t;
+
+	e->i = 0;
+	if (e->file->champ_part)
+		cmd_part_champ(e, cmd);
+	if (e->file->complete & cmd)
+		cmd_multiple_define(e, cmd);
+	e->file->complete |= cmd;
+	if (!(t = ft_strchr(s, '"')))
+		return (expect_str(e, s, cmd) == -1 || check_end_str(e, s, cmd, 0));
+	if (check_end_str(e, s, cmd, '"') == -1)
+		return (0);
+	if (!parse_str_cmd(e, buff, t + 1, cmd))
+		return (0);
+	if (!e->file->error && !(e->file->complete & ALREADY_DEFINE * cmd))
+		while (e->i--)
+			*(cp + e->i) = buff[e->i];
+	return (1);
+}
+
+void		get_cmd(t_env *e, unsigned char *cp, char *line)
+{
+	int		cmd;
+	char	*tmp;
+
+	cmd = -1;
+	tmp = line;
+	if (!ft_strncmp(line, NAME_CMD_STRING, sizeof(NAME_CMD_STRING) - 1))
+	{
+		line += sizeof(NAME_CMD_STRING) - 1;
+		cmd = NAME_CMD;
+	}
+	else if (!ft_strncmp(COMMENT_CMD_STRING, line,
+			sizeof(COMMENT_CMD_STRING) - 1))
+	{
+		line += sizeof(COMMENT_CMD_STRING) - 1;
+		cmd = COMMENT_CMD;
+	}
+	if (cmd == -1 || !ft_strchr(SPACES"\"", *line))
+		invalid_cmd(e, cmd != -1 ? tmp : line, -1);
+	else
+		cmd == NAME_CMD ? parse_cmd(e, line, cp, cmd)
+		: parse_cmd(e, line, cp + PROG_NAME_LENGTH + 8, cmd);
+}

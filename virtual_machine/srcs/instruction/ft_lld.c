@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:36:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/08 10:32:00 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/06/12 17:02:58 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "../../includes/prototypes.h"
 #include "../../../libft/includes/prototypes.h"
 
-static void		ft_verbose(t_process *process, uint32_t param[3][2])
+static void	ft_verbose(t_process *process, uint32_t param[3][2])
 {
-	int			i;
+	int		i;
 
 	ft_printf("P%5d | %s ", process->no,
 	g_tab_instruction[process->opcode].name);
@@ -37,10 +37,10 @@ static void		ft_verbose(t_process *process, uint32_t param[3][2])
 	ft_printf("\n");
 }
 
-short			ft_convert2bytes_to_int(unsigned char tab[4])
+short		ft_convert2bytes_to_int(unsigned char tab[4])
 {
-	short		result;
-	int			index;
+	short	result;
+	int		index;
 
 	result = 0;
 	index = 0;
@@ -54,10 +54,10 @@ short			ft_convert2bytes_to_int(unsigned char tab[4])
 	return (result);
 }
 
-void			ft_lld(t_process *process, t_vm *vm)
+void		ft_lld(t_process *process, t_vm *vm)
 {
-	int			param_1;
-	int			param_2;
+	int		param_1;
+	int		param_2;
 
 	param_1 = vm->param[0][0];
 	param_2 = vm->param[1][0];
@@ -65,8 +65,8 @@ void			ft_lld(t_process *process, t_vm *vm)
 		process->registre[param_2 - 1] = param_1;
 	else if (T_IND == vm->param[0][1])
 	{
-		process->registre[param_2 - 1] = ft_convert2bytes_to_int(vm->vm +
-										(process->pc + param_1) % MEM_SIZE);
+		process->registre[param_2 - 1] =
+		ft_convert2bytes_to_int(vm->vm + (process->pc + param_1) % MEM_SIZE);
 		param_1 = process->registre[param_2 - 1];
 	}
 	process->carry = (param_1 == 0 ? 1 : 0);

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:52 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/02 08:55:05 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/17 15:58:18 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		ft_ld(t_process *process, t_vm *vm)
 		param_1 = (short)param_1;
 		pos = (process->pc + (param_1 % IDX_MOD)) % MEM_SIZE;
 		process->registre[param_2 - 1] =
-		ft_convert_to_int(vm->vm + pos);
+		ft_convert_ram_to_int(vm, pos);
 	}
 	vm->param[0][0] = process->registre[param_2 - 1];
 	param_1 = process->registre[param_2 - 1];

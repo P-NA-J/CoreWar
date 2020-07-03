@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:08:59 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 21:07:47 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/16 16:31:11 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,46 @@
 #include "../includes/op.h"
 #include "../includes/prototypes.h"
 #include "../../libft/includes/prototypes.h"
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
-char	g_tab[7][128] =
+char	g_tab[8][128] =
 {
-	"No valid \".cor\" file found.\n",
-	"Option or file \".cor\" are invalid : \"--help\" for usage.\n",
-	"The file \".cor\" can't ba open.\n",
-	"Probleme with the magic header.\n",
-	"Probleme with size of the champion name.\n",
-	"Probleme with size of the executable code.\n",
-	"Probleme with size of the comment.\n"
-	"-n number is too low or to hight or is double.\n"
+	"Can't read source file ",
+	"Too many champions\n",
+	"has an invalid header\n",
+	"is too small to be a champion\n",
+	"has too large a code",
+	"is too small to be a champion\n",
+	"-n number is too low or to hight or is double\n",
+	"has a code size that differ from what its header says\n"
 };
 
-void	ft_print_error(int usage)
+void	ft_print_error(int usage, char *source, int length)
 {
-	ft_putstr(g_tab[usage]);
+	if (usage == 2 || usage == 3 || usage == 4 || usage == 5 || usage == 7)
+	{
+		ft_putstr_fd("Error: File ", 2);
+		ft_putstr_fd(source, 2);
+		ft_putchar_fd(' ', 2);
+	}
+	ft_putstr_fd(g_tab[usage], 2);
+	if (usage == 4)
+	{
+		ft_putstr_fd(" (", 2);
+		if (length > 4096)
+			ft_putchar_fd('+', 2);
+		ft_putnbr_fd(length, 2);
+		ft_putendl_fd(" bytes > 682 bytes)", 2);
+	}
+	if (usage == 0)
+		ft_putendl_fd(source, 2);
 }
 
-int		ft_usage(int usage)
+int		ft_usage(int usage, char *source, int length)
 {
 	if (usage == 0)
 	{
@@ -49,6 +70,6 @@ int		ft_usage(int usage)
 		ft_putstr("-dump N : Print the memory after N cycle\n\n");
 	}
 	else
-		ft_print_error(usage - 1);
+		ft_print_error(usage - 1, source, length);
 	return (EXIT_FAILURE);
 }

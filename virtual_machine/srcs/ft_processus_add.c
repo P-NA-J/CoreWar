@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_processus_add.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 10:02:38 by paul              #+#    #+#             */
-/*   Updated: 2020/06/08 08:23:47 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/06/14 16:37:04 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_processus_list_add(t_vm *vm, t_process *process)
 	{
 		if (!(vm->process_list = realloc(vm->process_list,
 		vm->nb_max_process * 2 * sizeof(t_process *))))
-			exit(0);
+			return ;
 		ft_fill_realloc(vm);
 		vm->nb_max_process *= 2;
 	}

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 09:23:15 by paul              #+#    #+#             */
-/*   Updated: 2020/05/28 15:14:29 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/14 16:32:15 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void	ft_loop_dumped(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 		ft_exec_cycle(vm, tab, vm->cycle);
 		if (vm->period[0] == vm->period[1] || vm->cycles_to_die <= 0)
 			ft_check(vm, tab);
+		if (vm->nb_process == 0)
+			break ;
+		if (vm->opt.v[1] & 2)
+			ft_printf("It is now cycle %zu\n", vm->cycle + 1);
 		vm->cycle += 1;
 		vm->period[0] += 1;
-		if (vm->opt.v[1] & 2)
-			ft_printf("It is now cycle %zu\n", vm->cycle);
 	}
 	if (vm->cycle < vm->opt.d[1])
 	{
@@ -43,10 +45,12 @@ void	ft_loop_std(t_vm *vm, t_process *tab[CYCLE_WAIT_MAX])
 		ft_exec_cycle(vm, tab, vm->cycle);
 		if (vm->period[0] == vm->period[1] || vm->cycles_to_die <= 0)
 			ft_check(vm, tab);
+		if (vm->nb_process == 0)
+			break ;
+		if (vm->opt.v[1] & 2)
+			ft_printf("It is now cycle %zu\n", vm->cycle + 1);
 		vm->cycle += 1;
 		vm->period[0] += 1;
-		if (vm->opt.v[1] & 2)
-			ft_printf("It is now cycle %zu\n", vm->cycle);
 	}
 	ft_printf("Contestant %zu, \"%s\", has won !\n", vm->last_champ_alive,
 	vm->player_list[vm->last_champ_alive - 1].name);

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:31:14 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/02 14:11:06 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/12 16:31:23 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int			main(int ac, char **av)
 		ft_loop_dumped(&vm, vm.tab);
 	else
 		ft_loop_std(&vm, vm.tab);
+	free(vm.process_list);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:29:36 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/04 15:49:35 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/16 16:30:28 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		ft_dump(const unsigned char vm[MEM_SIZE]);
 int			ft_get_pos_player(t_args *filecor);
 int			ft_print_intro(t_player player[4]);
 int			ft_check_int(char *nombr);
-int			ft_usage(int usage);
+int			ft_usage(int usage, char *source, int length);
 int			ft_free_filecor(t_args *filecor);
 int			ft_get_options(int index, char **args, t_option *option);
 int			ft_insertion_vm(t_args *filecor,
@@ -49,7 +49,7 @@ int			ft_get_value_ram(uint8_t vm[4], int	len);
 void		ft_convert_to_char(t_vm *vm, int reg, int pos);
 int			ft_value_from_address(size_t pc, short indirect, t_vm *vm);
 uint32_t	ft_convert_to_int(unsigned char tab[4]);
-int			ft_parameter_recover_value(t_vm *vm, size_t pc,
+long		ft_parameter_recover_value(t_vm *vm, size_t pc,
 										uint32_t tab[2], t_process *process);
 void		ft_skip_instruction_sequency(t_process *process, t_vm *vm);
 void		ft_print_param(int param, int type, int opcode);
@@ -65,6 +65,7 @@ int			ft_initialisation(t_vm *vm);
 int			ft_check_value_param(t_process *process, t_vm *vm);
 int			ft_param_check_type(t_vm *vm, t_process *process);
 int			ft_unrestr_value_from_address(size_t pc, short indirect, t_vm *vm);
+uint32_t	ft_convert_ram_to_int(t_vm *vm, int pos);
 
 /*
 **	Boucle central du fonctionnement de la VM.

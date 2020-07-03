@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 17:07:31 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/26 21:04:36 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/15 15:41:04 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_dump(const unsigned char vm[MEM_SIZE])
 		if (len % 64 == 0)
 			ft_printf("0x%.4x : ", len);
 		if ((len + 1) % 64 == 0)
-			ft_printf("%.2x\n", vm[len]);
+			ft_printf("%.2x \n", vm[len]);
 		else
 			ft_printf("%.2x ", vm[len]);
 		len++;

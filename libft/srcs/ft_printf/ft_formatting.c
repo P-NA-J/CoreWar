@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 02:41:49 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/31 18:39:14 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/14 15:11:00 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_prefix(t_buffer *buff, t_flag *c_arg)
 	&& c_arg->nb_u > 0)
 		ft_write_in_buffer(buff, '0', 1);
 	if (((c_arg->flag & X_FLAG) && (c_arg->flag & SHARP_FLAG)
-	&& c_arg->nb_u > 0) || (c_arg->flag & P_FLAG))
+	&& c_arg->nb_u >= 0) || (c_arg->flag & P_FLAG))
 		ft_putstr_buffer(buff, "0x", 2);
 	if ((c_arg->flag & BIGX_FLAG) && (c_arg->flag & SHARP_FLAG)
 	&& c_arg->nb_u > 0)

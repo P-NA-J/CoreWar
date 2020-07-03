@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC= clang
 CFLAG = -Wall -Werror -Wextra
 
-SRCS_FT_PRINTF =			buffer.c
+SRCS_FT_PRINTF =		buffer.c
 SRCS_FT_PRINTF +=		ft_error_parse.c
 SRCS_FT_PRINTF +=		ft_printf.c
 SRCS_FT_PRINTF +=		ft_option.c
@@ -72,6 +72,8 @@ SRCS_STRING +=			ft_strjoin.c
 SRCS_STRING +=			ft_strtrim.c
 SRCS_STRING +=			ft_strsplit.c
 SRCS_STRING +=			ft_strjoinf.c
+SRCS_STRING +=			ft_str_pint.c
+SRCS_STRING +=			ft_str_num.c
 
 SRCS_CONVERSION +=		ft_atoi.c
 SRCS_CONVERSION +=		ft_itoa.c

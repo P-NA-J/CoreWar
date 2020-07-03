@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:34:37 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/28 15:12:40 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/16 11:35:27 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "../../includes/prototypes.h"
 #include "../../../libft/includes/prototypes.h"
 
-static void		ft_verbose(t_process *process, uint32_t param, size_t pc)
+static void		ft_verbose(t_process *process, short param, short pc)
 {
 	ft_printf("P%5zu | %s ", process->no,
 	g_tab_instruction[process->opcode].name);
-	ft_printf("%hd (%zu)\n", param, pc);
+	ft_printf("%hd (%hd)\n", param, pc);
 }
 
 static void		ft_good_read(t_process *new_process, t_vm *vm)
@@ -50,7 +50,7 @@ void			ft_fork(t_process *process, t_vm *vm)
 	if (!(new_process = ft_processus_cpy(process, pc, no)))
 		exit(0);
 	if (vm->opt.v[1] & 4)
-		ft_verbose(process, vm->param[0][0], new_process->pc);
+		ft_verbose(process, vm->param[0][0], process->pc + (param % IDX_MOD));
 	if (vm->vm[new_process->pc % MEM_SIZE] == 0 ||
 		vm->vm[new_process->pc % MEM_SIZE] > 16)
 		ft_bad_read(new_process, vm);

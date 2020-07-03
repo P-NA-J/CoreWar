@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execution.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:45 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/08 10:28:41 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/06/12 17:00:17 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void		ft_exec_processus(t_process *tab[1024], size_t cycle, t_vm *vm)
 		{
 			ft_exec_instruction(tab[cycle % 1024], vm);
 			tab[cycle % 1024]->to_load = TRUE;
-			ft_process_move(tab[cycle % 1024], vm,
-			cycle % 1024, (cycle + 1) % 1024);
+			ft_process_move(tab[cycle % 1024], vm, cycle % 1024,
+							(cycle + 1) % 1024);
 		}
 		else
 			ft_loading_try_processus(vm, tab[cycle % 1024], cycle);

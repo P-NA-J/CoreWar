@@ -1,0 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   label.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: albanbotier <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/05 17:02:17 by albanboti         #+#    #+#             */
+/*   Updated: 2020/06/04 15:01:55 by albanboti        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/asm.h"
+#include <stdlib.h>
+
+static int		search_label(t_env *e, char *s, int len)
+{
+	t_label			*label;
+	t_call			*call;
+
+	label = e->file->label;
+	while (label && (ft_strncmp(s, label->name, len) || label->name[len]))
+		label = label->next;
+	if (label)
+	{
+		if (label->index != -1)
+			redefine_label(e, s, label->y);
+		else
+		{
+			label->y = e->file->last->y;
+			label->index = e->file->i;
+			call = label->call;
+			if (!e->file->error)
+				write_label_call(e, call);
+		}
+		return (1);
+	}
+	return (0);
+}
+
+static void		get_label(t_env *e, char *s, int len)
+{
+	t_label	*new;
+
+	new = NULL;
+	if (!(new = (t_label *)malloc(sizeof(t_label))))
+		alloc_error(e);
+	if (!(new->name = ft_strndup(s, len)))
+	{
+		free(new);
+		alloc_error(e);
+	}
+	new->y = e->file->last->y;
+	new->index = e->file->i;
+	new->call = NULL;
+	new->next = e->file->label;
+	e->file->label = new;
+}
+
+int				only_label(t_env *e, char **line)
+{
+	char	*s;
+
+	s = *line + ft_strspn(*line, LABEL_CHARS);
+	if (*s != LABEL_CHAR)
+		return (0);
+	e->file->champ_part = 1;
+	if (!search_label(e, *line, s - *line))
+		get_label(e, *line, s - *line);
+	*line = s + ft_strspn(s + 1, SPACES) + 1;
+	return (!**line);
+}

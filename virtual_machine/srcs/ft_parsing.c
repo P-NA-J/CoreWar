@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:36:55 by damboule          #+#    #+#             */
-/*   Updated: 2020/05/26 21:34:30 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/16 16:30:46 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,30 @@ int		ft_get_filecor(int nb_args, char **args, t_args *filecor, t_option *op)
 		else if (ft_getoccur(args[index], ".cor") == 0
 				&& filecor->player_nb <= 4)
 			filecor->champ[filecor->player_nb++] = ft_strdup(args[index]);
+		else if (ft_getoccur(args[index], ".cor") == 0
+				&& filecor->player_nb > 4)
+			break ;
 		else if (ft_get_options(index, args, op))
-			return (EXIT_FAILURE);
+			return (ft_usage(1, args[index], 0));
 		index++;
 	}
-	if (filecor->player_nb >= 1)
-		return (EXIT_SUCCESS);
-	return (EXIT_FAILURE);
+	if (filecor->player_nb > 4)
+		return (ft_usage(2, NULL, 0));
+	if (filecor->player_nb < 1)
+		return (ft_usage(0, NULL, 0));
+	return (EXIT_SUCCESS);
 }
 
 int		ft_get_args(const int nb_arg, char **arg, t_args *filecor, t_option *op)
 {
 	if (nb_arg == NO_ARGS)
-		return (ft_usage(NO_ARGS));
+		return (ft_usage(NO_ARGS, NULL, 0));
 	if (nb_arg == 1 && ft_strcmp(arg[0], "--help") == 0)
-		return (ft_usage(0));
+		return (ft_usage(0, NULL, 0));
 	if (ft_get_filecor(nb_arg, arg, filecor, op))
-		return (ft_usage(PARSING));
+		return (EXIT_FAILURE);
 	if (ft_get_pos_player(filecor))
-		return (ft_usage(FALSE_POS));
+		return (ft_usage(FALSE_POS, NULL, 0));
 	return (EXIT_SUCCESS);
 }
 

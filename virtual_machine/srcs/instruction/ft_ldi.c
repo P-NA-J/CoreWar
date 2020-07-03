@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ldi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:35:06 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/08 10:29:33 by pauljull         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:29:08 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,38 @@ int			ft_ldi_param_recover_value(t_vm *vm, t_process *process,
 	return (param);
 }
 
+static int	ft_ldi_value_from_address(size_t pc, long indirect, t_vm *vm)
+{
+	int		param;
+	long	pos;
+	uint8_t	tab[4];
+
+	pos = (pc + (indirect % IDX_MOD)) % MEM_SIZE;
+	tab[0] = vm->vm[pos++ % MEM_SIZE];
+	tab[1] = vm->vm[pos++ % MEM_SIZE];
+	tab[2] = vm->vm[pos++ % MEM_SIZE];
+	tab[3] = vm->vm[pos % MEM_SIZE];
+	param = ft_convert_to_int(tab);
+	return (param);
+}
+
 void		ft_ldi(t_process *process, t_vm *vm)
 {
-	int		param_1;
-	int		param_2;
-	int		param_3;
-	int		value;
+	long	param_1;
+	long	param_2;
+	long	param_3;
+	long	value;
 
 	param_1 = ft_ldi_param_recover_value(vm, process, vm->param[0]);
 	param_2 = ft_ldi_param_recover_value(vm, process, vm->param[1]);
 	param_3 = vm->param[2][0];
 	vm->param[0][0] = param_1;
 	vm->param[1][0] = param_2;
-	value = param_1 + param_2;
-	value = ft_value_from_address(process->pc, value, vm);
+	value = (param_1 + param_2);
+	value = ft_ldi_value_from_address(process->pc, value, vm);
 	process->registre[param_3 - 1] = value;
 	if (value == 0)
-		process->carry = (process->carry == 1 ? 0 : 1);
+		process->carry = (process->carry == 1 ? 1 : 0);
 	if (vm->opt.v[1] & 4)
 		ft_verbose(process, vm->param);
 	ft_skip_instruction_sequency(process, vm);

@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 10:00:52 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/01 11:58:13 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/13 11:47:21 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define LIBFTPROTOTYPES_H
 # include "struct.h"
 # include <stdlib.h>
+# include <stdbool.h>
 
 /*
 **	GET_NEXT_LINE
@@ -101,6 +102,8 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_strjoinf(char *s1, char *s2, int flag);
+bool			ft_str_pint(char *s);
+bool			ft_str_num(char *s, int len);
 
 /*
 **	LIST

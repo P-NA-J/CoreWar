@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:37:18 by pauljull          #+#    #+#             */
-/*   Updated: 2020/05/28 15:13:35 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/14 18:49:32 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_verbose(t_process *process, uint32_t param[3][2])
 	i = 0;
 	while (i < g_tab_instruction[process->opcode].nb_param)
 	{
-		if (param[i][1] == T_REG)
+		if (param[i][1] == T_REG && i == 0)
 			ft_printf("r");
 		if (param[i][1] == T_IND)
 			ft_printf("%hd", param[i][0]);

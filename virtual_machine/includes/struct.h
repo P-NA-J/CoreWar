@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/05 18:46:06 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/15 13:12:04 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct			s_player
 
 typedef struct			s_option
 {
+	int					a;
 	int					visu;
 	int					v[2];
 	int					d[2];
@@ -59,7 +60,7 @@ typedef struct			s_process
 	size_t				tab_places;
 	int					to_load;
 	int					cycle_last_live;
-	int					registre[16];
+	long				registre[16];
 	char				carry;
 	unsigned char		opcode;
 	char				padding[6];

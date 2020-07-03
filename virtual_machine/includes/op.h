@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/06/02 12:34:18 by paul             ###   ########.fr       */
+/*   Updated: 2020/06/15 13:10:38 by danglass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 # define SIZE_NAME           4
 # define SIZE_EXEC           5
 # define SIZE_COMM           6
-# define FALSE_POS           6
+# define FALSE_POS           7
+# define CODE_SIZE           8
 
 # define CYCLE_MAX				15
 # define CYCLE_WAIT_MAX			1024
