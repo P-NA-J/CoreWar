@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 09:50:51 by paul              #+#    #+#             */
-/*   Updated: 2020/05/04 15:21:15 by paul             ###   ########.fr       */
+/*   Updated: 2020/07/03 18:28:40 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_initialisation(t_vm *vm)
 	vm->cycles_to_die = CYCLE_TO_DIE;
 	vm->period[1] = CYCLE_TO_DIE;
 	vm->nb_max_process = 64;
-	if (!(vm->process_list = (t_process **)ft_memalloc(sizeof(t_process *) * 64)))
+	if (!(vm->process_list = 
+	(t_process **)ft_memalloc(sizeof(t_process *) * 64)))
 		return (false);
 	return (true);
 }
