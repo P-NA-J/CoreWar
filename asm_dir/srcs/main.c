@@ -3,50 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albanbotier <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 14:44:39 by albanboti         #+#    #+#             */
-/*   Updated: 2020/06/04 15:05:22 by albanboti        ###   ########.fr       */
+/*   Created: 2020/06/15 19:41:26 by user42            #+#    #+#             */
+/*   Updated: 2020/07/04 18:16:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
-#include <unistd.h>
+#include "asm.h"
 
-static void		init_env(t_env *e, char **av)
+BOOL	check_validity(char *path)
 {
-	e->tty1 = isatty(1);
-	e->tty2 = isatty(2);
-	e->i = 0;
-	e->actual = NULL;
-	e->file = NULL;
-	e->exname = av[0];
-	e->output = NULL;
-	e->d = NULL;
+	size_t	len;
+
+	len = ft_strlen(path);
+	if (path[len - 1] != 's' || path[len - 2] != '.')
+		return (FALSE);
+	return (TRUE);
 }
 
-int				main(int ac, char **av)
+int		open_src_file(char *path)
 {
-	t_env	e;
-	t_file	*next;
+	int	fd;
 
-	init_env(&e, av);
-	if (ac < 2)
-		return (usage(&e, 3));
-	if (!parse_command_line(&e, ac, av))
-		return (!e.file ? usage(&e, 3) : 1);
-	e.actual = NULL;
-	if (!e.file)
-		return (usage(&e, 3));
-	while (e.file)
-	{
-		if (e.file->options & O_DISAS)
-			disassemble_champ(&e);
-		else
-			assemble(&e);
-		next = e.file->next;
-		free_file(&e.file);
-		e.file = next;
-	}
+	if (check_validity(path) == FALSE)
+		error_exit(1, "Bad file given");
+	fd = open_fd(path, O_RDONLY);
+	if (fd == -1)
+		error_exit(1, "Can't open this file");
+	return (fd);
+}
+
+int		open_output_file(char *path)
+{
+	int		fd;
+	char	*output_path;
+
+	path[ft_strlen(path) - 2] = '\0';
+	output_path = ft_strnew(ft_strlen(path) + 4);
+	ft_strcat(output_path, path);
+	ft_strcat(output_path, ".cor");
+	if (check_file_exist(output_path) == FILE_EXIST)
+		remove_file(output_path);
+	fd = open_fd(output_path, O_WRONLY | O_CREAT | O_TRUNC);
+	free(output_path);
+	return (fd);
+}
+
+int		main(int argc, char **argv)
+{
+	int			input_fd;
+	int			output_fd;
+	t_player	*player;
+
+	input_fd = 0;
+	output_fd = 0;
+	if (argc == 1)
+		error_exit(1, "No file to parse");
+	if (argc > 2)
+		error_exit(1, "Too many files to parse");
+	input_fd = open_src_file(argv[1]);
+	player = malloc_player();
+	player->header = parse_header(input_fd);
+	if (parse_content(player, input_fd) == FALSE)
+		error_exit(1, "Error in file : Label inexistant");
+	output_fd = open_output_file(argv[1]);
+	save_player(output_fd, player);
+	ft_printf("Writing output program to %s.cor\n", argv[1]);
+	close_fd(output_fd);
+	close_fd(input_fd);
+	free_player(player);
 	return (0);
 }

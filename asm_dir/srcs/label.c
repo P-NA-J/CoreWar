@@ -3,70 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   label.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albanbotier <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/05 17:02:17 by albanboti         #+#    #+#             */
-/*   Updated: 2020/06/04 15:01:55 by albanboti        ###   ########.fr       */
+/*   Created: 2020/06/15 19:41:22 by user42            #+#    #+#             */
+/*   Updated: 2020/06/16 01:42:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
-#include <stdlib.h>
+#include "asm.h"
 
-static int		search_label(t_env *e, char *s, int len)
+t_label	create_label(t_operation *p_ope, char *p_name)
 {
-	t_label			*label;
-	t_call			*call;
+	t_label	result;
 
-	label = e->file->label;
-	while (label && (ft_strncmp(s, label->name, len) || label->name[len]))
-		label = label->next;
-	if (label)
-	{
-		if (label->index != -1)
-			redefine_label(e, s, label->y);
-		else
-		{
-			label->y = e->file->last->y;
-			label->index = e->file->i;
-			call = label->call;
-			if (!e->file->error)
-				write_label_call(e, call);
-		}
-		return (1);
-	}
-	return (0);
+	result.ope = p_ope;
+	result.name = ft_strdup(p_name);
+	return (result);
 }
 
-static void		get_label(t_env *e, char *s, int len)
+t_label	*malloc_label(t_operation *p_ope, char *p_name)
 {
-	t_label	*new;
+	t_label *result;
 
-	new = NULL;
-	if (!(new = (t_label *)malloc(sizeof(t_label))))
-		alloc_error(e);
-	if (!(new->name = ft_strndup(s, len)))
-	{
-		free(new);
-		alloc_error(e);
-	}
-	new->y = e->file->last->y;
-	new->index = e->file->i;
-	new->call = NULL;
-	new->next = e->file->label;
-	e->file->label = new;
+	result = (t_label*)malloc(sizeof(t_label) * 1);
+	if (result != NULL)
+		*result = create_label(p_ope, p_name);
+	return (result);
 }
 
-int				only_label(t_env *e, char **line)
+void	destroy_label(t_label to_destroy)
 {
-	char	*s;
+	free(to_destroy.name);
+}
 
-	s = *line + ft_strspn(*line, LABEL_CHARS);
-	if (*s != LABEL_CHAR)
-		return (0);
-	e->file->champ_part = 1;
-	if (!search_label(e, *line, s - *line))
-		get_label(e, *line, s - *line);
-	*line = s + ft_strspn(s + 1, SPACES) + 1;
-	return (!**line);
+void	free_label(t_label *to_free)
+{
+	destroy_label(*to_free);
+	free(to_free);
+}
+
+void	print_label(t_label *to_print)
+{
+	if (to_print->ope == NULL)
+		ft_printf("[%s] | [NULL]", to_print->name);
+	else
+	{
+		ft_printf("[%s] | [%d] -> [%s]", to_print->name,
+			to_print->ope->pos, to_print->ope->action->name);
+		print_operation(to_print->ope);
+	}
 }
