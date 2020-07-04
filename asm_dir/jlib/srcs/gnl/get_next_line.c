@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <jrouchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 14:31:51 by jrouchon          #+#    #+#             */
-/*   Updated: 2020/03/08 18:02:06 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/07/04 19:22:43 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			open_fd(char *path, int mode)
 {
 	int	fd;
 
-	fd = open(path, mode, S_IRWXU);
+	fd = open(path, mode);
 	if (g_saved[fd] != NULL)
 	{
 		free(g_saved[fd]);

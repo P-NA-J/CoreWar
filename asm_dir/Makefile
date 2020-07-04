@@ -49,6 +49,9 @@ all:
 				make $(NAME)
 
 install:
+				$(foreach dir, $(LIB_DIR), make -C $(dir))
+
+re_install:
 				$(foreach dir, $(LIB_DIR), make -C $(dir) re)
 
 show:
