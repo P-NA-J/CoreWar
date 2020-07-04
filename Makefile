@@ -62,6 +62,7 @@ PATH_OBJ_VM = $(addprefix virtual_machine/obj/, $(OBJ_VM))
 all: libft_comp obj_dir_vm $(NAME_VM)
 	make -C asm_dir install
 	make -C asm_dir
+	mv asm_dir/asm .
 
 $(NAME_VM) : $(PATH_OBJ_VM)
 	$(CC) $(CFLAGS) -o $(NAME_VM) $(PATH_OBJ_VM) $(LIB)

@@ -33,7 +33,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 ##
 
 ##Basics flags
-CFLAGS =	-Wall -Werror -Wextra
+CFLAGS =	-Wall -Werror -Wextra -g -fsanitize=address,undefined
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir))
@@ -49,7 +49,7 @@ all:
 				make $(NAME)
 
 install:
-				$(foreach dir, $(LIB_DIR), make -C $(dir))
+				$(foreach dir, $(LIB_DIR), make -C $(dir) re)
 
 show:
 				@echo "SRC :\n$(SRC)"
