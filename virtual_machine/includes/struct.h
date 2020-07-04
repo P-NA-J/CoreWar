@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danglass <danglass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:13:48 by pauljull          #+#    #+#             */
-/*   Updated: 2020/06/15 13:12:04 by danglass         ###   ########.fr       */
+/*   Updated: 2020/07/04 18:49:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include "./op.h"
 # include <stdlib.h>
+# include <stdint.h>
 
 typedef struct			s_player
 {
