@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_strsplit_emptyspace.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 12:44:17 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/01/31 00:28:02 by jrouchon         ###   ########.fr       */
+/*   Updated: 2020/07/04 19:50:13 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char		**ft_strsplit_emptyspace(char *s, char c)
 	while (s[i])
 	{
 		if (s[i] != c)
-			tab[j] = tmp_funct(&i, &j, c, s);
+			tab[j - 1] = tmp_funct(&i, &j, c, s);
 		else if (s[i] == c && s[i + 1] == c)
 		{
 			if (!(tab[j] = ft_strnew(0)))

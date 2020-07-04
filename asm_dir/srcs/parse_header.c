@@ -6,7 +6,7 @@
 /*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 19:41:46 by user42            #+#    #+#             */
-/*   Updated: 2020/07/04 19:30:26 by paul             ###   ########.fr       */
+/*   Updated: 2020/07/04 20:09:40 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ BOOL		parse_norme(int fd, char **var_cmd, char **var)
 {
 	if (analyse_variable(fd, &(var_cmd[0]), &(var[0])) == FALSE)
 		return (FALSE);
-	ft_printf("%s %s\n", *var_cmd, *var);
 	if (ft_strcmp(var_cmd[0], NAME_CMD_STRING) == TRUE)
 	{
 		switch_descriptor(&var_cmd[0], &var[0], &var_cmd[1], &var[1]);
@@ -93,12 +92,12 @@ t_header	*parse_header(int fd)
 		var_cmd[i] = NULL;
 		i += 1;
 	}
-	if (parse_norme(fd, var, var_cmd) == FALSE)
+	if (parse_norme(fd, var_cmd, var) == FALSE)
 		error_exit(1, "error around header descriptor");
-	free(var_cmd[1]);
-	free(var_cmd[2]);
-	header = malloc_header(var[1], var[2], 0);
 	free(var[1]);
 	free(var[2]);
+	header = malloc_header(var_cmd[1], var_cmd[2], 0);
+	free(var_cmd[1]);
+	free(var_cmd[2]);
 	return (header);
 }
