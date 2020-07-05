@@ -92,15 +92,18 @@ fclean_vm : clean_vm
 
 lib_clean:
 	make clean -C $(PATH_LIB)
+	make -C asm_dir/jlib clean
 
 lib_fclean:
 	make fclean -C $(PATH_LIB)
+	make -C asm_dir/jlib fclean
 
 clean: clean_vm clean_asm lib_clean
 
 fclean: lib_fclean fclean_vm fclean_asm
 
 re_asm :
+	make -C asm_dir re_install
 	make -C asm_dir re
 
 re_vm : fclean_vm lib_fclean all
